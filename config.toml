@@ -5,3 +5,9 @@ theme = ["hugo-cloak-email", "hugo-notice", "vladgg"]
 
 # Menu
 sectionPagesMenu = "main"
+
+# Robots.txt
+enableRobotsTXT = true
+
+# Git integration
+enableGitInfo = true
