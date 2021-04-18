@@ -37,7 +37,17 @@ a:hover {
     flex-direction: column;
 }
 
-.va-center {
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-va-center {
     display: flex;
     align-items: center;
 }
