@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html class="ms-Fabric">
+<html class="ms-Fabric" lang="{{ .Site.LanguageCode }}">
     {{- partial "head.html" . -}}
     <body>
         <div class="ms-Grid" dir="ltr">
             {{- partial "header.html" . -}}
             <div id="content">
                 {{- block "main" . }}{{- end }}
-            </div>             
+            </div>
             {{- partial "footer.html" . -}}
         </div>
     </body>
