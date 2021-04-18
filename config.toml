@@ -1,7 +1,7 @@
 baseurl = "https://vlad.gg/"
 languageCode = "en-us"
 title = "Vlad Zaharia"
-theme = ["hugo-notice", "vladgg"]
+theme = ["hugo-cloak-email", "hugo-notice", "vladgg"]
 
 # Menu
 sectionPagesMenu = "main"
