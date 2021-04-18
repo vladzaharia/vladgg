@@ -9,23 +9,23 @@
     </article>
 
     {{ range .Pages.GroupByParam "category" }}
-    <h3>{{ .Key }}</h3>
+        <h3>{{ .Key }}</h3>
 
-    <div class="flex-column">
-        <!-- Ranges through content/posts/*.md -->
-            {{ range .Pages.ByDate }}
-                <div class="project">
-                    <h3 class="m-0"><a href="{{.Permalink}}">{{.Title}}</a></h3>
-                    <div class="flex-va-center">
-                        <i class="ms-Icon ms-Icon--EventDate mr-5" aria-hidden="true"></i> 
-                        {{ .Date.Format "January 2006" }}
+        <div class="flex-column">
+            <!-- Ranges through content/posts/*.md -->
+                {{ range .Pages.ByDate }}
+                    <div class="project">
+                        <h3 class="m-0"><a href="{{.Permalink}}">{{.Title}}</a></h3>
+                        <div class="flex-va-center">
+                            <i class="ms-Icon ms-Icon--EventDate mr-5" aria-hidden="true"></i> 
+                            {{ .Date.Format "January 2006" }}
+                        </div>
+                        {{ .Params.summary }}
                     </div>
-                    {{ .Params.summary }}
-                </div>
 
-                <hr />
-            {{ end }}
-        {{ end }}
-    </div>
+                    <hr />
+                {{ end }}
+        </div>
+    {{ end }}
 </main>
 {{ end }}
