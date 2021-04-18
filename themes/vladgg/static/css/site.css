@@ -24,13 +24,6 @@ a:hover {
     color: #2b88d8;
 }
 
-hr {
-    width: 69%;
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
-    background-color: #a19f9d;
-}
-
 .ms-Grid {
     height: 100%;
     width: 100%;
@@ -39,22 +32,4 @@ hr {
     padding: 0 20px;
     display: flex;
     flex-direction: column;
-}
-
-/**
-    Sections
-*/
-nav {
-    display: flex;
-    justify-content: space-around;
-}
-
-#content {
-    flex-grow: 1;
-    padding: 2rem 0;
-}
-
-footer {
-    justify-self: flex-end;
-    padding-bottom: 1rem;
 }

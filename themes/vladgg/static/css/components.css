@@ -1,0 +1,63 @@
+/**
+    Sections
+*/
+nav {
+    display: flex;
+    justify-content: space-around;
+}
+
+#content {
+    flex-grow: 1;
+    padding-bottom: 2rem;
+}
+
+footer {
+    justify-self: flex-end;
+    padding-bottom: 1rem;
+}
+
+/**
+    Components
+*/
+.logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.logo > img {
+    height: 2rem;
+    padding-right: 0.75rem;
+}
+
+.project {
+    margin: 1rem;
+}
+
+.project > span {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #d2d0ce;
+    border-radius: 0.5rem;
+    color: #605e5c;
+    padding: 2rem;
+}
+
+.project .icon {
+    font-size: 1.25rem;
+}
+
+.project hr {
+    height: 1px;
+    width: 98%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-color: #e1dfdd;
+    border: none;
+}
+
+.label {
+    padding: 0.2rem 0.4rem;
+    margin-right: 0.5rem;
+    border-radius: 0.5rem;
+}

@@ -3,11 +3,14 @@ languageCode = "en-us"
 title = "Vlad Zaharia"
 theme = ["hugo-cloak-email", "hugo-notice", "vladgg"]
 
-# Menu
+# Automatic menu
 sectionPagesMenu = "main"
 
-# Robots.txt
+# Generate robots.txt
 enableRobotsTXT = true
 
 # Git integration
 enableGitInfo = true
+
+# Emoji integration
+enableEmoji = true

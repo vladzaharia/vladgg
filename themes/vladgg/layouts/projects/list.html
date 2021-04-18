@@ -14,16 +14,33 @@
         <div class="flex-column">
             <!-- Ranges through content/posts/*.md -->
                 {{ range .Pages.ByDate }}
-                    <div class="project">
-                        <h3 class="m-0"><a href="{{.Permalink}}">{{.Title}}</a></h3>
-                        <div class="flex-va-center">
-                            <i class="ms-Icon ms-Icon--EventDate mr-5" aria-hidden="true"></i> 
-                            {{ .Date.Format "January 2006" }}
-                        </div>
-                        {{ .Params.summary }}
-                    </div>
-
-                    <hr />
+                    <a class="project" href="{{.Permalink}}">
+                        <span>
+                            <span class="flex-row flex-justify-sb">
+                                <span class="flex-row flex-align-baseline">
+                                    <i class="{{ .Params.icon }} icon mr-1" aria-hidden="true"></i> 
+                                    <h3 class="m-0"> {{ .Title }} </h3>
+                                </span>
+                                
+                                <div class="flex-align-baseline">
+                                    <i class="fa-duotone fa-calendar-alt mr-5" aria-hidden="true"></i>
+                                    {{ .Date.Format "January 2006" }}
+                                </div>
+                            </span>
+                            <hr />
+                            <span class="flex-row">
+                                {{ .Params.summary }}
+                            </span>
+                            <span class="flex-row flex-align-baseline mt-1">
+                                <i class="fa-light fa-tags mr-5" aria-hidden="true"></i>
+                                {{ range .Params.tags }}
+                                    <span class="label ms-bgColor-themeLight ms-fontColor-themeDark">
+                                        {{ . }}
+                                    </span>
+                                {{ end }}
+                            </span>
+                        </span>
+                    </a>
                 {{ end }}
         </div>
     {{ end }}
