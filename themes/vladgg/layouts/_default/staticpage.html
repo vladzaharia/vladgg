@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html class="ms-Fabric">
+    {{- partial "head.html" . -}}
+    <body>
+        <div class="ms-Grid" dir="ltr">
+            {{- partial "header.html" . -}}
+            <div id="content">
+                <h2>{{ .Title }}</h2>
+                {{ .Content }}
+            </div>             
+            {{- partial "footer.html" . -}}
+        </div>
+    </body>
+</html>

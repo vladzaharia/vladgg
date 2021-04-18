@@ -1,4 +1,7 @@
-baseurl = "/"
+baseurl = "https://vlad.gg/"
 languageCode = "en-us"
 title = "Vlad Zaharia"
-theme = "vladgg"
+theme = ["hugo-notice", "vladgg"]
+
+# Menu
+sectionPagesMenu = "main"
