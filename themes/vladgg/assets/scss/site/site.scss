@@ -22,3 +22,19 @@ body {
         color: $dark_fg;
     }
 }
+
+.no-colorize {
+    color: $light_fg !important;
+
+    &:hover {
+        color: $light_fg !important;
+    }
+
+    @include dark {
+        color: $dark_fg !important;
+
+        &:hover {
+            color: $dark_fg !important;
+        }
+    }
+}

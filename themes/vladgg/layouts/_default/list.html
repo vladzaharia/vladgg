@@ -1,4 +1,6 @@
 {{ define "main" }}
+{{ $scratch := newScratch }}
+
 <main>
     <article>
         <header>
@@ -8,7 +10,14 @@
     </article>
     <div class="flex-row flex-wrap">
         {{ range .Pages }}
-            <a href="{{.Permalink}}" class="item cyan">
+            {{ $scratch.Set "color" "grey" }}
+            {{ $label := .Title }}
+
+            {{ range .Site.Data.tags.tags }}
+                {{ if eq $label .tag }} {{ $scratch.Set "color" .color }} {{ end }}
+            {{ end }}
+
+            <a href="{{.Permalink}}" class="card item label {{ $scratch.Get "color" }}">
                 {{.Title}}
             </a>
         {{ end }}

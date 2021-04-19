@@ -5,9 +5,11 @@
 .project {
     margin: 1rem;
     cursor: pointer;
+    border: 1px solid $neutral_light;
+    border-radius: 0.5rem;
 
     > span {
-        border: 1px solid $neutral_light;
+        border: 0px solid $neutral_light;
         border-radius: 0.5rem;
         background-color: $neutral_lighter;
         color: $light_fg;

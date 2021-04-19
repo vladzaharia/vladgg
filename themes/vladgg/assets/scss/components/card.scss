@@ -1,0 +1,8 @@
+@import '../common/colors.scss';
+@import '../common/helpers.scss';
+@import '../common/responsive.scss';
+
+.card {
+    @extend .z-depth-1;
+    transition: box-shadow .25s;
+}

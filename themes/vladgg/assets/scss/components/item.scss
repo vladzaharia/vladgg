@@ -14,6 +14,11 @@
     font-size: 1.5rem;
     color: $neutral_light;
 
+    &.label {
+        padding: 3rem;
+        margin: 1rem;
+    }
+
     @include mobile {
         flex: 0 0 50%;
         width: 50%;

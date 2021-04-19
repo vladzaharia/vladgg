@@ -1,7 +1,7 @@
 {{ $ctx := .ctx }}
 
 {{ range .projects }}
-    <div class="project" onclick="window.location='{{.Permalink}}'" tabindex="1">
+    <div class="project card" onclick="window.location='{{.Permalink}}'" tabindex="1">
         <span class="flex-column">
             <span class="flex-row flex-row-mobile flex-justify-sb">
                 <h3 class="m-0"> {{ .Title }} </h3>
