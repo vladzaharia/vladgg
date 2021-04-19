@@ -1,5 +1,16 @@
-<footer class="ms-Grid-row" id="footer">
-    <div class="ms-Grid-col ms-sm12">
+<footer class="ms-Grid-row flex-row flex-align-center" id="footer">
+    <div class="ms-Grid-col ms-sm12 ms-md8">
         Copyright (c) {{ now.Format "2006"}} Vlad Zaharia
+    </div>
+
+    <div class="ms-Grid-col ms-sm12 ms-md4">
+        <nav class="flex-row flex-justify-sb">
+            {{ range .Site.Menus.main }}
+                <a class="nav-link" href="{{ .URL }}">
+                {{ $text := print .Name | safeHTML }}
+                {{ $text }}
+                </a>
+            {{ end }}
+        </nav>
     </div>
 </footer>
