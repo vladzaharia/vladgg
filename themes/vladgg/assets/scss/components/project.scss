@@ -5,13 +5,13 @@
 .project {
     margin: 1rem;
     cursor: pointer;
-    background-color: $neutral_lighter;
 
     > span {
         display: flex;
         flex-direction: column;
         border: 1px solid $neutral_light;
         border-radius: 0.5rem;
+        background-color: $neutral_lighter;
         color: $light_fg;
         padding: 2rem;
     }
@@ -30,10 +30,10 @@
     }
 
     @include dark {
-        background-color: $neutral_darkest;
 
         > span {
             border-color: $neutral;
+            background-color: $neutral_darkest;
             color: $dark_fg;
         }
     
