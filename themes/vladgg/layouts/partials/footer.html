@@ -6,7 +6,7 @@
     <div class="ms-Grid-col ms-sm12 ms-md4">
         <nav class="flex-row flex-justify-end">
             {{ range .Site.Menus.social }}
-                <a class="nav-link mr-1 {{ .Post }}" title="{{ .Title }}" href="{{ .URL }}">
+                <a class="nav-link mr-1 {{ .Post }}" title="{{ .Name }}" aria-label="{{ .Name }}" href="{{ .URL }}">
                     <i class="fa-brands fa-{{ .Pre }}"></i>
                 </a>
             {{ end }}
