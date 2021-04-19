@@ -1,5 +1,5 @@
 @import '../common/colors.scss';
-@import '../common/mixins.scss';
+@import '../common/responsive.scss';
 
 #header, #footer {
     background-color: $neutral-lighter;
@@ -24,6 +24,18 @@
 
     @include mobile {
         margin-top: 1rem;
+
+        main {
+            text-align: center;
+        }
+    }
+
+    @include tablet {
+        margin-top: 2rem;
+
+        main {
+            text-align: center;
+        }
     }
 }
 
@@ -32,5 +44,17 @@ footer {
 
     nav {
         font-size: 1.4rem;
+    }
+
+    @include mobile {
+        text-align: center;
+        
+        .flex-justify-end {
+            justify-content: center;
+        }
+        
+        > * {
+            width: 100%;
+        }
     }
 }

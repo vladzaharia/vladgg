@@ -14,4 +14,5 @@ summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ullamcorpe
 
 date: {{ .Date }}
 draft: true
+type: project
 ---

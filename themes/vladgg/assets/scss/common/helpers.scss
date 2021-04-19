@@ -1,4 +1,4 @@
-@import '../common/mixins.scss';
+@import '../common/responsive.scss';
 
 /**
     Display classes
@@ -32,13 +32,21 @@
     flex-direction: row;
 
     @include mobile {
-        flex-direction: column;
         align-items: center;
+
+        &:not(.flex-row-mobile) {
+            flex-direction: column;
+        }
 
         > * {
             padding: 0.5em 0;
         }
     }
+}
+
+.flex-justify-center {
+    display: flex;
+    justify-content: center;
 }
 
 .flex-justify-end {
@@ -66,6 +74,11 @@
     align-items: center;
 }
 
+.flex-align-end {
+    display: flex;
+    align-items: flex-end;
+}
+
 .flex-wrap {
     display: flex;
     flex-wrap: wrap;
@@ -78,7 +91,7 @@
     margin: 0;
 }
 
-.mr-5 {
+.mr-05 {
     margin-right: .5rem;
 }
 
@@ -90,7 +103,7 @@
     margin-right: 2rem;
 }
 
-.ml-5 {
+.ml-05 {
     margin-left: .5rem;
 }
 
@@ -102,7 +115,7 @@
     margin-left: 2rem;
 }
 
-.mt-5 {
+.mt-05 {
     margin-top: .5rem;
 }
 
@@ -118,7 +131,7 @@
     margin-top: 2.5rem;
 }
 
-.mb-5 {
+.mb-05 {
     margin-bottom: .5rem;
 }
 

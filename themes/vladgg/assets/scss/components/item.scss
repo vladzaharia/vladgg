@@ -1,0 +1,25 @@
+@import '../common/colors.scss';
+@import '../common/responsive.scss';
+
+.item {
+    flex: 0 0 12%;
+
+    padding: 3rem;
+    margin: 1rem;
+
+    border: 1px solid $neutral_dark;
+    border-radius: 1rem;
+
+    text-align: center;
+    font-size: 1.5rem;
+    color: $neutral_light;
+
+    @include mobile {
+        flex: 0 0 50%;
+        width: 50%;
+    }
+
+    @include tablet {
+        flex: 0 0 30%;
+    }
+}

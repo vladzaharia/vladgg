@@ -2,15 +2,18 @@
 {{ $ctx := .ctx }}
 {{ $url := .url }}
 
-{{ range $label := .labels }}
-    {{ $scratch.Set "color" "grey" }}
-    {{ range $ctx.Site.Data.tags.tags }}
-        {{ if eq $label .tag }} {{ $scratch.Set "color" .color }} {{ end }}
-    {{ end }}
+<span class="labels flex-row flex-row-mobile flex-align-end {{ .class }}">
+    <i class="label-icon fa-light fa-{{ .icon }} mr-1" aria-hidden="true"></i>
+    {{ range $label := .labels }}
+        {{ $scratch.Set "color" "grey" }}
+        {{ range $ctx.Site.Data.tags.tags }}
+            {{ if eq $label .tag }} {{ $scratch.Set "color" .color }} {{ end }}
+        {{ end }}
 
-    <a href="{{ $url | relLangURL }}{{ . | urlize }}" onclick="event.stopPropagation();">
-        <span class="label {{ $scratch.Get "color" }}">
-            {{ $label }}
-        </span>
-    </a>
-{{ end }}
+        <a href="{{ $url | relLangURL }}{{ . | urlize }}" onclick="event.stopPropagation();">
+            <span class="label {{ $scratch.Get "color" }}">
+                {{ $label }}
+            </span>
+        </a>
+    {{ end }}
+</span>
