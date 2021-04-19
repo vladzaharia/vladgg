@@ -1,3 +1,5 @@
+@import '../common/mixins.scss';
+
 /* Logo */
 .logo {
     display: flex;
@@ -7,5 +9,10 @@
     > img {
         height: 2rem;
         padding-right: 0.75rem;    
+    }
+
+    @include mobile {
+        justify-content: center;
+        margin-block-end: .5rem;
     }
 }
