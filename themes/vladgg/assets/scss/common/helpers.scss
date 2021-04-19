@@ -1,4 +1,4 @@
-@import '../common/mixins.scss';
+@import '../common/responsive.scss';
 
 /**
     Display classes
@@ -32,13 +32,21 @@
     flex-direction: row;
 
     @include mobile {
-        flex-direction: column;
         align-items: center;
+
+        &:not(.flex-row-mobile) {
+            flex-direction: column;
+        }
 
         > * {
             padding: 0.5em 0;
         }
     }
+}
+
+.flex-justify-center {
+    display: flex;
+    justify-content: center;
 }
 
 .flex-justify-end {
@@ -66,6 +74,11 @@
     align-items: center;
 }
 
+.flex-align-end {
+    display: flex;
+    align-items: flex-end;
+}
+
 .flex-wrap {
     display: flex;
     flex-wrap: wrap;
@@ -78,7 +91,7 @@
     margin: 0;
 }
 
-.mr-5 {
+.mr-05 {
     margin-right: .5rem;
 }
 
@@ -90,7 +103,7 @@
     margin-right: 2rem;
 }
 
-.ml-5 {
+.ml-05 {
     margin-left: .5rem;
 }
 
@@ -102,7 +115,7 @@
     margin-left: 2rem;
 }
 
-.mt-5 {
+.mt-05 {
     margin-top: .5rem;
 }
 
@@ -114,7 +127,11 @@
     margin-top: 2rem;
 }
 
-.mb-5 {
+.mt-25 {
+    margin-top: 2.5rem;
+}
+
+.mb-05 {
     margin-bottom: .5rem;
 }
 
@@ -124,4 +141,97 @@
 
 .mb-2 {
     margin-bottom: 2rem;
+}
+
+/**
+    Padding classes
+*/
+.p-0 {
+    padding: 0;
+}
+
+.pr-05 {
+    padding-right: .5rem;
+}
+
+.pr-1 {
+    padding-right: 1rem;
+}
+
+.pr-2 {
+    padding-right: 2rem;
+}
+
+.pl-05 {
+    padding-left: .5rem;
+}
+
+.pl-1 {
+    padding-left: 1rem;
+}
+
+.pl-2 {
+    padding-left: 2rem;
+}
+
+.pt-05 {
+    padding-top: .5rem;
+}
+
+.pt-1 {
+    padding-top: 1rem;
+}
+
+.pt-2 {
+    padding-top: 2rem;
+}
+
+.pt-25 {
+    padding-top: 2.5rem;
+}
+
+.pb-05 {
+    padding-bottom: .5rem;
+}
+
+.pb-1 {
+    padding-bottom: 1rem;
+}
+
+.pb-2 {
+    padding-bottom: 2rem;
+}
+
+/* z-depth */
+.z-depth-transition {
+    transition: box-shadow .25s;
+}
+
+.z-depth-0 {
+    box-shadow: none !important;
+}
+
+.z-depth-05 {
+    @extend .z-depth-transition;
+    box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.14);
+}
+
+.z-depth-1 {
+    @extend .z-depth-transition;
+    box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.14);
+}
+
+.z-depth-1-hover {
+    @extend .z-depth-transition;
+    box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.14);
+
+    &:hover {
+        transition: .25s;
+        box-shadow: 3px 3px 6px 2px rgba(0,0,0,0.14);
+    }
+}
+
+.z-depth-2 {
+    @extend .z-depth-transition;
+    box-shadow: 3px 3px 4px 2px rgba(0,0,0,0.14);
 }

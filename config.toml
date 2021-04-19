@@ -15,6 +15,14 @@ enableGitInfo = true
 # Emoji integration
 enableEmoji = true
 
+# Taxonomies
+[taxonomies]
+  category = "categories"
+  language = "languages"
+  tag = "tags"
+  tool = "tools"
+  type = "types"
+
 # Social networks
 [[menu.social]]
     identifier = "facebook"

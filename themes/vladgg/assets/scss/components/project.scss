@@ -1,23 +1,21 @@
 @import '../common/colors.scss';
-@import '../common/mixins.scss';
+@import '../common/responsive.scss';
 
 /* Project card */
 .project {
     margin: 1rem;
     cursor: pointer;
+    border: 1px solid $neutral_light;
+    border-radius: 0.5rem;
+
+    @extend .z-depth-1-hover;
 
     > span {
-        display: flex;
-        flex-direction: column;
-        border: 1px solid $neutral_light;
+        border: 0px solid $neutral_light;
         border-radius: 0.5rem;
         background-color: $neutral_lighter;
         color: $light_fg;
         padding: 2rem;
-    }
-
-    .icon {
-        font-size: 1.25rem;
     }
 
     hr {
@@ -29,8 +27,15 @@
         border: none;
     }
 
-    @include dark {
+    .icon {
+        font-size: 4rem;
+    }
 
+    .labels {
+        flex: 0 0 33%;
+    }
+
+    @include dark {
         > span {
             border-color: $neutral;
             background-color: $neutral_darkest;

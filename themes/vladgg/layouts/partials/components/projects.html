@@ -1,26 +1,25 @@
 {{ $ctx := .ctx }}
 
 {{ range .projects }}
-    <div class="project" onclick="window.location='{{.Permalink}}'" tabindex="1">
-        <span>
-            <span class="flex-row flex-justify-sb">
-                <span class="flex-row flex-align-baseline">
-                    <i class="{{ .Params.icon }} icon mr-1" aria-hidden="true"></i> 
-                    <h3 class="m-0"> {{ .Title }} </h3>
-                </span>
+    <div class="project card" onclick="window.location='{{.Permalink}}'" tabindex="1">
+        <span class="flex-column">
+            <span class="flex-row flex-row-mobile flex-justify-sb">
+                <h3 class="m-0"> {{ .Title }} </h3>
                 
-                <div class="flex-align-baseline">
-                    <i class="fa-duotone fa-calendar-alt mr-5" aria-hidden="true"></i>
+                <div class="flex-align-center">
+                    <i class="label-icon fa-solid fa-calendar-star mr-1" aria-hidden="true"></i>
                     {{ .Date.Format "January 2006" }}
                 </div>
             </span>
             <hr />
-            <span class="flex-row">
+            <span class="flex-row flex-row-mobile mt-1 ml-1 mr-1">
+                <i class="{{ .Params.icon }} icon mr-2" aria-hidden="true"></i> 
                 {{ .Params.summary }}
             </span>
-            <span class="flex-row flex-align-baseline mt-1">
-                <i class="fa-light fa-tags mr-5" aria-hidden="true"></i>
-                {{ partial "components/labels.html" (dict "tags" .Params.tags "ctx" $ctx) }}
+            <span class="labels flex-row flex-justify-sb mt-25">
+                {{ partial "components/labels.html" (dict "labels" .Params.languages "icon" "code" "url" "/languages/" "class" "" "ctx" $ctx) }}
+                {{ partial "components/labels.html" (dict "labels" .Params.tools "icon" "wrench" "url" "/tools/" "class" "flex-justify-center" "ctx" $ctx) }}
+                {{ partial "components/labels.html" (dict "labels" .Params.tags "icon" "tags" "url" "/tags/" "class" "flex-justify-end" "ctx" $ctx) }}
             </span>
         </span>
     </div>

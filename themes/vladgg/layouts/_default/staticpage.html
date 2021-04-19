@@ -2,10 +2,13 @@
 <main>
     <article>
         <header>
-            <h2>{{.Title}}</h2>
+            <span class="flex-row flex-align-center">
+                <i class="page-icon fa-solid fa-{{ .Params.icon }} mr-1"></i>
+                <h2>{{ .Title }}</h2>
+            </span>
         </header>
         <!-- "{{.Content}}" pulls from the markdown content of the corresponding _index.md -->
-        {{.Content}}
+        {{ .Content }}
     </article>
 </main>
 {{ end }}
