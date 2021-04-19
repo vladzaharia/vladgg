@@ -1,3 +1,6 @@
+@import '../common/colors.scss';
+@import '../common/mixins.scss';
+
 /**
     Fader
 */
@@ -12,6 +15,20 @@
     background: $light_bg;
     animation-duration: 200ms;
     animation-timing-function: ease-in-out;
+
+    &.fade-out {
+        opacity: 0;
+        animation-name: fade-out;
+    }
+    
+    &.fade-in {
+        opacity: 1;
+        animation-name: fade-in;
+    }
+
+    @include dark {
+        background-color: $dark_bg;
+    }
 }
 
 @keyframes fade-out {
@@ -22,14 +39,4 @@
 @keyframes fade-in {
     from { opacity: 0 }
       to { opacity: 1 }
-}
-
-#fader.fade-out {
-    opacity: 0;
-    animation-name: fade-out;
-}
-
-#fader.fade-in {
-    opacity: 1;
-    animation-name: fade-in;
 }

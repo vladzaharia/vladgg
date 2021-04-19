@@ -1,0 +1,14 @@
+/* Media Queries */
+// Dark mode
+@mixin dark {
+    @media (prefers-color-scheme: dark) {
+        @content;
+    }
+}
+
+// Phone width
+@mixin mobile {
+    @media only screen and (max-width: 600px) {
+        @content;
+    }
+}

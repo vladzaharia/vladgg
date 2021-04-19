@@ -1,7 +1,7 @@
 baseurl = "https://vlad.gg/"
 languageCode = "en-us"
-title = "Vlad Zaharia"
 theme = ["hugo-cloak-email", "hugo-notice", "vladgg"]
+title = "Vlad Zaharia"
 
 # Automatic menu
 sectionPagesMenu = "main"
@@ -14,3 +14,44 @@ enableGitInfo = true
 
 # Emoji integration
 enableEmoji = true
+
+# Social networks
+[[menu.social]]
+    identifier = "facebook"
+    name = "Facebook"
+    post = "primary"
+    pre = "facebook-square"
+    url = "https://www.facebook.com/vladzaharia/"
+    weight = 1
+
+[[menu.social]]
+    identifier = "instagram"
+    name = "Instagram"
+    post = "pink"
+    pre = "instagram"
+    url = "https://www.instagram.com/vladzaharia/"
+    weight = 2
+
+[[menu.social]]
+    identifier = "twitter"
+    name = "Twitter"
+    post = "cyan"
+    pre = "twitter-square"
+    url = "https://twitter.com/vladzaharia/"
+    weight = 3
+
+[[menu.social]]
+    identifier = "linkedin"
+    name = "LinkedIn"
+    post = "blue"
+    pre = "linkedin"
+    url = "https://www.linkedin.com/in/vladzaharia/"
+    weight = 4
+
+[[menu.social]]
+    identifier = "github"
+    name = "GitHub"
+    post = "grey"
+    pre = "github"
+    url = "http://github.com/vladzaharia/"
+    weight = 5

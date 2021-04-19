@@ -1,0 +1,53 @@
+// Set label's color
+@mixin link-color($color) {
+    color: $color;
+
+    &:hover {
+        color: lighten($color, 15%);
+    }
+
+    @include dark {
+        color: lighten($color, 15%);
+
+        &:hover {
+            color: $color;
+        }
+    }
+}
+
+a {
+    @include link-color($primary);
+    text-decoration: none;
+
+    &.blue {
+        @include link-color(adjust-hue($ms-color-sharedBlue10, -15deg));
+    }
+
+    &.cyan {
+        @include link-color($ms-color-sharedCyanBlue10);
+    }
+
+    &.green {
+        @include link-color(desaturate($ms-color-sharedGreen20, 30%));
+    }
+
+    &.red {
+        @include link-color($ms-color-sharedRed20);
+    }
+
+    &.orange {
+        @include link-color($ms-color-sharedOrange20);
+    }
+
+    &.purple {
+        @include link-color($ms-color-sharedBlueMagenta30);
+    }
+
+    &.pink {
+        @include link-color(desaturate($ms-color-sharedMagenta20, 30%));
+    }
+
+    &.grey {
+        @include link-color($neutral-dark);
+    }
+}

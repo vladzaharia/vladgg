@@ -1,11 +1,20 @@
+@import '../common/colors.scss';
+@import '../common/mixins.scss';
+
 /* Logo */
 .logo {
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin: 0;
 
     > img {
         height: 2rem;
         padding-right: 0.75rem;    
+    }
+
+    @include mobile {
+        justify-content: center;
+        margin-block-end: .5rem;
     }
 }

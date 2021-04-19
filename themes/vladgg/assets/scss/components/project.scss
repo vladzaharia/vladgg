@@ -1,14 +1,17 @@
 @import '../common/colors.scss';
+@import '../common/mixins.scss';
 
 /* Project card */
 .project {
     margin: 1rem;
+    cursor: pointer;
 
     > span {
         display: flex;
         flex-direction: column;
         border: 1px solid $neutral_light;
         border-radius: 0.5rem;
+        background-color: $neutral_lighter;
         color: $light_fg;
         padding: 2rem;
     }
@@ -22,7 +25,20 @@
         width: 98%;
         margin-top: 1rem;
         margin-bottom: 1rem;
-        background-color: $neutral_lighter;
+        background-color: $neutral_light;
         border: none;
+    }
+
+    @include dark {
+
+        > span {
+            border-color: $neutral;
+            background-color: $neutral_darkest;
+            color: $dark_fg;
+        }
+    
+        hr {
+            background-color: $neutral_dark;
+        }
     }
 }

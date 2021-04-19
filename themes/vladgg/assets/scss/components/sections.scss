@@ -1,14 +1,36 @@
-nav {
-    display: flex;
-    justify-content: space-around;
+@import '../common/colors.scss';
+@import '../common/mixins.scss';
+
+#header, #footer {
+    background-color: $neutral-lighter;
+    margin: 0;
+    padding: 0 2rem;
+
+    > * {
+        padding: 1rem 0;
+    }
+
+    @include dark {
+        background-color: $neutral-darkest;
+    }
 }
 
 #content {
     flex-grow: 1;
-    padding-bottom: 2rem;
+    padding: 2rem 0;
+    width: 100%;
+    max-width: 960px;
+    align-self: center;
+
+    @include mobile {
+        margin-top: 1rem;
+    }
 }
 
 footer {
     justify-self: flex-end;
-    padding-bottom: 1rem;
+
+    nav {
+        font-size: 1.4rem;
+    }
 }

@@ -1,5 +1,15 @@
-<footer class="ms-Grid-row" id="footer">
-    <div class="ms-Grid-col ms-sm12">
+<footer class="ms-Grid-row flex-row flex-align-center" id="footer">
+    <div class="ms-Grid-col ms-sm12 ms-md8">
         Copyright (c) {{ now.Format "2006"}} Vlad Zaharia
+    </div>
+
+    <div class="ms-Grid-col ms-sm12 ms-md4">
+        <nav class="flex-row flex-justify-end">
+            {{ range .Site.Menus.social }}
+                <a class="nav-link mr-1 {{ .Post }}" title="{{ .Name }}" aria-label="{{ .Name }}" href="{{ .URL }}">
+                    <i class="fa-brands fa-{{ .Pre }}"></i>
+                </a>
+            {{ end }}
+        </nav>
     </div>
 </footer>
