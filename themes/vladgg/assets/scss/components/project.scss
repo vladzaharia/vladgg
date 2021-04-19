@@ -1,0 +1,26 @@
+/* Project card */
+.project {
+    margin: 1rem;
+
+    > span {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #d2d0ce;
+        border-radius: 0.5rem;
+        color: #605e5c;
+        padding: 2rem;
+    }
+
+    .icon {
+        font-size: 1.25rem;
+    }
+
+    hr {
+        height: 1px;
+        width: 98%;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        background-color: #e1dfdd;
+        border: none;
+    }
+}

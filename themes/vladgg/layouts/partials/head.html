@@ -2,19 +2,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Dependencies -->
+    <!-- Vendor (S)CSS -->
     <link rel="stylesheet" type="text/css" href="/css/fabric.min.css">
     <link rel="stylesheet" type="text/css" href="/css/fontawesome.min.css">
+    {{ $vendor := resources.Get "scss/vendors.scss" | toCSS | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $vendor.Permalink }}">
 
-    <!-- Site CSS -->
-    <link rel="stylesheet" type="text/css" href="/css/components.css">
-    <link rel="stylesheet" type="text/css" href="/css/fader.css">
-    <link rel="stylesheet" type="text/css" href="/css/helpers.css">
-    <link rel="stylesheet" type="text/css" href="/css/site.css">
-
-    <!-- Responsive CSS -->
-    <link rel="stylesheet" type="text/css" href="/css/dark.css">
-    <link rel="stylesheet" type="text/css" href="/css/responsive.css">
+    <!-- Site (S)CSS -->
+    {{ $style := resources.Get "scss/main.scss" | toCSS | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $style.Permalink }}">
 
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
