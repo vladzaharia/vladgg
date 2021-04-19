@@ -5,6 +5,7 @@
 .project {
     margin: 1rem;
     cursor: pointer;
+    background-color: $neutral_lighter;
 
     > span {
         display: flex;
@@ -29,6 +30,8 @@
     }
 
     @include dark {
+        background-color: $neutral_darkest;
+
         > span {
             border-color: $neutral;
             color: $dark_fg;

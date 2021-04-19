@@ -2,6 +2,7 @@
 @mixin label-color($color) {
     background-color: lighten($color, 45%);
     color: $color;
+    border: 1px solid lighten($color, 30%);
 
     &:hover {
         background-color: lighten($color, 30%);
@@ -11,7 +12,7 @@
     @include dark {
         background-color: darken($color, 15%);
         color: lighten($color, 20%);
-        border: 1px solid lighten($color, 10%);
+        border-color: lighten($color, 10%);
 
         &:hover {
             background-color: darken($color, 30%);
