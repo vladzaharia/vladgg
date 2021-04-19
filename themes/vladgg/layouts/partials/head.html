@@ -4,11 +4,11 @@
 
     <!-- Vendor (S)CSS -->
     {{ $vendor := resources.Get "scss/vendors.scss" | toCSS | minify | fingerprint -}}
-    <link rel="stylesheet" href="{{ $vendor.Permalink | relURL  }}" {{ printf "integrity=%q" $vendor.Data.Integrity | safeHTMLAttr }} crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ $vendor.Permalink | relURL  }}" crossorigin="anonymous">
 
     <!-- Site (S)CSS -->
     {{ $site := resources.Get "scss/main.scss" | toCSS | minify | fingerprint -}}
-    <link rel="stylesheet" href="{{ $site.Permalink | relURL  }}" {{ printf "integrity=%q" $site.Data.Integrity | safeHTMLAttr }} crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ $site.Permalink | relURL  }}" crossorigin="anonymous">
 
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
