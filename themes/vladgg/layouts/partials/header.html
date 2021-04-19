@@ -8,7 +8,7 @@
     <div class="ms-Grid-col ms-sm12 ms-lg4">
         <nav class="flex-row flex-justify-sb">
             {{ range .Site.Menus.main }}
-                <a class="nav-link" href="{{ .URL }}">
+                <a class="nav-link" href="{{ .URL }}" title="{{ .Title }}">
                 {{ $text := print .Name | safeHTML }}
                 {{ $text }}
                 </a>

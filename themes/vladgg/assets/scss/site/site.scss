@@ -22,20 +22,3 @@ body {
         color: $dark_fg;
     }
 }
-
-a {
-    color: $light_primary;
-    text-decoration: none;
-    
-    &:hover {
-        color: $light_secondary;
-    }
-
-    @include dark {
-        color: $dark_primary;
-
-        &:hover {
-            color: $dark_secondary;
-        }
-    }
-}

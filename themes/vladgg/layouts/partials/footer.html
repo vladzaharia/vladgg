@@ -4,11 +4,10 @@
     </div>
 
     <div class="ms-Grid-col ms-sm12 ms-md4">
-        <nav class="flex-row flex-justify-sb">
-            {{ range .Site.Menus.main }}
-                <a class="nav-link" href="{{ .URL }}">
-                {{ $text := print .Name | safeHTML }}
-                {{ $text }}
+        <nav class="flex-row flex-justify-end">
+            {{ range .Site.Menus.social }}
+                <a class="nav-link mr-1 {{ .Post }}" title="{{ .Title }}" href="{{ .URL }}">
+                    <i class="fa-brands fa-{{ .Pre }}"></i>
                 </a>
             {{ end }}
         </nav>

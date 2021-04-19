@@ -1,27 +1,3 @@
-// Set label's color
-@mixin label-color($color) {
-    background-color: lighten($color, 40%);
-    color: darken($color, 20%);
-    border: 1px solid lighten($color, 30%);
-
-    &:hover {
-        background-color: lighten($color, 30%);
-        color: darken($color, 30%);
-    }
-
-    @include dark {
-        background-color: darken($color, 15%);
-        color: lighten($color, 20%);
-        border-color: lighten($color, 10%);
-
-        &:hover {
-            background-color: darken($color, 30%);
-            color: lighten($color, 20%);
-            border-color: darken($color, 10%);
-        }
-    }
-}
-
 /* Media Queries */
 // Dark mode
 @mixin dark {
