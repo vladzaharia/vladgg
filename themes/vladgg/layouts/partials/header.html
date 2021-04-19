@@ -1,9 +1,12 @@
-<div class="ms-Grid-row flex-row flex-va-center" id="header">
-    <div class="ms-Grid-col ms-sm6">
-        <h1>👋 Hi, I'm Vlad.</h1>
+<div class="ms-Grid-row flex-row flex-align-center" id="header">
+    <div class="ms-Grid-col ms-sm12 ms-md6">
+        <h1 class="logo">
+            <img class="h-2" src="/emoji/wave.svg" alt="Hand waving emoji" /> 
+            Hi, I'm Vlad.
+        </h1>
     </div>
-    <div class="ms-Grid-col ms-sm6">
-        <nav class="flex-row">
+    <div class="ms-Grid-col ms-sm12 ms-md6">
+        <nav class="flex-row flex-justify-sa">
             {{ range .Site.Menus.main }}
                 <a class="nav-link" href="{{ .URL }}">
                 {{ $text := print .Name | safeHTML }}

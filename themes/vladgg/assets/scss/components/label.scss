@@ -1,0 +1,11 @@
+@import '../common/colors.scss';
+
+/* Label */
+.label {
+    padding: 0.2rem 0.4rem;
+    margin-right: 0.5rem;
+    border-radius: 0.5rem;
+
+    background-color: $primary_lightest;
+    color: $primary_dark;
+}

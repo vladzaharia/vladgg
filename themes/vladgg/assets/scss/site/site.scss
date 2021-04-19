@@ -1,0 +1,27 @@
+@import '../common/colors.scss';
+
+html { 
+    height: 100%;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    background-color: $light_bg;
+    color: $light_fg;
+}
+
+a {
+    color: $light_primary;
+    text-decoration: none;
+    
+    &:hover {
+        color: $light_secondary;
+    }
+}

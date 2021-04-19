@@ -1,0 +1,28 @@
+@import '../common/colors.scss';
+
+/* Project card */
+.project {
+    margin: 1rem;
+
+    > span {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid $neutral_light;
+        border-radius: 0.5rem;
+        color: $light_fg;
+        padding: 2rem;
+    }
+
+    .icon {
+        font-size: 1.25rem;
+    }
+
+    hr {
+        height: 1px;
+        width: 98%;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        background-color: $neutral_lighter;
+        border: none;
+    }
+}

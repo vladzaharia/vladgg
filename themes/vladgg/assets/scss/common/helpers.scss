@@ -1,7 +1,25 @@
 /**
-    Helper classes
+    Display classes
 */
+.display-none {
+    display: none;
+}
 
+.display-block {
+    display: block;
+}
+
+.display-flex {
+    display: flex;
+}
+
+.display-inline {
+    display: inline;
+}
+
+/**
+    Flex classes
+*/
 .flex-column {
     display: flex;
     flex-direction: column;
@@ -12,7 +30,22 @@
     flex-direction: row;
 }
 
-.flex-va-center {
+.flex-justify-sa {
+    display: flex;
+    justify-content: space-around;
+}
+
+.flex-justify-sb {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex-align-baseline {
+    display: flex;
+    align-items: baseline;
+}
+
+.flex-align-center {
     display: flex;
     align-items: center;
 }
@@ -22,6 +55,9 @@
     flex-wrap: wrap;
 }
 
+/**
+    Margin classes
+*/
 .m-0 {
     margin: 0;
 }

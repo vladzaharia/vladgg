@@ -1,10 +1,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/css/fabric.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/helper.css">
-    <link rel="stylesheet" type="text/css" href="/css/site.css">
-    <link rel="stylesheet" type="text/css" href="/css/responsive.css">
+
+    <!-- Vendor (S)CSS -->
+    {{ $vendor := resources.Get "scss/vendors.scss" | toCSS | minify | fingerprint -}}
+    <link rel="stylesheet" href="{{ $vendor.Permalink | relURL  }}" crossorigin="anonymous">
+
+    <!-- Site (S)CSS -->
+    {{ $site := resources.Get "scss/main.scss" | toCSS | minify | fingerprint -}}
+    <link rel="stylesheet" href="{{ $site.Permalink | relURL  }}" crossorigin="anonymous">
 
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">

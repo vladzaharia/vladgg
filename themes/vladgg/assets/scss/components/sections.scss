@@ -1,0 +1,14 @@
+nav {
+    display: flex;
+    justify-content: space-around;
+}
+
+#content {
+    flex-grow: 1;
+    padding-bottom: 2rem;
+}
+
+footer {
+    justify-self: flex-end;
+    padding-bottom: 1rem;
+}
