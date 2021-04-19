@@ -1,15 +1,16 @@
 {{ $scratch := newScratch }}
 {{ $ctx := .ctx }}
+{{ $url := .url }}
 
-{{ range $tag := .tags }}
+{{ range $label := .labels }}
     {{ $scratch.Set "color" "grey" }}
     {{ range $ctx.Site.Data.tags.tags }}
-        {{ if eq $tag .tag }} {{ $scratch.Set "color" .color }} {{ end }}
+        {{ if eq $label .tag }} {{ $scratch.Set "color" .color }} {{ end }}
     {{ end }}
 
-    <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">
+    <a href="{{ $url | relLangURL }}{{ . | urlize }}" onclick="event.stopPropagation();">
         <span class="label {{ $scratch.Get "color" }}">
-            {{ $tag }}
+            {{ $label }}
         </span>
     </a>
 {{ end }}

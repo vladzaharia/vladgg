@@ -2,12 +2,9 @@
 
 {{ range .projects }}
     <div class="project" onclick="window.location='{{.Permalink}}'" tabindex="1">
-        <span>
+        <span class="flex-column">
             <span class="flex-row flex-justify-sb">
-                <span class="flex-row flex-align-baseline">
-                    <i class="{{ .Params.icon }} icon mr-1" aria-hidden="true"></i> 
-                    <h3 class="m-0"> {{ .Title }} </h3>
-                </span>
+                <h3 class="m-0"> {{ .Title }} </h3>
                 
                 <div class="flex-align-baseline">
                     <i class="fa-duotone fa-calendar-alt mr-5" aria-hidden="true"></i>
@@ -15,12 +12,23 @@
                 </div>
             </span>
             <hr />
-            <span class="flex-row">
+            <span class="flex-row mt-1 ml-1 mr-1">
+                <i class="{{ .Params.icon }} icon mr-2" aria-hidden="true"></i> 
                 {{ .Params.summary }}
             </span>
-            <span class="flex-row flex-align-baseline mt-1">
-                <i class="fa-light fa-tags mr-5" aria-hidden="true"></i>
-                {{ partial "components/labels.html" (dict "tags" .Params.tags "ctx" $ctx) }}
+            <span class="flex-row flex-justify-sb mt-25">
+                <span class="flex-row flex-align-center">
+                    <i class="label-icon fa-light fa-code mr-1" aria-hidden="true"></i>
+                    {{ partial "components/labels.html" (dict "labels" .Params.languages "url" "/languages/" "ctx" $ctx) }}
+                </span>
+                <span class="flex-row flex-align-center">
+                    <i class="label-icon fa-light fa-wrench mr-1" aria-hidden="true"></i>
+                    {{ partial "components/labels.html" (dict "labels" .Params.tools "url" "/tools/" "ctx" $ctx) }}
+                </span>
+                <span class="flex-row flex-align-center">
+                    <i class="label-icon fa-light fa-tags mr-1" aria-hidden="true"></i>
+                    {{ partial "components/labels.html" (dict "labels" .Params.tags "url" "/tags/" "ctx" $ctx) }}
+                </span>
             </span>
         </span>
     </div>
