@@ -1,0 +1,12 @@
+{{ $scratch := newScratch }}
+
+{{ range . }}
+    {{ $scratch.Set "color" "grey" }}
+    {{ if eq . "Sample" }} {{ $scratch.Set "color" "blue" }} {{ end }}
+
+    <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">
+        <span class="label {{ $scratch.Get "color" }}">
+            {{ . }}
+        </span>
+    </a>
+{{ end }}
