@@ -8,6 +8,8 @@
     border: 1px solid $neutral_light;
     border-radius: 0.5rem;
 
+    @extend .z-depth-1-hover;
+
     > span {
         border: 0px solid $neutral_light;
         border-radius: 0.5rem;
@@ -34,7 +36,6 @@
     }
 
     @include dark {
-
         > span {
             border-color: $neutral;
             background-color: $neutral_darkest;

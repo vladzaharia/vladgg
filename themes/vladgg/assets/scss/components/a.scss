@@ -4,6 +4,7 @@
 
     &:hover {
         color: lighten($color, 15%);
+        transition: .25s;
     }
 
     @include dark {
