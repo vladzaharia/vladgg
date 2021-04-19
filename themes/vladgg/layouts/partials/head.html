@@ -5,12 +5,12 @@
     <!-- Vendor (S)CSS -->
     <link rel="stylesheet" type="text/css" href="/css/fabric.min.css">
     <link rel="stylesheet" type="text/css" href="/css/fontawesome.min.css">
-    {{ $vendor := resources.Get "scss/vendors.scss" | toCSS | minify | fingerprint }}
-    <link rel="stylesheet" href="{{ $vendor.Permalink }}">
+    {{ $vendor := resources.Get "scss/vendors.scss" | toCSS | minify | fingerprint -}}
+    <link rel="stylesheet" href="{{ $vendor.Permalink | relURL  }}" {{ printf "integrity=%q" $vendor.Data.Integrity | safeHTMLAttr }} crossorigin="anonymous">
 
     <!-- Site (S)CSS -->
-    {{ $style := resources.Get "scss/main.scss" | toCSS | minify | fingerprint }}
-    <link rel="stylesheet" href="{{ $style.Permalink }}">
+    {{ $site := resources.Get "scss/main.scss" | toCSS | minify | fingerprint -}}
+    <link rel="stylesheet" href="{{ $site.Permalink | relURL  }}" {{ printf "integrity=%q" $site.Data.Integrity | safeHTMLAttr }} crossorigin="anonymous">
 
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
