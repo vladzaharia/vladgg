@@ -12,7 +12,7 @@
 
         <div class="flex-column">
             <!-- Ranges through content/posts/*.md -->
-            {{ partial "components/projects.html" .Pages.ByDate }}
+            {{ partial "components/projects.html" (dict "projects" .Pages.ByDate "ctx" $) }}
         </div>
     {{ end }}
 </main>

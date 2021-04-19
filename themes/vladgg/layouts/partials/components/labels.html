@@ -1,12 +1,15 @@
 {{ $scratch := newScratch }}
+{{ $ctx := .ctx }}
 
-{{ range . }}
+{{ range $tag := .tags }}
     {{ $scratch.Set "color" "grey" }}
-    {{ if eq . "Sample" }} {{ $scratch.Set "color" "blue" }} {{ end }}
+    {{ range $ctx.Site.Data.tags.tags }}
+        {{ if eq $tag .tag }} {{ $scratch.Set "color" .color }} {{ end }}
+    {{ end }}
 
     <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">
         <span class="label {{ $scratch.Get "color" }}">
-            {{ . }}
+            {{ $tag }}
         </span>
     </a>
 {{ end }}

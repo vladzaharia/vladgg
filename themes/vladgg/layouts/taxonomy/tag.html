@@ -7,6 +7,6 @@
             {{.Content}}
         </article>
 
-        {{ partial "components/projects.html" .Pages.ByDate }}
+        {{ partial "components/projects.html" (dict "projects" .Pages.ByDate "ctx" .) }}
     </main>
 {{ end }}

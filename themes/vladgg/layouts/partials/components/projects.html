@@ -1,4 +1,6 @@
-{{ range . }}
+{{ $ctx := .ctx }}
+
+{{ range .projects }}
     <div class="project" onclick="window.location='{{.Permalink}}'" tabindex="1">
         <span>
             <span class="flex-row flex-justify-sb">
@@ -18,7 +20,7 @@
             </span>
             <span class="flex-row flex-align-baseline mt-1">
                 <i class="fa-light fa-tags mr-5" aria-hidden="true"></i>
-                {{ partial "components/labels.html" .Params.tags }}
+                {{ partial "components/labels.html" (dict "tags" .Params.tags "ctx" $ctx) }}
             </span>
         </span>
     </div>
