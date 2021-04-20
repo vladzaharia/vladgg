@@ -46,16 +46,19 @@ collections:
             name: languages
             widget: select
             multiple: true
+            required: false
             options: ["TypeScript", "HTML", "CSS"]
           - label: Tools
             name: tools
             widget: select
             multiple: true
+            required: false
             options: ["Hugo"]
           - label: Tags
             name: tags
             widget: select
             multiple: true
+            required: false
             options: ["hackathon"]
       - label: Project Options
         name: options
@@ -65,10 +68,11 @@ collections:
           - label: Project Date
             name: date
             widget: datetime
-          - label: Draft
+          - label: Hidden
             name: draft
             widget: boolean
             default: true
+            required: false
           - label: Type
             name: type
             widget: hidden
@@ -98,10 +102,11 @@ collections:
               - label: Published Date
                 name: date
                 widget: datetime
-              - label: Draft
+              - label: Hidden
                 name: draft
                 widget: boolean
                 default: true
+                required: false
               - label: Menu Weight
                 name: weight
                 widget: number
@@ -132,10 +137,11 @@ collections:
               - label: Published Date
                 name: date
                 widget: datetime
-              - label: Draft
+              - label: Hidden
                 name: draft
                 widget: boolean
                 default: true
+                required: false
               - label: Menu Weight
                 name: weight
                 widget: number
@@ -166,10 +172,11 @@ collections:
               - label: Published Date
                 name: date
                 widget: datetime
-              - label: Draft
+              - label: Hidden
                 name: draft
                 widget: boolean
                 default: true
+                required: false
               - label: Menu Weight
                 name: weight
                 widget: number
@@ -200,10 +207,11 @@ collections:
               - label: Published Date
                 name: date
                 widget: datetime
-              - label: Draft
+              - label: Hidden
                 name: draft
                 widget: boolean
                 default: true
+                required: false
               - label: Menu Weight
                 name: weight
                 widget: number
