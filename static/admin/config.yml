@@ -75,43 +75,137 @@ collections:
     label_singular: Page
     files:
       - name: home
+        label: Home
         file: content/_index.md
+        fields:
+          - label: Title
+            name: title
+            widget: string
+          - label: Icon
+            name: icon
+            widget: string
+          - label: Body
+            name: body
+            widget: markdown
+          - label: Page Options
+            name: options
+            widget: object
+            collapsed: true
+            fields:
+              - label: Published Date
+                name: date
+                widget: datetime
+              - label: Draft
+                name: draft
+                widget: boolean
+                default: true
+              - label: Menu Weight
+                name: weight
+                widget: number
+                default: 10
+              - label: Type
+                name: type
+                widget: hidden
+                default: project
       - name: about
+        label: About
         file: content/about/_index.md
         preview_path: about
+        fields:
+          - label: Title
+            name: title
+            widget: string
+          - label: Icon
+            name: icon
+            widget: string
+          - label: Body
+            name: body
+            widget: markdown
+          - label: Page Options
+            name: options
+            widget: object
+            collapsed: true
+            fields:
+              - label: Published Date
+                name: date
+                widget: datetime
+              - label: Draft
+                name: draft
+                widget: boolean
+                default: true
+              - label: Menu Weight
+                name: weight
+                widget: number
+                default: 10
+              - label: Type
+                name: type
+                widget: hidden
+                default: project
       - name: projects
+        label: Projects
         file: content/projects/_index.md
         preview_path: projects
+        fields:
+          - label: Title
+            name: title
+            widget: string
+          - label: Icon
+            name: icon
+            widget: string
+          - label: Body
+            name: body
+            widget: markdown
+          - label: Page Options
+            name: options
+            widget: object
+            collapsed: true
+            fields:
+              - label: Published Date
+                name: date
+                widget: datetime
+              - label: Draft
+                name: draft
+                widget: boolean
+                default: true
+              - label: Menu Weight
+                name: weight
+                widget: number
+                default: 10
+              - label: Type
+                name: type
+                widget: hidden
+              default: project
       - name: contact
+        label: Contact
         file: content/contact/_index.md
         preview_path: contact
-    fields:
-      - label: Title
-        name: title
-        widget: string
-      - label: Icon
-        name: icon
-        widget: string
-      - label: Body
-        name: body
-        widget: markdown
-      - label: Page Options
-        name: options
-        widget: object
-        collapsed: true
         fields:
-          - label: Published Date
-            name: date
-            widget: datetime
-          - label: Draft
-            name: draft
-            widget: boolean
-            default: true
-          - label: Menu Weight
-            name: weight
-            widget: number
-            default: 10
-          - label: Type
-            name: type
-            widget: hidden
-            default: project
+          - label: Title
+            name: title
+            widget: string
+          - label: Icon
+            name: icon
+            widget: string
+          - label: Body
+            name: body
+            widget: markdown
+          - label: Page Options
+            name: options
+            widget: object
+            collapsed: true
+            fields:
+              - label: Published Date
+                name: date
+                widget: datetime
+              - label: Draft
+                name: draft
+                widget: boolean
+                default: true
+              - label: Menu Weight
+                name: weight
+                widget: number
+                default: 10
+              - label: Type
+                name: type
+                widget: hidden
+                default: project
