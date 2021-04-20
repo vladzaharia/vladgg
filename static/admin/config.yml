@@ -65,10 +65,6 @@ collections:
           - label: Project Date
             name: date
             widget: datetime
-          - label: Draft
-            name: draft
-            widget: boolean
-            default: true
           - label: Type
             name: type
             widget: hidden
@@ -98,10 +94,6 @@ collections:
               - label: Published Date
                 name: date
                 widget: datetime
-              - label: Draft
-                name: draft
-                widget: boolean
-                default: true
               - label: Menu Weight
                 name: weight
                 widget: number
@@ -132,10 +124,6 @@ collections:
               - label: Published Date
                 name: date
                 widget: datetime
-              - label: Draft
-                name: draft
-                widget: boolean
-                default: true
               - label: Menu Weight
                 name: weight
                 widget: number
@@ -166,10 +154,6 @@ collections:
               - label: Published Date
                 name: date
                 widget: datetime
-              - label: Draft
-                name: draft
-                widget: boolean
-                default: true
               - label: Menu Weight
                 name: weight
                 widget: number
@@ -200,10 +184,6 @@ collections:
               - label: Published Date
                 name: date
                 widget: datetime
-              - label: Draft
-                name: draft
-                widget: boolean
-                default: true
               - label: Menu Weight
                 name: weight
                 widget: number
