@@ -27,12 +27,24 @@
 
         @extend .flex-row;
         @extend .flex-align-center;
+        
+        a span {
+            text-decoration: underline;
+        }
 
         i, img {
             height: 3rem;
             width: 3.5rem;
             font-size: 3rem;
             padding-right: 1rem;
+
+            @include mobile {
+                display: none;
+            }
+
+            @include tablet {
+                display: none;
+            }
         }
     }
 
