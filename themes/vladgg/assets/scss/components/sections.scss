@@ -25,6 +25,19 @@
     max-width: 960px;
     align-self: center;
 
+    hr {
+        height: 1px;
+        width: 98%;
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        background-color: $neutral_light;
+        border: none;
+        
+        @include dark {
+            background-color: $neutral;
+        }
+    }
+
     @include mobile {
         margin-top: 1rem;
 
