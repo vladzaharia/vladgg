@@ -1,6 +1,11 @@
+@import '../common/colors.scss';
+@import '../common/helpers.scss';
+@import '../common/responsive.scss';
+@import './text.scss';
+
 // Set label's color
 @mixin link-color($color) {
-    color: $color;
+    @include text-color($color);
 
     &:hover {
         color: lighten($color, 15%);
