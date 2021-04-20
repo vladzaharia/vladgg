@@ -1,21 +1,17 @@
 @import '../common/colors.scss';
 @import '../common/responsive.scss';
+@import './card.scss';
 
 /* Project card */
 .project {
-    margin: 1rem;
+    @extend .card;
+    padding: 2rem;
     cursor: pointer;
-    border: 1px solid $neutral_light;
-    border-radius: 0.5rem;
-
-    @extend .z-depth-1-hover;
 
     > span {
-        border: 0px solid $neutral_light;
         border-radius: 0.5rem;
         background-color: $neutral_lighter;
         color: $light_fg;
-        padding: 2rem;
     }
 
     hr {
@@ -37,7 +33,6 @@
 
     @include dark {
         > span {
-            border-color: $neutral;
             background-color: $neutral_darkest;
             color: $dark_fg;
         }

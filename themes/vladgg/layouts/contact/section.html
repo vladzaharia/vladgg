@@ -1,0 +1,67 @@
+{{ define "main" }}
+<main id="contact">
+    <article>
+        <header>
+            <span class="flex-row flex-align-center">
+                <i class="page-icon fa-solid fa-{{ .Params.icon }} mr-1"></i>
+                <h2>{{ .Title }}</h2>
+            </span>
+        </header>
+        <span class="flex-justify-center">
+            {{.Content}}
+        </span>
+    </article>
+
+    <form class="card flex-column" netlify>
+        <span class="flex-row">
+            <span class="flex-column">
+                <label for="first-name">
+                    First name
+                </label>
+                <input type="text" id="first-name" name="first-name" required />
+            </span>
+            <span class="flex-column">
+                <label for="last-name">
+                    Last name
+                </label>
+                <input type="text" id="last-name" name="last-name" required />
+            </span>
+        </span>
+        <span class="flex-row">
+            <span class="flex-column">
+                <label for="company">
+                    Company <em>(optional)</em>
+                </label>
+                <input type="text" id="company" name="company" />
+            </span>
+        </span>
+        <span class="flex-row">
+            <span class="flex-column">
+                <label for="email">
+                    Email address
+                </label>
+                <input type="text" id="email" name="email" required />
+            </span>
+        </span>
+        <span class="flex-row">
+            <span class="flex-column">
+                <label for="subject">
+                    Subject
+                </label>
+                <input type="text" id="subject" name="subject" required />
+            </span>
+        </span>
+        <span class="flex-row">
+            <span class="flex-column">
+                <label for="message">
+                    Message
+                </label>
+                <textarea type="text" id="message" name="message" required></textarea>
+            </span>
+        </span>
+        <span class="flex-row flex-justify-center pt-1">
+            <button title="Submit" class="primary">Submit</button>
+        </span>
+    </form>
+</main>
+{{ end }}

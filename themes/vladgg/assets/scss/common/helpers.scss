@@ -37,10 +37,6 @@
         &:not(.flex-row-mobile) {
             flex-direction: column;
         }
-
-        > * {
-            padding: 0.5em 0;
-        }
     }
 }
 
@@ -214,6 +210,16 @@
 .z-depth-05 {
     @extend .z-depth-transition;
     box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.14);
+}
+
+.z-depth-05-hover {
+    @extend .z-depth-transition;
+    box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.14);
+
+    &:hover {
+        transition: .25s;
+        box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.14);
+    }
 }
 
 .z-depth-1 {

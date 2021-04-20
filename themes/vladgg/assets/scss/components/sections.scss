@@ -35,10 +35,6 @@
 
     @include tablet {
         margin-top: 2rem;
-
-        main {
-            text-align: center;
-        }
     }
 }
 
@@ -47,6 +43,14 @@ footer {
 
     nav {
         font-size: 1.4rem;
+    }
+
+    #copyright:hover span {
+        display: none;
+    }
+
+    #copyright:hover:before {
+        content:"Made with ❤ in Seattle.";
     }
 
     @include mobile {
