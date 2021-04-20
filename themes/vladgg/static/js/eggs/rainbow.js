@@ -4,37 +4,37 @@ var NUM_LETTERS = 5;
 var rainbowContainerElems = document.getElementsByClassName("rainbow");
 var rainbowElems = document.getElementsByClassName("rainbow-ltr");
 var timers = [];
-var i = 0;
+var rnb_i = 0;
 
-for (var k = 0; k < rainbowContainerElems.length; k++) {
-    var rainbowContainerElem = rainbowContainerElems[k];
+for (var rnb_k = 0; rnb_k < rainbowContainerElems.length; rnb_k++) {
+    var rainbowContainerElem = rainbowContainerElems[rnb_k];
 
     rainbowContainerElem.addEventListener("mouseenter", function() {
         // Reset variables
-        i = 0;
+        rnb_i = 0;
     
-         timers[k] = setInterval(function() {
-            for (var j = 0; j < rainbowElems.length; j++) {
-                rainbowElems[j].style.color = COLORS[(i+ j) % COLORS.length];
+         timers[rnb_k] = setInterval(function() {
+            for (var rnb_j = 0; rnb_j < rainbowElems.length; rnb_j++) {
+                rainbowElems[rnb_j].style.color = COLORS[(rnb_i+ rnb_j) % COLORS.length];
             }
             
-            i++;
+            rnb_i++;
     
             // Reset i if we reach the end
-            if (i === COLORS.length) {
-                i = 0;
+            if (rnb_i === COLORS.length) {
+                rnb_i = 0;
             }
         }, 150);
     });
     
     rainbowContainerElem.addEventListener("mouseleave", function() {
-        if (timers[k]) {
-            clearInterval(timers[k]);
-            timers[k] = null;
+        if (timers[rnb_k]) {
+            clearInterval(timers[rnb_k]);
+            timers[rnb_k] = null;
         }
     
         // Loop to add rainbow colors
-        for (var j = 0; j < rainbowElems.length; j++) {
+        for (var rnb_j = 0; rnb_j < rainbowElems.length; rnb_j++) {
             rainbowElems[j].style.color = null;
         }
     });
