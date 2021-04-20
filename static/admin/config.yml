@@ -31,6 +31,9 @@ collections:
       - label: Summary
         name: summary
         widget: text
+      - label: Body
+        name: body
+        widget: markdown
       - label: Experience
         name: experience
         widget: object
@@ -88,6 +91,10 @@ collections:
         widget: string
       - label: Icon
         name: icon
+        widget: string
+      - label: Body
+        name: body
+        widget: markdown
       - label: Page Options
         name: options
         widget: object
