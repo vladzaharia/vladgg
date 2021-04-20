@@ -10,55 +10,87 @@
     .grid {
         height: 100%;
         display: grid;
-        grid-template-columns: 4rem auto auto 4rem;
-        grid-template-rows: 6rem auto auto auto auto auto 6rem;
+        grid-template-columns: 4rem auto 50% 4rem;
+        grid-template-rows: 16rem auto auto auto auto auto auto auto 16rem;
     }
 
     .grid-iama {
         grid-column-start: 2;
-        grid-row-start: 4;
+        grid-row-start: 5;
         text-align: right;
         padding-right: 1rem;
         font-weight: 400;
-
-        @include mobile {
-            text-align: center;
-        }
     }
 
     .grid-iama-content {
         transition: .25s;
     }
 
+    #content-0 {
+        grid-column-start: 3;
+        grid-row-start: 5;
+        transform: translate3d(0px, -12rem, 0px);
+        transition: transform opacity .25s;
+        opacity: 50%;
+    }
+
     #content-1 {
         grid-column-start: 3;
-        grid-row-start: 2;
+        grid-row-start: 5;
+        transform: translate3d(0px, -8rem, 0px);
+        transition: transform .25s;
     }
 
     #content-2 {
         grid-column-start: 3;
-        grid-row-start: 3;
+        grid-row-start: 5;
+        transform: translate3d(0px, -4rem, 0px);
+        transition: transform .25s;
         font-weight: 400;
     }
 
     #content-3 {
         grid-column-start: 3;
-        grid-row-start: 4;
+        grid-row-start: 5;
         font-weight: 600;
     }
 
     #content-4 {
         grid-column-start: 3;
         grid-row-start: 5;
+        transform: translate3d(0px, 4rem, 0px);
+        transition: transform .25s;
         font-weight: 400;
     }
 
     #content-5 {
         grid-column-start: 3;
-        grid-row-start: 6;
+        grid-row-start: 5;
+        transform: translate3d(0px, 8rem, 0px);
+        transition: transform .25s;
+    }
+
+    #content-6 {
+        grid-column-start: 3;
+        grid-row-start: 5;
+        transform: translate3d(0px, 12rem, 0px);
+        transition: transform .25s;
+        opacity: 50%;
     }
 
     .hidden {
-        display: none;
+        opacity: 0;
+    }
+
+    @include mobile {
+        .grid {
+            grid-template-columns: 4rem 0 auto 4rem;
+        }
+
+        .grid-iama {
+            text-align: center;
+            grid-column-start: 3;
+            grid-row-start: 1;
+        }
     }
 }
