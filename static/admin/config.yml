@@ -31,48 +31,42 @@ collections:
         name: category
         widget: select
         options: ["Personal", "School", "Work"]
+      - label: Project Date
+        name: date
+        widget: datetime
       - label: Summary
         name: summary
         widget: text
       - label: Body
         name: body
         widget: markdown
-      - label: Experience
-        name: experience
-        widget: object
-        collapsed: true
-        fields:
-          - label: Languages
-            name: languages
-            widget: select
-            multiple: true
-            options: ["TypeScript", "HTML", "CSS"]
-          - label: Tools
-            name: tools
-            widget: select
-            multiple: true
-            options: ["Hugo"]
-          - label: Tags
-            name: tags
-            widget: select
-            multiple: true
-            options: ["hackathon"]
-      - label: Project Options
-        name: options
-        widget: object
-        collapsed: true
-        fields:
-          - label: Project Date
-            name: date
-            widget: datetime
-          - label: Draft
-            name: draft
-            widget: boolean
-            default: true
-          - label: Type
-            name: type
-            widget: hidden
-            default: project
+      - label: Languages
+        name: languages
+        widget: select
+        multiple: true
+        required: false
+        options: ["TypeScript", "HTML", "CSS"]
+      - label: Tools
+        name: tools
+        widget: select
+        multiple: true
+        required: false
+        options: ["Hugo"]
+      - label: Tags
+        name: tags
+        widget: select
+        multiple: true
+        required: false
+        options: ["hackathon"]
+      - label: Hidden
+        name: draft
+        widget: boolean
+        default: false
+        required: false
+      - label: Type
+        name: type
+        widget: hidden
+        default: project
   - name: pages
     label: Pages
     label_singular: Page
@@ -90,26 +84,22 @@ collections:
           - label: Body
             name: body
             widget: markdown
-          - label: Page Options
-            name: options
-            widget: object
-            collapsed: true
-            fields:
-              - label: Published Date
-                name: date
-                widget: datetime
-              - label: Draft
-                name: draft
-                widget: boolean
-                default: true
-              - label: Menu Weight
-                name: weight
-                widget: number
-                default: 10
-              - label: Type
-                name: type
-                widget: hidden
-                default: project
+          - label: Menu Weight
+            name: weight
+            widget: number
+            default: 10
+          - label: Published Date
+            name: date
+            widget: datetime
+          - label: Hidden
+            name: draft
+            widget: boolean
+            default: false
+            required: false
+          - label: Type
+            name: type
+            widget: hidden
+            default: project
       - name: about
         label: About
         file: content/about/_index.md
@@ -124,26 +114,22 @@ collections:
           - label: Body
             name: body
             widget: markdown
-          - label: Page Options
-            name: options
-            widget: object
-            collapsed: true
-            fields:
-              - label: Published Date
-                name: date
-                widget: datetime
-              - label: Draft
-                name: draft
-                widget: boolean
-                default: true
-              - label: Menu Weight
-                name: weight
-                widget: number
-                default: 10
-              - label: Type
-                name: type
-                widget: hidden
-                default: project
+          - label: Menu Weight
+            name: weight
+            widget: number
+            default: 10
+          - label: Published Date
+            name: date
+            widget: datetime
+          - label: Hidden
+            name: draft
+            widget: boolean
+            default: false
+            required: false
+          - label: Type
+            name: type
+            widget: hidden
+            default: project
       - name: projects
         label: Projects
         file: content/projects/_index.md
@@ -158,26 +144,22 @@ collections:
           - label: Body
             name: body
             widget: markdown
-          - label: Page Options
-            name: options
-            widget: object
-            collapsed: true
-            fields:
-              - label: Published Date
-                name: date
-                widget: datetime
-              - label: Draft
-                name: draft
-                widget: boolean
-                default: true
-              - label: Menu Weight
-                name: weight
-                widget: number
-                default: 10
-              - label: Type
-                name: type
-                widget: hidden
-                default: project
+          - label: Menu Weight
+            name: weight
+            widget: number
+            default: 10
+          - label: Published Date
+            name: date
+            widget: datetime
+          - label: Hidden
+            name: draft
+            widget: boolean
+            default: false
+            required: false
+          - label: Type
+            name: type
+            widget: hidden
+            default: project
       - name: contact
         label: Contact
         file: content/contact/_index.md
@@ -192,23 +174,19 @@ collections:
           - label: Body
             name: body
             widget: markdown
-          - label: Page Options
-            name: options
-            widget: object
-            collapsed: true
-            fields:
-              - label: Published Date
-                name: date
-                widget: datetime
-              - label: Draft
-                name: draft
-                widget: boolean
-                default: true
-              - label: Menu Weight
-                name: weight
-                widget: number
-                default: 10
-              - label: Type
-                name: type
-                widget: hidden
-                default: project
+          - label: Menu Weight
+            name: weight
+            widget: number
+            default: 10
+          - label: Published Date
+            name: date
+            widget: datetime
+          - label: Hidden
+            name: draft
+            widget: boolean
+            default: false
+            required: false
+          - label: Type
+            name: type
+            widget: hidden
+            default: project
