@@ -31,6 +31,9 @@ collections:
         name: category
         widget: select
         options: ["Personal", "School", "Work"]
+      - label: Project Date
+        name: date
+        widget: datetime
       - label: Summary
         name: summary
         widget: text
@@ -55,13 +58,10 @@ collections:
         multiple: true
         required: false
         options: ["hackathon"]
-      - label: Project Date
-        name: date
-        widget: datetime
       - label: Hidden
         name: draft
         widget: boolean
-        default: true
+        default: false
         required: false
       - label: Type
         name: type
@@ -94,7 +94,7 @@ collections:
           - label: Hidden
             name: draft
             widget: boolean
-            default: true
+            default: false
             required: false
           - label: Type
             name: type
@@ -124,7 +124,7 @@ collections:
           - label: Hidden
             name: draft
             widget: boolean
-            default: true
+            default: false
             required: false
           - label: Type
             name: type
@@ -154,7 +154,7 @@ collections:
           - label: Hidden
             name: draft
             widget: boolean
-            default: true
+            default: false
             required: false
           - label: Type
             name: type
@@ -184,7 +184,7 @@ collections:
           - label: Hidden
             name: draft
             widget: boolean
-            default: true
+            default: false
             required: false
           - label: Type
             name: type
