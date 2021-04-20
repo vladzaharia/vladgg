@@ -1,0 +1,46 @@
+@import '../common/colors.scss';
+@import '../common/helpers.scss';
+@import '../common/responsive.scss';
+
+// Set label's color
+@mixin text-color($color) {
+    color: $color;
+
+    @include dark {
+        color: lighten($color, 15%);
+    }
+}
+
+a, input, div, span, h1, h2, h3, h4, h5, h6 {
+    &.blue {
+        @include text-color(adjust-hue($ms-color-sharedBlue10, -15deg));
+    }
+
+    &.cyan {
+        @include text-color($ms-color-sharedCyanBlue10);
+    }
+
+    &.green {
+        @include text-color(desaturate($ms-color-sharedGreen20, 30%));
+    }
+
+    &.red {
+        @include text-color($ms-color-sharedRed20);
+    }
+
+    &.orange {
+        @include text-color($ms-color-sharedOrange20);
+    }
+
+    &.purple {
+        @include text-color($ms-color-sharedBlueMagenta30);
+    }
+
+    &.pink {
+        @include text-color(desaturate($ms-color-sharedMagenta20, 30%));
+    }
+
+    &.grey {
+        @include text-color($neutral-dark);
+    }
+}
