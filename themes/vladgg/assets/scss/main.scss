@@ -4,6 +4,8 @@
 
 /* Components */
 @import './components/a.scss';
+@import './components/button.scss';
+@import './components/card.scss';
 @import './components/item.scss';
 @import './components/label.scss';
 @import './components/logo.scss';
@@ -11,6 +13,9 @@
 @import './components/page.scss';
 @import './components/project.scss';
 @import './components/sections.scss';
+
+/* Sections */
+@import './sections/contact.scss';
 
 /* Site */
 @import './site/fader.scss';
