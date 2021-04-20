@@ -41,16 +41,23 @@
 footer {
     justify-self: flex-end;
 
+    #bwl {
+        opacity: 1;
+        transition: opacity .25s;
+    }
+
+    #bwl-alt {
+        opacity: 0;
+        transition: opacity .25s;
+
+        img {
+            height: 1.25rem;
+            margin: 0 0.3rem;
+        }
+    }
+
     nav {
         font-size: 1.4rem;
-    }
-
-    #copyright:hover span {
-        display: none;
-    }
-
-    #copyright:hover:before {
-        content:"Made with ❤ in Seattle.";
     }
 
     @include mobile {
