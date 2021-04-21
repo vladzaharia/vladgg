@@ -1,19 +1,8 @@
-{{ define "main" }}
-<main id="about">
-    <article>
-        <header>
-            <span class="flex-row flex-align-center">
-                <i class="page-icon fa-solid fa-{{ .Params.icon }} mr-1"></i>
-                <h2>{{ .Title }}</h2>
-            </span>
-        </header>
-        <hr />
-        <span class="flex-align-center">
-            <span>
-                {{.Content}}
-            </span>
-            <img class="avatar card" src="/images/avatar.svg" alt="8-bit photo of me" />
+{{ define "content" }}
+    <span class="flex-align-center">
+        <span>
+            {{.Content}}
         </span>
-    </article>
-</main>
+        <img class="avatar card" src="/images/avatar.svg" alt="8-bit photo of me" />
+    </span>
 {{ end }}
