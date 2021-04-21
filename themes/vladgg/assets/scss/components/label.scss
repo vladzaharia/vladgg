@@ -13,7 +13,7 @@
     &:hover {
         background-color: lighten($color, 30%);
         color: darken($color, 30%);
-        transition: .25s;
+        transition: all .25s;
     }
 
     @include dark {
