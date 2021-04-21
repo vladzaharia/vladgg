@@ -17,6 +17,8 @@ body {
     background-color: $light_bg;
     color: $light_fg;
 
+    font-size: 1.15rem;
+
     @include dark {
         background-color: $dark_bg;
         color: $dark_fg;
