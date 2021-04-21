@@ -7,7 +7,27 @@
         <div class="ms-Grid" dir="ltr">
             {{- partial "header.html" . -}}
             <div id="content">
-                {{- block "main" . }}{{- end }}
+                {{- block "main" . }}
+                    <main id="{{ .Section }}">
+                        <article>
+                            <header>
+                                <span class="flex-row flex-align-center">
+                                    {{- block "title" . }}
+                                        {{ if isset .Params "icon" }}
+                                            <i class="page-icon fa-solid fa-{{ .Params.icon }} mr-1"></i>
+                                        {{ end }}
+                                        <h2>{{ .Title }}</h2>
+                                    {{- end }}
+                                </span>
+                            </header>
+                            {{- block "content" . }}
+                                {{.Content}}
+                            {{- end }}
+                        </article>
+                    
+                        {{- block "custom_content" . }}{{- end }}
+                    </main>
+                {{ end }}
             </div>
             {{- partial "footer.html" . -}}
         </div>
