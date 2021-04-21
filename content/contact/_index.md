@@ -2,6 +2,7 @@
 icon: envelope
 title: Contact
 date: 2021-04-18T00:34:49-07:00
+color: green
 weight: 4
 draft: false
 ---
