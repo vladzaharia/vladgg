@@ -13,6 +13,16 @@
                             <header>
                                 <span class="flex-row flex-align-center">
                                     {{- block "title" . }}
+                                        {{ if and (.Parent) (not .IsSection) }}
+                                            <span class="flex-row flex-align-center parent">
+                                                {{ if isset .Parent.Params "icon" }}
+                                                    <i class="page-icon fa-solid fa-{{ .FirstSection.Params.icon }} mr-1"></i>
+                                                {{ end }}
+                                                <h2>{{ .FirstSection.Title }}</h2>
+                                            </span>
+                                            <span class="ml-1 mr-1"><h3>></h3></span>
+                                        {{ end }}
+
                                         {{ if isset .Params "icon" }}
                                             <i class="page-icon fa-solid fa-{{ .Params.icon }} mr-1"></i>
                                         {{ end }}
