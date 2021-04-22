@@ -11,7 +11,7 @@
                     <main id="{{ .Section }}">
                         <article>
                             <header>
-                                <span class="flex-row flex-align-center">
+                                <span class="flex-row-mobile flex-align-center">
                                     {{- block "title" . }}
                                         {{ if and (.Parent) (not .IsSection) }}
                                             <span class="flex-row flex-align-center parent">
@@ -27,7 +27,7 @@
                                         {{ end }}
 
                                         {{ if isset .Params "icon" }}
-                                            <i class="page-icon fa-solid fa-{{ .Params.icon }} mr-1"></i>
+                                            <i class="page-icon fa-solid fa-{{ .Params.icon }} mr-1 {{.Params.color}}"></i>
                                         {{ end }}
                                         <h2>{{ .Title }}</h2>
                                     {{- end }}

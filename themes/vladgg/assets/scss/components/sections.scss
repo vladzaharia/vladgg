@@ -91,6 +91,14 @@
             @include nav-color($neutral-dark);
         }
     }
+
+    @include mobile {
+        padding: 0;
+
+        nav > * {
+            width: 100%;
+        }
+    }
 }
 
 #content {
@@ -116,6 +124,10 @@
     @include mobile {
         margin-top: 1rem;
 
+        header .flex-row-mobile {
+            justify-content: center;
+        }
+
         main {
             text-align: center;
         }
@@ -123,6 +135,10 @@
 
     @include tablet {
         margin-top: 2rem;
+
+        header .flex-row-mobile {
+            justify-content: center;
+        }
     }
 }
 
@@ -136,6 +152,7 @@ footer {
 
     #bwl-alt {
         opacity: 0;
+        display: none;
         transition: opacity .25s;
 
         img {
@@ -150,6 +167,10 @@ footer {
 
     @include mobile {
         text-align: center;
+
+        #bwl-alt {
+            justify-content: center;
+        }
         
         .flex-justify-end {
             justify-content: center;

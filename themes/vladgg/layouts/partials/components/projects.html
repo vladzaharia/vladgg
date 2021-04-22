@@ -17,8 +17,8 @@
                 {{ .Params.summary }}
             </span>
             <span class="labels flex-row flex-justify-sb mt-25">
-                {{ partial "components/labels.html" (dict "labels" .Params.languages "icon" "code" "url" "/languages/" "class" "" "ctx" $ctx) }}
-                {{ partial "components/labels.html" (dict "labels" .Params.tools "icon" "wrench" "url" "/tools/" "class" "flex-justify-center" "ctx" $ctx) }}
+                {{ partial "components/labels.html" (dict "labels" .Params.experience.languages "icon" "code" "url" "/languages/" "class" "" "ctx" $ctx) }}
+                {{ partial "components/labels.html" (dict "labels" .Params.experience.tools "icon" "wrench" "url" "/tools/" "class" "flex-justify-center" "ctx" $ctx) }}
                 {{ partial "components/labels.html" (dict "labels" .Params.tags "icon" "tags" "url" "/tags/" "class" "flex-justify-end" "ctx" $ctx) }}
             </span>
         </span>

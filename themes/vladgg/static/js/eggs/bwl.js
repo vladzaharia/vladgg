@@ -5,7 +5,7 @@ bwlElem.addEventListener("mouseenter", function() {
     bwlElem.style.opacity = 0;
 
     setTimeout(function() {
-        bwlAltElem.style.display = null;
+        bwlAltElem.style.display = "flex";
         bwlAltElem.style.opacity = 1;
         bwlElem.style.display = "none";
     }, 200);

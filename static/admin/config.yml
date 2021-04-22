@@ -27,10 +27,6 @@ collections:
       - label: Icon
         name: icon
         widget: string
-      - label: Category
-        name: category
-        widget: select
-        options: ["Personal", "School", "Work"]
       - label: Project Date
         name: date
         widget: datetime
@@ -40,18 +36,38 @@ collections:
       - label: Body
         name: body
         widget: markdown
-      - label: Languages
-        name: languages
+      - label: Experience
+        name: experience
+        widget: object
+        fields:
+          - label: Languages
+            name: languages
+            widget: select
+            multiple: true
+            required: false
+            options: ["TypeScript", "HTML", "CSS"]
+          - label: Tools
+            name: tools
+            widget: select
+            multiple: true
+            required: false
+            options: ["Hugo"]
+      - label: Links
+        name: links
+        widget: object
+        fields:
+          - label: Git
+            name: git
+            widget: string
+            required: false
+          - label: More Info
+            name: more-info
+            widget: string
+            required: false
+      - label: Category
+        name: category
         widget: select
-        multiple: true
-        required: false
-        options: ["TypeScript", "HTML", "CSS"]
-      - label: Tools
-        name: tools
-        widget: select
-        multiple: true
-        required: false
-        options: ["Hugo"]
+        options: ["Personal", "School", "Work"]
       - label: Tags
         name: tags
         widget: select
