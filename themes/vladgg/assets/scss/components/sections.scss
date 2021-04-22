@@ -7,18 +7,19 @@
 
     &.active {
         border-bottom: 4px solid $color;
-
-        &:hover {
-            color: white;
-        }
     }
 
     &:hover {
         background-color: lighten($color, 15%);
+        color: white;
         transition: all .25s;
     }
 
     @include dark {
+        &.active {
+            border-bottom-color: lighten($color, 15%);
+        }
+
         &:hover {
             background-color: $color;
         }
@@ -50,8 +51,12 @@
         font-size: 1.5rem;
 
         &:not(.active) {
-            color: white;
+            color: $light_fg;
             border: none;
+
+            @include dark {
+                color: $dark_fg;
+            }
         }
 
         &.blue {
