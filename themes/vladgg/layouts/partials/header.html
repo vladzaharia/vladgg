@@ -5,10 +5,11 @@
             Hi, I'm&nbsp;<span class="rainbow-ltr">V</span><span class="rainbow-ltr">l</span><span class="rainbow-ltr">a</span><span class="rainbow-ltr">d</span><span class="rainbow-ltr">.</span>
         </h1>
     </div>
-    <div class="ms-Grid-col ms-sm12 ms-lg4">
+    <div class="ms-Grid-col ms-sm12 ms-lg4 no-pad">
         <nav class="flex-row flex-justify-sb">
+            {{ $currentPage := . }}
             {{ range .Site.Menus.main }}
-                <a class="nav-link" href="{{ .URL }}" title="{{ .Title }}">
+                <a class="nav-link {{ .Page.Params.color }} {{ if or ($currentPage.HasMenuCurrent "main" .) ($currentPage.IsMenuCurrent "main" .)  }}active{{ end }}" href="{{ .URL }}" title="{{ .Title }}">
                 {{ $text := print .Name | safeHTML }}
                 {{ $text }}
                 </a>

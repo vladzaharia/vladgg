@@ -35,7 +35,7 @@ for (var rnb_k = 0; rnb_k < rainbowContainerElems.length; rnb_k++) {
     
         // Loop to add rainbow colors
         for (var rnb_j = 0; rnb_j < rainbowElems.length; rnb_j++) {
-            rainbowElems[j].style.color = null;
+            rainbowElems[rnb_j].style.color = null;
         }
     });
 }

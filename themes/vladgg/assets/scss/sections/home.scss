@@ -2,6 +2,50 @@
 @import '../common/helpers.scss';
 @import '../common/responsive.scss';
 
+@mixin _translateY($factor, $step) {
+    transform: translateY(($factor * $step)+rem);
+}
+
+@mixin content-transform($factor) {
+    #content-0 {
+        opacity: 20%;
+        @include _translateY($factor, -3)
+    }
+
+    #content-1 {
+        opacity: 50%;
+        @include _translateY($factor, -2)
+    }
+
+    #content-2 {
+        opacity: 80%;
+        @include _translateY($factor, -1)
+    }
+
+    #content-3 {
+        z-index: 100;
+        
+        a { 
+            cursor: pointer;
+        }
+    }
+
+    #content-4 {
+        opacity: 80%;
+        @include _translateY($factor, 1)
+    }
+
+    #content-5 {
+        opacity: 50%;
+        @include _translateY($factor, 2)
+    }
+
+    #content-6 {
+        opacity: 20%;
+        @include _translateY($factor, 3)
+    }
+}
+
 #home {
     height: 100%;
     font-size: 3rem;
@@ -20,13 +64,33 @@
         text-align: right;
         padding-right: 2.5rem;
         font-weight: 400;
-    }
-
-    .grid-iama-content, .grid-iama-content > a {
-        transition: .25s;
 
         @extend .flex-row;
         @extend .flex-align-center;
+        @extend .flex-justify-end;
+
+        @include mobile {
+            justify-content: flex-start;
+        }
+    }
+
+    .grid-iama-content {
+        grid-column-start: 3;
+        grid-row-start: 5;
+        white-space: nowrap;
+
+        @extend .flex-align-center;
+    }
+
+    .grid-iama-content > a {
+        @extend .flex-align-end;
+    }
+
+    .grid-iama-content, .grid-iama-content > a {
+        transition: all .25s;
+        cursor: default;
+
+        @extend .flex-row;
         
         a span {
             text-decoration: underline;
@@ -48,59 +112,7 @@
         }
     }
 
-    #content-0 {
-        grid-column-start: 3;
-        grid-row-start: 5;
-        transform: translate3d(0px, -12rem, 0px);
-        transition: transform opacity font-weight .25s !important;
-        opacity: 20%;
-    }
-
-    #content-1 {
-        grid-column-start: 3;
-        grid-row-start: 5;
-        transform: translate3d(0px, -8rem, 0px);
-        transition: transform opacity font-weight .25s !important;
-        opacity: 50%;
-    }
-
-    #content-2 {
-        grid-column-start: 3;
-        grid-row-start: 5;
-        transform: translate3d(0px, -4rem, 0px);
-        transition: transform opacity font-weight .25s !important;
-        opacity: 80%;
-    }
-
-    #content-3 {
-        grid-column-start: 3;
-        grid-row-start: 5;
-        transition: transform opacity font-weight .25s !important;
-    }
-
-    #content-4 {
-        grid-column-start: 3;
-        grid-row-start: 5;
-        transform: translate3d(0px, 4rem, 0px);
-        transition: transform opacity font-weight .25s !important;
-        opacity: 80%;
-    }
-
-    #content-5 {
-        grid-column-start: 3;
-        grid-row-start: 5;
-        transform: translate3d(0px, 8rem, 0px);
-        transition: transform opacity font-weight .25s !important;
-        opacity: 50%;
-    }
-
-    #content-6 {
-        grid-column-start: 3;
-        grid-row-start: 5;
-        transform: translate3d(0px, 12rem, 0px);
-        transition: transform opacity font-weight .25s !important;
-        opacity: 20%;
-    }
+    @include content-transform(5);
 
     .hidden {
         display: none;
@@ -108,8 +120,10 @@
     }
 
     @include mobile {
+        @include content-transform(4);
+
         .grid {
-            grid-template-columns: 4rem 0 auto 4rem;
+            grid-template-columns: 0 0 auto 0;
         }
 
         .grid-iama {

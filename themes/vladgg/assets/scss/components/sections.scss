@@ -2,12 +2,36 @@
 @import '../common/helpers.scss';
 @import '../common/responsive.scss';
 
+@mixin nav-color($color) {
+    transition: all .25s;
+
+    &.active {
+        border-bottom: 4px solid $color;
+    }
+
+    &:hover {
+        background-color: lighten($color, 15%);
+        color: white;
+        transition: all .25s;
+    }
+
+    @include dark {
+        &.active {
+            border-bottom-color: lighten($color, 15%);
+        }
+
+        &:hover {
+            background-color: $color;
+        }
+    }
+}
+
 #header, #footer {
     background-color: $neutral-lighter;
     margin: 0;
     padding: 0 4rem;
 
-    > * {
+    > *:not(.no-pad) {
         padding: 1rem 0;
     }
 
@@ -18,12 +42,76 @@
     @extend .z-depth-1;
 }
 
+#header {
+    nav > * {
+        flex: 1 1 auto;
+        padding: 1.5rem 0;
+
+        text-align: center;
+        font-size: 1.5rem;
+
+        &:not(.active) {
+            color: $light_fg;
+            border: none;
+
+            @include dark {
+                color: $dark_fg;
+            }
+        }
+
+        &.blue {
+            @include nav-color(adjust-hue($ms-color-sharedBlue10, -15deg));
+        }
+    
+        &.cyan {
+            @include nav-color($ms-color-sharedCyanBlue10);
+        }
+    
+        &.green {
+            @include nav-color(desaturate($ms-color-sharedGreen20, 30%));
+        }
+    
+        &.red {
+            @include nav-color($ms-color-sharedRed20);
+        }
+    
+        &.orange {
+            @include nav-color($ms-color-sharedOrange20);
+        }
+    
+        &.purple {
+            @include nav-color($ms-color-sharedBlueMagenta30);
+        }
+    
+        &.pink {
+            @include nav-color(desaturate($ms-color-sharedMagenta20, 30%));
+        }
+    
+        &.grey {
+            @include nav-color($neutral-dark);
+        }
+    }
+}
+
 #content {
     flex-grow: 1;
     padding: 2rem 0;
     width: 90%;
     max-width: 960px;
     align-self: center;
+
+    hr.splitter {
+        height: 1px;
+        width: 98%;
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        background-color: $neutral_light;
+        border: none;
+        
+        @include dark {
+            background-color: $neutral;
+        }
+    }
 
     @include mobile {
         margin-top: 1rem;

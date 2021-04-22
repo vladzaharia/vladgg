@@ -1,0 +1,3 @@
+{{ define "custom_content" }}
+    {{ partial "components/projects.html" (dict "projects" .Pages.ByDate "ctx" .) }}
+{{ end }}

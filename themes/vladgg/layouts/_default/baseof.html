@@ -7,7 +7,41 @@
         <div class="ms-Grid" dir="ltr">
             {{- partial "header.html" . -}}
             <div id="content">
-                {{- block "main" . }}{{- end }}
+                {{- block "main" . }}
+                    <main id="{{ .Section }}">
+                        <article>
+                            <header>
+                                <span class="flex-row flex-align-center">
+                                    {{- block "title" . }}
+                                        {{ if and (.Parent) (not .IsSection) }}
+                                            <span class="flex-row flex-align-center parent">
+                                                <a class="{{.Parent.Params.color}}" href="{{.Parent.Permalink}}">
+                                                    {{ if isset .Parent.Params "icon" }}
+                                                        <i class="page-icon fa-solid fa-{{ .Parent.Params.icon }}"></i>
+                                                    {{ else }}
+                                                        <h2>{{ .Parent.Title }}</h2>
+                                                    {{ end }}
+                                                </a>
+                                            </span>
+                                            <span class="ml-1 mr-1"><h2>></h2></span>
+                                        {{ end }}
+
+                                        {{ if isset .Params "icon" }}
+                                            <i class="page-icon fa-solid fa-{{ .Params.icon }} mr-1"></i>
+                                        {{ end }}
+                                        <h2>{{ .Title }}</h2>
+                                    {{- end }}
+                                </span>
+                            </header>
+                            <hr class="splitter" />
+                            {{- block "content" . }}
+                                {{.Content}}
+                            {{- end }}
+                        </article>
+                    
+                        {{- block "custom_content" . }}{{- end }}
+                    </main>
+                {{ end }}
             </div>
             {{- partial "footer.html" . -}}
         </div>

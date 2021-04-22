@@ -1,0 +1,11 @@
+@import '../common/colors.scss';
+@import '../common/helpers.scss';
+@import '../common/responsive.scss';
+
+#about {
+    .avatar {
+        align-self: flex-start;
+        height: 20rem;
+        padding: 2rem;
+    }
+}
