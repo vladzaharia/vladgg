@@ -59,9 +59,11 @@ collections:
           - label: Git
             name: git
             widget: string
+            required: false
           - label: More Info
             name: more-info
             widget: string
+            required: false
       - label: Category
         name: category
         widget: select
