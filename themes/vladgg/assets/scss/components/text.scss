@@ -6,7 +6,7 @@
 @mixin text-color($color) {
     color: $color;
 
-    @include dark {
+    @include thm-dark {
         color: lighten($color, 15%);
     }
 }

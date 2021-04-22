@@ -16,7 +16,7 @@
         transition: all .25s;
     }
 
-    @include dark {
+    @include thm-dark {
         background-color: darken($color, 15%);
         color: lighten($color, 20%);
         border-color: lighten($color, 10%);

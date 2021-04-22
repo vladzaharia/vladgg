@@ -7,14 +7,9 @@
         align-self: flex-start;
         height: 20rem;
         padding: 2rem;
-        
-        @include mobile {
-            order: -1;
-            align-self: center;
-        }
     }
 
-    @include tablet {
+    @include res-mobile-tablet {
         .flex-row {
             flex-direction: column;
         }

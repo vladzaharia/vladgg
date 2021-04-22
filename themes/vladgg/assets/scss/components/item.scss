@@ -22,12 +22,12 @@
         margin: 1rem;
     }
 
-    @include mobile {
+    @include res-mobile {
         flex: 0 0 50%;
         width: 50%;
     }
 
-    @include tablet {
+    @include res-tablet {
         flex: 0 0 30%;
     }
 }
