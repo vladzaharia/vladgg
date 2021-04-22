@@ -7,22 +7,27 @@ summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
   pellentesque feugiat. Sed semper mollis ipsum, vel eleifend velit congue
   ornare. Donec pellentesque in nunc in vulputate. Vestibulum rhoncus lacus ac
   elementum euismod.
-Experience:
+experience:
   languages:
     - TypeScript
   tools:
     - Hugo
 links:
   git: https://gitlab.zhr.one/test/project
+category: Personal
 tags:
   - hackathon
 draft: true
+Experience:
+  languages:
+    - TypeScript
+  tools:
+    - Hugo
 type: project
 languages:
   - Sample
 tools:
   - Sample
-category: Personal
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam laoreet, magna vitae pretium accumsan, augue lorem iaculis magna, eget volutpat dolor mi at lacus. Donec interdum ante augue, eu bibendum est aliquam eu. Cras eu arcu vel metus posuere mollis. Sed hendrerit, nibh eget ultricies interdum, turpis urna aliquet augue, pretium rutrum dolor mauris id felis. Donec mattis eros finibus nisl venenatis, a sagittis risus tempus. Nulla nibh tellus, dignissim et auctor a, ultrices et justo. Aliquam vulputate urna in arcu iaculis, et finibus odio finibus. Donec ultrices eu nisl quis dictum. Ut dapibus quam vel metus faucibus pharetra.
