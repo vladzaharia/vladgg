@@ -37,7 +37,7 @@ collections:
         name: body
         widget: markdown
       - label: Experience
-        name: Experience
+        name: experience
         widget: object
         fields:
           - label: Languages
