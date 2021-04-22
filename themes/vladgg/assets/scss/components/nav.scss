@@ -5,6 +5,18 @@
 /* Nav menu */
 #nav-container {
     transition: all .25s;
+    background-color: $neutral-lighter;
+
+    @include res-custom-nav {
+        position: absolute;
+        top: 4.6rem;
+        z-index: 10000;
+        padding-bottom: .5rem;
+    }
+
+    @include thm-dark {
+        background-color: $neutral-darkest;
+    }
 }
 
 nav {

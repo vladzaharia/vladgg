@@ -13,10 +13,12 @@ function setupNav() {
 
         if (!expanded) {
             containerElem.classList.add("display-none");
+            containerElem.classList.add("opacity-0");
         }
     } else {
         navBtnElem.classList.add("display-none");
         containerElem.classList.remove("display-none");
+        containerElem.classList.remove("opacity-0");
     }
 }
 
@@ -33,17 +35,17 @@ navBtnElem.addEventListener("click", function() {
             contractElem.classList.add("display-none");
             contractElem.classList.remove("opacity-0");
             containerElem.classList.add("display-none");
-            containerElem.classList.remove("opacity-0");
             expandElem.classList.remove("display-none");
         }, 200);
     } else {
         expandElem.classList.add("opacity-0");
+        containerElem.classList.remove("display-none");
 
         setTimeout(function() {
             expandElem.classList.add("display-none");
             expandElem.classList.remove("opacity-0");
             contractElem.classList.remove("display-none");
-            containerElem.classList.remove("display-none");
+            containerElem.classList.remove("opacity-0");
         }, 200);
     }
 
