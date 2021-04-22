@@ -1,22 +1,28 @@
 ---
-icon: fa-duotone fa-vial
 title: Sample
-
-category: Sample # Personal, School, Work
-languages: 
-  - Sample
-tools: 
-  - Sample
-tags: 
-  - Sample
-  - Something
-  - Else
-
-summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ullamcorper porta dui vel feugiat. Aenean sollicitudin tortor in turpis pellentesque feugiat. Sed semper mollis ipsum, vel eleifend velit congue ornare. Donec pellentesque in nunc in vulputate. Vestibulum rhoncus lacus ac elementum euismod.
-
+icon: fa-duotone fa-vial
 date: 2021-04-18T02:18:18-07:00
+summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
+  ullamcorper porta dui vel feugiat. Aenean sollicitudin tortor in turpis
+  pellentesque feugiat. Sed semper mollis ipsum, vel eleifend velit congue
+  ornare. Donec pellentesque in nunc in vulputate. Vestibulum rhoncus lacus ac
+  elementum euismod.
+experience:
+  languages:
+    - TypeScript
+  tools:
+    - Hugo
+links:
+  git: https://gitlab.zhr.one/test/project
+tags:
+  - hackathon
 draft: true
 type: project
+languages:
+  - Sample
+tools:
+  - Sample
+category: School
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam laoreet, magna vitae pretium accumsan, augue lorem iaculis magna, eget volutpat dolor mi at lacus. Donec interdum ante augue, eu bibendum est aliquam eu. Cras eu arcu vel metus posuere mollis. Sed hendrerit, nibh eget ultricies interdum, turpis urna aliquet augue, pretium rutrum dolor mauris id felis. Donec mattis eros finibus nisl venenatis, a sagittis risus tempus. Nulla nibh tellus, dignissim et auctor a, ultrices et justo. Aliquam vulputate urna in arcu iaculis, et finibus odio finibus. Donec ultrices eu nisl quis dictum. Ut dapibus quam vel metus faucibus pharetra.
