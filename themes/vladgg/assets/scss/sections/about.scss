@@ -7,5 +7,21 @@
         align-self: flex-start;
         height: 20rem;
         padding: 2rem;
+        
+        @include mobile {
+            order: -1;
+            align-self: center;
+        }
+    }
+
+    @include tablet {
+        .flex-row {
+            flex-direction: column;
+        }
+
+        .avatar {
+            order: -1;
+            align-self: center;
+        }
     }
 }

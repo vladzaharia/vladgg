@@ -124,6 +124,10 @@
     @include mobile {
         margin-top: 1rem;
 
+        header .flex-row-mobile {
+            justify-content: center;
+        }
+
         main {
             text-align: center;
         }
@@ -131,6 +135,10 @@
 
     @include tablet {
         margin-top: 2rem;
+
+        header .flex-row-mobile {
+            justify-content: center;
+        }
     }
 }
 
