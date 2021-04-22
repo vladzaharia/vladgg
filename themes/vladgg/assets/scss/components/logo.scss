@@ -14,7 +14,7 @@
         padding-right: 0.75rem;    
     }
 
-    @include mobile {
+    @include res-custom-nav {
         justify-content: center;
         margin-block-end: .5rem;
     }

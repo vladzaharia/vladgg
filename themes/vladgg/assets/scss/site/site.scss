@@ -19,7 +19,7 @@ body {
 
     font-size: 1.15rem;
 
-    @include dark {
+    @include thm-dark {
         background-color: $dark_bg;
         color: $dark_fg;
     }
@@ -32,7 +32,7 @@ body {
         color: $light_fg !important;
     }
 
-    @include dark {
+    @include thm-dark {
         color: $dark_fg !important;
 
         &:hover {

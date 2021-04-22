@@ -26,7 +26,7 @@
         animation-name: fade-in;
     }
 
-    @include dark {
+    @include thm-dark {
         background-color: $dark_bg;
     }
 }

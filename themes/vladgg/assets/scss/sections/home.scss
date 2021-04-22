@@ -69,7 +69,7 @@
         @extend .flex-align-center;
         @extend .flex-justify-end;
 
-        @include mobile {
+        @include res-mobile {
             justify-content: flex-start;
         }
     }
@@ -102,11 +102,7 @@
             font-size: 3rem;
             padding-right: 1rem;
 
-            @include mobile {
-                display: none;
-            }
-
-            @include tablet {
+            @include res-mobile-tablet {
                 display: none;
             }
         }
@@ -119,7 +115,7 @@
         opacity: 0;
     }
 
-    @include mobile {
+    @include res-mobile {
         @include content-transform(4);
 
         .grid {

@@ -15,7 +15,7 @@
         transition: all .25s;
     }
 
-    @include dark {
+    @include thm-dark {
         &.active {
             border-bottom-color: lighten($color, 15%);
         }
@@ -35,7 +35,7 @@
         padding: 1rem 0;
     }
 
-    @include dark {
+    @include thm-dark {
         background-color: $neutral-darkest;
     }
 
@@ -54,7 +54,7 @@
             color: $light_fg;
             border: none;
 
-            @include dark {
+            @include thm-dark {
                 color: $dark_fg;
             }
         }
@@ -92,11 +92,20 @@
         }
     }
 
-    @include mobile {
+    @include res-custom-nav {
         padding: 0;
+        flex-direction: column;
 
-        nav > * {
+        > * {
             width: 100%;
+        }
+
+        nav {
+            flex-direction: column;
+            
+            > * {
+                width: 100%;
+            }
         }
     }
 }
@@ -116,12 +125,12 @@
         background-color: $neutral_light;
         border: none;
         
-        @include dark {
+        @include thm-dark {
             background-color: $neutral;
         }
     }
 
-    @include mobile {
+    @include res-mobile {
         margin-top: 1rem;
 
         header .flex-row-mobile {
@@ -133,7 +142,7 @@
         }
     }
 
-    @include tablet {
+    @include res-tablet {
         margin-top: 2rem;
 
         header .flex-row-mobile {
@@ -165,7 +174,7 @@ footer {
         font-size: 1.4rem;
     }
 
-    @include mobile {
+    @include res-mobile {
         text-align: center;
 
         #bwl-alt {

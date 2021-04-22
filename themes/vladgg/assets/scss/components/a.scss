@@ -12,7 +12,7 @@
         transition: all .25s;
     }
 
-    @include dark {
+    @include thm-dark {
         color: lighten($color, 15%);
 
         &:hover {

@@ -11,11 +11,11 @@
 
     @extend .z-depth-1-hover;
 
-    @include dark {
+    @include thm-dark {
         background-color: $neutral_darkest;
     }
 
-    @include mobile {
+    @include res-mobile {
         padding: 2rem;
     }
 }

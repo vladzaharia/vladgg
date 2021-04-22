@@ -31,7 +31,7 @@
         flex: 0 0 33%;
     }
 
-    @include dark {
+    @include thm-dark {
         > span {
             background-color: $neutral_darkest;
             color: $dark_fg;

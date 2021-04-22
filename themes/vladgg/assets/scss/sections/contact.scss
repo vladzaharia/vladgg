@@ -31,7 +31,7 @@
             padding: 1rem;
         }
 
-        @include dark {
+        @include thm-dark {
             input[type=text] {
                 background-color: lighten($neutral_light, 15%);
             }
@@ -41,7 +41,7 @@
             }
         }
 
-        @include mobile {
+        @include res-mobile {
             width: 90%;
         }
     }
