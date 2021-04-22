@@ -1,9 +1,33 @@
 @import '../common/colors.scss';
 @import '../common/responsive.scss';
+@import './card.scss';
 
 /* Nav menu */
+#nav-container {
+    transition: all .25s;
+}
+
 nav {
     display: flex;
     width: 100%;
     justify-content: space-around;
+}
+
+.nav-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    cursor: pointer;
+
+    height: 3.5rem;
+    width: 3.5rem;
+
+    @extend .flex-row;
+    @extend .flex-align-center;
+    @extend .flex-justify-center;
+    @include card-color();
+
+    i {
+        transition: all .25s;
+    }
 }

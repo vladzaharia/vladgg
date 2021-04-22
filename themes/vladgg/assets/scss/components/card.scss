@@ -2,18 +2,22 @@
 @import '../common/responsive.scss';
 
 /* Generic card */
-.card {
-    margin: 1rem;
-    padding: 4rem;
+@mixin card-color {
     border: 1px solid $neutral_light;
     border-radius: 0.5rem;
     background-color: $neutral_lighter;
 
-    @extend .z-depth-1-hover;
-
     @include thm-dark {
         background-color: $neutral_darkest;
     }
+}
+
+.card {
+    margin: 1rem;
+    padding: 4rem;
+
+    @extend .z-depth-1-hover;
+    @include card-color();
 
     @include res-mobile {
         padding: 2rem;

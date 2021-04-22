@@ -4,19 +4,30 @@
     Display classes
 */
 .display-none {
-    display: none;
+    display: none !important;
 }
 
 .display-block {
-    display: block;
+    display: block !important;
 }
 
 .display-flex {
-    display: flex;
+    display: flex !important;
 }
 
 .display-inline {
-    display: inline;
+    display: inline !important;
+}
+
+/** 
+    Opacity classes
+*/
+.opacity-0 {
+    opacity: 0;
+}
+
+.opacity-1 {
+    opacity: 1;
 }
 
 /**
