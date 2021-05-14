@@ -8,6 +8,7 @@ work:
     date_from: 2014-09-04T00:00:00-07:00
     title: Senior Software Engineer
     location: Redmond, WA
+    icon: microsoft
     slug: I work as a fullstack software engineer on Azure Monitor Metrics, a telemetry and monitoring platform for Azure resources and applications, creating charting experiences in Azure Monitor and Applications Insights as well as the backend services that power the metric retrieval pipeline.
 
   - key: GLEAM
@@ -15,6 +16,7 @@ work:
     date_from: 2018-09-04T00:00:00-07:00
     title: Director of Membership, GLEAM
     location: Redmond, WA
+    icon: gleam
     slug: As Director of Membership, my role is to grow our global LGBTQI+ presence internally within Microsoft, as well as support our 50+ chapters across the world to create a consistent worldwide experience for the Microsoft LGBTQI+ community around the world.
 
   - key: Microsoft Intern
@@ -23,6 +25,7 @@ work:
     date_to: 2013-09-01T00:00:00-07:00
     title: Software Engineer Intern
     location: Redmond, WA
+    icon: microsoft
     slug: Working on the Visual Studio Application Lifecycle Tools team, I investigated and prototyped new approaches to creating indexes of data stored on Team Foundation Server, from small sets of files to massive, multi-million file installations. As part of the project, I weighed various methods to scalable indexing of files, and measured their impact through a proof of concept running on Team Foundation Server.
 
   - key: Microsoft Intern CodeLens
@@ -31,6 +34,7 @@ work:
     date_to: 2013-09-01T00:00:00-07:00
     title: Software Engineer Intern
     location: Redmond, WA
+    icon: microsoft
     slug: Working on the Visual Studio Application Lifecycle Tools team, I investigated and prototyped new approaches to creating indexes of data stored on Team Foundation Server, from small sets of files to massive, multi-million file installations. As part of the project, I weighed various methods to scalable indexing of files, and measured their impact through a proof of concept running on Team Foundation Server.
     hidden: true
 
@@ -40,6 +44,7 @@ work:
     date_to: 2012-12-01T00:00:00-07:00
     title: Software Engineer Intern
     location: Redmond, WA
+    icon: microsoft
     slug: Working at Microsoft on the Team Foundation Server Agile and Work Item Tracking Experience teams, I gained a breadth of knowledge in JavaScript and CSS Styling, while creating great Agile experiences for users. During my time, I worked on several improvements to the Sprint Taskboard, all of which are live on the Team Foundation Service.
     hidden: true
 
@@ -49,6 +54,7 @@ work:
     date_to: 2011-08-01T00:00:00-07:00
     title: Co-Op Java Developer
     location: Vancouver, BC
+    icon: elastic-path
     slug: As part of my internship-long project, I modified Elastic Path's offering, and created several Ant and Maven build scripts, in order to support the deployment of the Commerce Manager Client on Java Web Start, as part of a lighter-weight installation that can be commenced through the internet.
 
   - key: Tasktop
@@ -57,4 +63,5 @@ work:
     date_to: 2010-09-01T00:00:00-07:00
     title: Software and Web Developer
     location: Vancouver, BC
+    icon: tasktop
     slug: In addition to creating internal statistics tools in PHP with Apache log skimming, I worked on the makings of the Polarion Connector, currently available to customers. Additionally, I worked on Product Backlog Planning tools as part of the Scrum Planning offerings.

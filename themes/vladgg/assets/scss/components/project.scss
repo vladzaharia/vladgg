@@ -7,7 +7,7 @@
     @extend .card;
     padding: 2rem;
     cursor: pointer;
-    flex: 0 0 42%;
+    flex: 0 0 40%;
     display: flex;
 
     > span {
@@ -26,7 +26,15 @@
     }
 
     .icon {
-        font-size: 4rem;
+        font-size: 2rem;
+    }
+
+    @include res-mobile {
+        flex: 0 0 100%;
+    }
+
+    @include res-tablet {
+        flex: 0 0 90%;
     }
 
     @include thm-dark {

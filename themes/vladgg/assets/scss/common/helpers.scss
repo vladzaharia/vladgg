@@ -51,6 +51,11 @@
     }
 }
 
+.flex-wrap {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .flex-justify-center {
     display: flex;
     justify-content: center;
