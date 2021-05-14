@@ -3,23 +3,27 @@
 {{ range .projects }}
     <div class="project card" onclick="window.location='{{.Permalink}}'" tabindex="1">
         <span class="flex-column">
-            <span class="flex-row flex-row-mobile flex-justify-sb">
-                <h3 class="m-0"> {{ .Title }} </h3>
-                
-                <div class="flex-align-center">
-                    <i class="label-icon fa-solid fa-calendar-star mr-1" aria-hidden="true"></i>
-                    {{ .Date.Format "January 2006" }}
-                </div>
+            <span class="flex-row flex-row-mobile flex-grow mt-1 ml-1 mr-1">
+                {{ if isset .Params "icon" }}<i class="{{ .Params.icon }} icon mr-1" aria-hidden="true"></i> {{ end }}
+
+                <span class="flex-row flex-row-mobile flex-justify-sb flex-grow">
+                    <h3 class="m-0 flex-align-center"> {{ .Title }} </h3>
+                    
+                    <div class="flex-align-center">
+                        <i class="label-icon fa-solid fa-calendar-star mr-1" aria-hidden="true"></i>
+                        {{ .Date.Format "January 2006" }}
+                    </div>
+                </span>
             </span>
+
             <hr />
-            <span class="flex-row flex-row-mobile mt-1 ml-1 mr-1">
-                {{ if isset .Params "icon" }}<i class="{{ .Params.icon }} icon mr-2" aria-hidden="true"></i> {{ end }}
+            <span class="flex-row flex-row-mobile flex-grow mt-1 ml-1 mr-1">
                 {{ .Params.summary }}
             </span>
             <span class="labels flex-row flex-justify-sb mt-25">
-                {{ partial "components/labels.html" (dict "labels" .Params.experience.languages "icon" "code" "url" "/languages/" "class" "" "ctx" $ctx) }}
-                {{ partial "components/labels.html" (dict "labels" .Params.experience.tools "icon" "wrench" "url" "/tools/" "class" "flex-justify-center" "ctx" $ctx) }}
-                {{ partial "components/labels.html" (dict "labels" .Params.tags "icon" "tags" "url" "/tags/" "class" "flex-justify-end" "ctx" $ctx) }}
+                <!--{{ partial "components/labels.html" (dict "labels" .Params.experience.languages "icon" "code" "url" "/languages/" "class" "" "ctx" $ctx) }}
+                {{ partial "components/labels.html" (dict "labels" .Params.experience.tools "icon" "wrench" "url" "/tools/" "class" "flex-justify-center" "ctx" $ctx) }}-->
+                {{ partial "components/labels.html" (dict "labels" .Params.tags "icon" "tags" "url" "/tags/" "class" "" "ctx" $ctx) }}
             </span>
         </span>
     </div>

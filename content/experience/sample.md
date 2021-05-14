@@ -14,7 +14,7 @@ links:
   git: https://gitlab.zhr.one/some/project
   more-info: https://example.com
 
-category: Sample
+category: Microsoft
 tags: 
   - Sample
   - Something
