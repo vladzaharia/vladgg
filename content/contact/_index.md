@@ -7,4 +7,4 @@ weight: 4
 draft: false
 ---
 
-Get in touch with me using the social networks below, by emailing {{< cloakemail address="hey@vlad.gg" class="blue" >}}, or using the contact form.
+Get in touch with me using the contact form below, by emailing {{< cloakemail address="hey@vlad.gg" class="blue" >}}, or using the social media links.
