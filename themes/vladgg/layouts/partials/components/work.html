@@ -3,7 +3,7 @@
         <img src="/images/work/{{ .work.icon }}.svg" alt="{{ .work.name }} logo" height="50px" />
     </span>
     <div class="flex-grow">
-        <div class="flex-row flex-row-mobile flex-justify-sb mt-2 mb-05">
+        <div class="flex-row work-details work-name flex-justify-sb mt-2 mb-05">
             <h3 class="m-0">{{ .work.name }}</h3>
             {{ if isset .work "date_from" }}
                 <div class="flex-align-center">
@@ -18,7 +18,7 @@
             {{ end }}
         </div>
         
-        <div class="flex-row flex-row-mobile flex-justify-sb">
+        <div class="flex-row work-details flex-justify-sb">
             <div class="flex-align-center">
                 <span><i class="label-icon fa-solid fa-user-tie mr-1" aria-hidden="true"></i></span>
                 {{ .work.title }}
