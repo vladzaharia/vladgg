@@ -1,3 +1,18 @@
+{{ define "title" }}
+    <div class="flex-row flex-row-mobile flex-justify-sb width-100">
+        <div class="flex-align-center">
+            {{ if isset .Params "icon" }}
+                <i class="page-icon fa-solid fa-{{ .Params.icon }} mr-1 {{.Params.color}}"></i>
+            {{ end }}
+            <h2>{{ .Title }}</h2>
+        </div>
+
+        <div class="flex-align-center">
+            <a href="https://linkedin.com/in/vladzaharia"><i class="fa-brands fa-linkedin mr-1 cyan ms-fontSize-24" aria-hidden="true"></i></a>
+        </div>
+    </div>
+{{ end }}
+
 {{ define "custom_content" }}
     {{ $projects := newScratch }}
     {{ $projects.Add "projects" .Pages.ByDate }}
