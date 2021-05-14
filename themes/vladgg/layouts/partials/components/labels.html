@@ -4,7 +4,7 @@
 
 {{ if and (isset . "labels") (gt ( len .labels ) 0 ) }}
 
-    <span class="labels flex-row flex-row-mobile flex-align-end {{ .class }}">
+    <span class="labels flex-row flex-row-mobile {{ .class }}">
         <a href="{{ $url | relLangURL }}" onclick="event.stopPropagation();" class="no-colorize">
             <i class="label-icon fa-light fa-{{ .icon }} mr-1" aria-hidden="true"></i>
         </a>

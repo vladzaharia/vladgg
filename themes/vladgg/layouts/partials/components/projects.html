@@ -12,14 +12,14 @@
                 </div>
             </span>
             <hr />
-            <span class="flex-row flex-row-mobile mt-1 ml-1 mr-1">
+            <span class="flex-row flex-row-mobile flex-grow mt-1 ml-1 mr-1">
                 {{ if isset .Params "icon" }}<i class="{{ .Params.icon }} icon mr-2" aria-hidden="true"></i> {{ end }}
                 {{ .Params.summary }}
             </span>
             <span class="labels flex-row flex-justify-sb mt-25">
-                {{ partial "components/labels.html" (dict "labels" .Params.experience.languages "icon" "code" "url" "/languages/" "class" "" "ctx" $ctx) }}
-                {{ partial "components/labels.html" (dict "labels" .Params.experience.tools "icon" "wrench" "url" "/tools/" "class" "flex-justify-center" "ctx" $ctx) }}
-                {{ partial "components/labels.html" (dict "labels" .Params.tags "icon" "tags" "url" "/tags/" "class" "flex-justify-end" "ctx" $ctx) }}
+                <!--{{ partial "components/labels.html" (dict "labels" .Params.experience.languages "icon" "code" "url" "/languages/" "class" "" "ctx" $ctx) }}
+                {{ partial "components/labels.html" (dict "labels" .Params.experience.tools "icon" "wrench" "url" "/tools/" "class" "flex-justify-center" "ctx" $ctx) }}-->
+                {{ partial "components/labels.html" (dict "labels" .Params.tags "icon" "tags" "url" "/tags/" "class" "" "ctx" $ctx) }}
             </span>
         </span>
     </div>

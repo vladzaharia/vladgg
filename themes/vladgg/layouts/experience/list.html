@@ -1,10 +1,12 @@
 {{ define "custom_content" }}
-    {{ range .Pages.GroupByParam "category" }}
-        <h3>{{ .Key }}</h3>
+    {{ $projects := newScratch }}
+    {{ $projects.Add "projects" .Pages.ByDate }}
 
-        <div class="flex-column">
-            <!-- Ranges through content/posts/*.md -->
-            {{ partial "components/projects.html" (dict "projects" .Pages.ByDate "ctx" $) }}
-        </div>
+    {{ range .Site.Data.work.work }}
+        {{ if ne .hidden true }}
+            <div class="work">
+                {{ partial "components/work.html" (dict "work" . "projects" ($projects.Get "projects") "ctx" $) }}
+            </div>
+        {{ end }}
     {{ end }}
 {{ end }}
