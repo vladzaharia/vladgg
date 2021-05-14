@@ -10,7 +10,7 @@ iama:
     icon: 
       src: male-tech
       alt: Male tech emoji
-    href: /experiences
+    href: /experience
     color: orange
   - index: 2
     text: Tesla owner
