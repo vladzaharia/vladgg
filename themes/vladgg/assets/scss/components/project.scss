@@ -7,6 +7,8 @@
     @extend .card;
     padding: 2rem;
     cursor: pointer;
+    flex: 0 0 42%;
+    display: flex;
 
     > span {
         border-radius: 0.5rem;
@@ -25,10 +27,6 @@
 
     .icon {
         font-size: 4rem;
-    }
-
-    .labels {
-        flex: 0 0 33%;
     }
 
     @include thm-dark {

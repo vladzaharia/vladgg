@@ -1,0 +1,35 @@
+<div class="flex-row flex-row-mobile flex-justify-sb mt-2 mb-05">
+    <h3 class="m-0">{{ .work.name }}</h3>
+    {{ if isset .work "date_from" }}
+        <div class="flex-align-center">
+            <i class="label-icon fa-solid fa-calendar mr-1" aria-hidden="true"></i>
+            <strong>{{ dateFormat "January 2006" .work.date_from }}
+            {{ if isset .work "date_to" }}
+             - {{ dateFormat "January 2006" .work.date_to }}
+            {{ else }}
+             - Present
+             {{ end }}</strong>
+        </div>
+    {{ end }}
+</div>
+
+<div class="flex-row flex-row-mobile flex-justify-sb mb-1">
+    <div class="flex-align-center">
+        <span><i class="label-icon fa-solid fa-user-tie mr-1" aria-hidden="true"></i></span>
+        {{ .work.title }}
+    </div>
+
+    <div class="flex-align-center">
+        <span><i class="label-icon fa-solid fa-globe-americas mr-1" aria-hidden="true"></i></span>
+        {{ .work.location }}
+    </div>
+</div>
+
+<span>{{ .work.slug }}</span>
+
+<div class="flex-row">
+    <!-- Ranges through content/posts/*.md -->
+    {{ partial "components/projects.html" (dict "projects" (where .projects "Params.category" .work.key) "ctx" .ctx) }}
+</div>
+
+<hr class="splitter mt-2" />

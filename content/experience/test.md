@@ -13,7 +13,7 @@ links:
   git: https://gitlab.zhr.one/some/project
   more-info: https://example.com
 
-category: Work
+category: Microsoft
 tags: 
   - Sample
 
