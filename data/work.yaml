@@ -10,6 +10,13 @@ work:
     location: Redmond, WA
     slug: I work as a fullstack software engineer on Azure Monitor Metrics, a telemetry and monitoring platform for Azure resources and applications, creating charting experiences in Azure Monitor and Applications Insights as well as the backend services that power the metric retrieval pipeline.
 
+  - key: GLEAM
+    name: Microsoft
+    date_from: 2018-09-04T00:00:00-07:00
+    title: Director of Membership, GLEAM
+    location: Redmond, WA
+    slug: As Director of Membership, my role is to grow our global LGBTQI+ presence internally within Microsoft, as well as support our 50+ chapters across the world to create a consistent worldwide experience for the Microsoft LGBTQI+ community around the world.
+
   - key: Microsoft Intern
     name: Microsoft
     date_from: 2012-05-04T00:00:00-07:00
