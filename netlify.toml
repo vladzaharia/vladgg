@@ -28,3 +28,24 @@
 
 [dev]
   command = "hugo server -D" # Build drafts
+
+# HTTP/S Redirects
+[[redirects]]
+  from = "/rd/facebook"
+  to = "https://facebook.com/vladzaharia"
+
+[[redirects]]
+  from = "/rd/github"
+  to = "https://github.com/vladzaharia"
+
+[[redirects]]
+  from = "/rd/instagram"
+  to = "https://instagram.com/vladzaharia"
+
+[[redirects]]
+  from = "/rd/linkedin"
+  to = "https://linkedin.com/in/vladzaharia"
+
+[[redirects]]
+  from = "/rd/twitter"
+  to = "https://twitter.com/vladzaharia"

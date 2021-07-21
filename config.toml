@@ -29,7 +29,7 @@ enableEmoji = true
     name = "Facebook"
     post = "primary"
     pre = "facebook-square"
-    url = "https://www.facebook.com/vladzaharia/"
+    url = "/rd/facebook"
     weight = 1
 
 [[menu.social]]
@@ -37,7 +37,7 @@ enableEmoji = true
     name = "Instagram"
     post = "pink"
     pre = "instagram"
-    url = "https://www.instagram.com/vladzaharia/"
+    url = "/rd/instagram"
     weight = 2
 
 [[menu.social]]
@@ -45,7 +45,7 @@ enableEmoji = true
     name = "Twitter"
     post = "cyan"
     pre = "twitter-square"
-    url = "https://twitter.com/vladzaharia/"
+    url = "/rd/twitter"
     weight = 3
 
 [[menu.social]]
@@ -53,7 +53,7 @@ enableEmoji = true
     name = "LinkedIn"
     post = "blue"
     pre = "linkedin"
-    url = "https://www.linkedin.com/in/vladzaharia/"
+    url = "/rd/linkedin"
     weight = 4
 
 [[menu.social]]
@@ -61,5 +61,5 @@ enableEmoji = true
     name = "GitHub"
     post = "grey"
     pre = "github"
-    url = "http://github.com/vladzaharia/"
+    url = "/rd/github"
     weight = 5
