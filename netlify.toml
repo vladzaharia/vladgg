@@ -49,3 +49,10 @@
 [[redirects]]
   from = "/rd/twitter"
   to = "https://twitter.com/vladzaharia"
+
+# Netlify Checklinks
+[[plugins]]
+package = "netlify-plugin-checklinks"
+
+  [plugins.inputs]
+  skipPatterns = ["/rd/.*"]
