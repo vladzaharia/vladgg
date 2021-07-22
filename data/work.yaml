@@ -14,10 +14,11 @@ work:
   - key: GLEAM
     name: Microsoft
     date_from: 2018-09-04T00:00:00-07:00
+    date_to: 2021-07-01T00:00:00-07:00
     title: Director of Membership, GLEAM
     location: Redmond, WA
     icon: gleam
-    slug: As Director of Membership, my role is to grow our global LGBTQI+ presence internally within Microsoft, as well as support our 50+ chapters across the world to create a consistent worldwide experience for the Microsoft LGBTQI+ community around the world.
+    slug: As Director of Membership, my role was to grow our global LGBTQI+ presence internally within Microsoft, as well as support our 50+ chapters across the world to create a consistent worldwide experience for the Microsoft LGBTQI+ community around the world.
 
   - key: Microsoft Intern
     name: Microsoft
