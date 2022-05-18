@@ -19,7 +19,7 @@ iama:
       alt: Charging station icon
     color: green
   - index: 3
-    text: lgbtqi+ director
+    text: former lgbtqi+ director
     icon:
       src: rainbow
       alt: Rainbow emoji
