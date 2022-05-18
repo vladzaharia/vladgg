@@ -6,12 +6,12 @@ iama:
       alt: Maple leaf icon
     color: red
   - index: 1
-    text: software engineer
-    icon: 
-      src: male-tech
-      alt: Male tech emoji
-    href: /experience
-    color: orange
+    text: former lgbtqi+ director
+    icon:
+      src: rainbow
+      alt: Rainbow emoji
+    href: https://microsoft.com/pride
+    color: cyan
   - index: 2
     text: Tesla owner
     icon:
@@ -19,12 +19,12 @@ iama:
       alt: Charging station icon
     color: green
   - index: 3
-    text: former lgbtqi+ director
-    icon:
-      src: rainbow
-      alt: Rainbow emoji
-    href: https://microsoft.com/pride
-    color: cyan
+    text: software engineer
+    icon: 
+      src: male-tech
+      alt: Male tech emoji
+    href: /experience
+    color: orange
   - index: 4
     text: skiier
     icon:
