@@ -4,7 +4,7 @@
     </span>
     <div class="flex-grow">
         <div class="flex-row work-details work-name flex-justify-sb mt-2 mb-05">
-            <h3 class="m-0">{{ .work.name }}</h3>
+            <h3 class="m-0">{{ .work.title }}</h3>
             {{ if isset .work "date_from" }}
                 <div class="flex-align-center">
                     <i class="label-icon fa-solid fa-calendar mr-1" aria-hidden="true"></i>
@@ -20,8 +20,8 @@
         
         <div class="flex-row work-details flex-justify-sb">
             <div class="flex-align-center">
-                <span><i class="label-icon fa-solid fa-user-tie mr-1" aria-hidden="true"></i></span>
-                {{ .work.title }}
+                <span><i class="label-icon fa-solid fa-building mr-1" aria-hidden="true"></i></span>
+                {{ .work.company }}
             </div>
         
             <div class="flex-align-center">
@@ -34,9 +34,19 @@
 
 <span>{{ .work.slug }}</span>
 
+{{ if isset .work "bullets" }}
+<ul>
+    {{ range $bullet := .work.bullets }}
+    <li>{{ $bullet }}</li>
+    {{ end }}
+</ul>
+{{ end }}
+
+{{ if ne .work.hidden_projects true }}
 <div class="flex-row flex-wrap">
     <!-- Ranges through content/posts/*.md -->
     {{ partial "components/projects.html" (dict "projects" (where .projects "Params.category" .work.key) "ctx" .ctx) }}
 </div>
+{{ end }}
 
 <hr class="splitter mt-2" />
