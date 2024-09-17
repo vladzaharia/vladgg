@@ -1,0 +1,29 @@
+---
+
+---
+
+<style>
+  .gradient {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(334deg, #0a3389, #3f0d85, #8f0244);
+    background-size: 180% 180%;
+    animation: gradient-animation 12s ease infinite;
+  }
+
+  @keyframes gradient-animation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+</style>
+
+<div class="gradient">
+  <slot />
+</div>

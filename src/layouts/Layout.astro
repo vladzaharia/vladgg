@@ -18,14 +18,14 @@ const global = await directus.request(readSingleton("global"));
   <head>
     <SEO
       title={pageTitle}
-	  titleDefault={global.title}
-	  titleTemplate=`%s - ${global.title}`
+      titleDefault={global.title}
+      titleTemplate=`%s - ${global.title}`
       description={pageDescription || global.description}
       openGraph={{
         basic: {
           title: `${pageTitle} - ${global.title}`,
           type: "Page",
-		  image: "",
+          image: "",
         },
       }}
       twitter={{
@@ -35,13 +35,18 @@ const global = await directus.request(readSingleton("global"));
         link: [{ rel: "icon", href: "/favicon.ico" }],
         meta: [
           { name: "twitter:title", content: `${pageTitle} - ${global.title}` },
-          { name: "twitter:description", content: pageDescription || global.description },
+          {
+            name: "twitter:description",
+            content: pageDescription || global.description,
+          },
         ],
       }}
     />
-    <title>{pageTitle}</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
-  <body>
-    <slot />
+  <body class="text-slate-100 bg-slate-900">
+    <main id="swup">
+      <slot />
+    </main>
   </body>
 </html>
