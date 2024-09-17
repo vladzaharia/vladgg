@@ -7,8 +7,8 @@ const color = `text-${ALL_COLORS[Math.floor(Math.random() * ALL_COLORS.length)]}
 ---
 
 <Layout title="Home">
-    <Pulse>
-      <div class="flex flex-col items-center lg:items-start justify-center lg:justify-end h-screen p-0 lg:p-14">
+  <div class="bg-center bg-cover" style="background-image: url('/background.svg');">
+    <div class="flex flex-col items-center lg:items-start justify-center lg:justify-end h-screen p-0 lg:p-14">
         <div data-aos="fade-up" class="flex flex-col text-center lg:text-left bg-slate-900/10 px-6 py-12 lg:p-14 md:rounded-3xl backdrop-blur">
           <h1 data-aos="fade-up" data-aos-duration="1000" class="text-5xl md:text-6xl font-bold mb-4">Hi, I'm <span class={color}>Vlad</span>.</h1>
           <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" class="text-xl md:text-2xl">I'm a full-stack software engineer based in Seattle, WA.</p>
@@ -24,6 +24,6 @@ const color = `text-${ALL_COLORS[Math.floor(Math.random() * ALL_COLORS.length)]}
           <span class="text-fuchsia-500"></span>
           <span class="text-pink-500"></span>
         </div>
-      </div>
-    </Pulse>
+    </div>
+  </div>
 </Layout>

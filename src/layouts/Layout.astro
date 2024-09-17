@@ -6,12 +6,10 @@ interface Props {
 
 const { title: pageTitle, description: pageDescription } = Astro.props;
 
+import AOS from "../components/util/AOS.astro";
 import directus from "../api/directus";
 import { readSingleton } from "@directus/sdk";
 import { SEO } from "astro-seo";
-
-import 'aos/dist/aos.css';
-
 
 const global = await directus.request(readSingleton("global"));
 ---
@@ -51,9 +49,6 @@ const global = await directus.request(readSingleton("global"));
     <main id="swup">
       <slot />
     </main>
+	<AOS />
   </body>
-  <script>
-	import AOS from "aos"; 
-	AOS.init(); 
-  </script>
 </html>
