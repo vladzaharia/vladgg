@@ -2,8 +2,6 @@
 import Layout from "../layouts/Layout.astro";
 import Pulse from "../components/background/Pulse.astro";
 
-import 'aos/dist/aos.css';
-
 const ALL_COLORS = ["red", "orange", "yellow", "lime", "green", "emerald", "sky", "blue", "violet", "fuchsia", "pink"]
 const color = `text-${ALL_COLORS[Math.floor(Math.random() * ALL_COLORS.length)]}-500`;
 ---
@@ -29,8 +27,3 @@ const color = `text-${ALL_COLORS[Math.floor(Math.random() * ALL_COLORS.length)]}
       </div>
     </Pulse>
 </Layout>
-
-<script> 
-  import AOS from "aos"; 
-  AOS.init(); 
-</script>

@@ -10,6 +10,9 @@ import directus from "../api/directus";
 import { readSingleton } from "@directus/sdk";
 import { SEO } from "astro-seo";
 
+import 'aos/dist/aos.css';
+
+
 const global = await directus.request(readSingleton("global"));
 ---
 
@@ -49,4 +52,8 @@ const global = await directus.request(readSingleton("global"));
       <slot />
     </main>
   </body>
+  <script>
+	import AOS from "aos"; 
+	AOS.init(); 
+  </script>
 </html>
