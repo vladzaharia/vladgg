@@ -6,7 +6,7 @@ import { readSingleton } from "@directus/sdk";
 const global = await directus.request(readSingleton("global"));
 ---
 
-<Layout title={global.title}>
+<Layout title="Home">
   <main>
     <div>
       <h1>{global.title}</h1>
