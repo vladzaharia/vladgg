@@ -1,15 +1,14 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Pulse from "../components/background/Pulse.astro";
 
 const ALL_COLORS = ["red", "orange", "yellow", "lime", "green", "emerald", "sky", "blue", "violet", "fuchsia", "pink"]
 const color = `text-${ALL_COLORS[Math.floor(Math.random() * ALL_COLORS.length)]}-500`;
 ---
 
-<Layout title="Home">
+<Layout title="Home" description="Home">
   <div class="bg-center bg-cover" style="background-image: url('/background.svg');">
     <div class="flex flex-col items-center lg:items-start justify-center lg:justify-end h-screen p-0 lg:p-14">
-        <div data-aos="fade-up" class="flex flex-col text-center lg:text-left bg-slate-900/10 px-6 py-12 lg:p-14 md:rounded-3xl backdrop-blur">
+        <div data-aos="fade-up" class="flex flex-col text-center lg:text-left bg-slate-900/10 px-6 py-12 lg:p-14 md:rounded-xl backdrop-blur backdrop-opacity-90 drop-shadow-lg">
           <h1 data-aos="fade-up" data-aos-duration="1000" class="text-5xl md:text-6xl font-bold mb-4">Hi, I'm <span class={color}>Vlad</span>.</h1>
           <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" class="text-xl md:text-2xl">I'm a full-stack software engineer based in Seattle, WA.</p>
           <span class="text-red-500"></span>
