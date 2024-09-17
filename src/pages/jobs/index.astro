@@ -1,0 +1,38 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import directus from "../../api/directus";
+import { readItems } from "@directus/sdk";
+
+const jobs = await directus.request(
+  readItems("jobs", {
+    fields: [
+      "slug",
+      "title",
+      "company",
+      "date_from",
+      "date_to",
+    ],
+    sort: ["date_from"],
+  })
+);
+---
+
+<Layout title="Jobs">
+  <main>
+    <h1>Jobs</h1>
+    <ul>
+        {
+          jobs.map((job) => (
+            <li>
+              <a href={`/blog/${job.slug}`}>
+                <h2>{job.title} at {job.company.name}</h2>
+              </a>
+              <span>
+                {job.date_from} - {job.date_to}
+              </span>
+            </li>
+          ))
+        }
+       </ul>
+  </main>
+</Layout>

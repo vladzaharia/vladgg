@@ -1,0 +1,32 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import directus from "../../api/directus";
+import { readItems } from "@directus/sdk";
+
+const projects = await directus.request(
+  readItems("projects", {
+    fields: [
+      "slug",
+      "title",
+    ],
+    sort: ["slug"],
+  })
+);
+---
+
+<Layout title="Jobs">
+  <main>
+    <h1>Jobs</h1>
+    <ul>
+        {
+          projects.map((project) => (
+            <li>
+              <a href={`/blog/${project.slug}`}>
+                <h2>{project.title}</h2>
+              </a>
+            </li>
+          ))
+        }
+       </ul>
+  </main>
+</Layout>

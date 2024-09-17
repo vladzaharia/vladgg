@@ -1,0 +1,21 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import directus from "../../api/directus";
+import { readItems } from "@directus/sdk";
+
+export async function getStaticPaths() {
+  const jobs = await directus.request(readItems("jobs"));
+  return jobs.map((job) => ({
+    params: { slug: job.slug },
+    props: job,
+  }));
+}
+const job = Astro.props;
+---
+
+<Layout title={job.title}>
+  <main>
+    <h1>{job.title}</h1>
+    <div set:html={job.content} />
+  </main>
+</Layout>

@@ -1,8 +1,0 @@
-tasks:
-  - before: brew install hugo
-    init: echo "Your version of Hugo is `hugo version`"
-    command: hugo server -D -F --liveReloadPort=1313 --bind=0.0.0.0
-
-ports:
-  - port: 1313
-    onOpen: open-browser

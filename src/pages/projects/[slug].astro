@@ -1,0 +1,21 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import directus from "../../api/directus";
+import { readItems } from "@directus/sdk";
+
+export async function getStaticPaths() {
+  const projects = await directus.request(readItems("projects"));
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: project,
+  }));
+}
+const project = Astro.props;
+---
+
+<Layout title={project.title}>
+  <main>
+    <h1>{project.title}</h1>
+    <div set:html={project.content} />
+  </main>
+</Layout>
