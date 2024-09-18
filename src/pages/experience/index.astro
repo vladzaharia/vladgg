@@ -1,5 +1,7 @@
 ---
 import PageLayout from "../../layouts/PageLayout.astro";
+import Heading from "../../components/text/Heading.astro";
+
 import directus from "../../api/directus";
 import { readItems } from "@directus/sdk";
 
@@ -17,9 +19,9 @@ const jobs = await directus.request(
 );
 ---
 
-<PageLayout title="Jobs">
+<PageLayout title="Experience">
   <main>
-    <h1>Jobs</h1>
+    <Heading>Experience</Heading>
     <ul>
         {
           jobs.map((job) => (

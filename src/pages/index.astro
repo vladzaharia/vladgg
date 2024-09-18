@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Background from "../components/background/Background.astro";
 import Backdrop from "../components/background/Backdrop.astro";
+import Hero from "../components/text/Hero.astro";
 
 const ALL_COLORS = [
   "red",
@@ -26,13 +26,9 @@ const accentColor = ALL_COLORS[Math.floor(Math.random() * ALL_COLORS.length)];
   >
     <Backdrop data-aos="fade-up">
       <div class="flex flex-col text-center lg:text-left px-6 py-12 lg:p-14">
-        <h1
-          data-aos="fade-up"
-          data-aos-duration="1000"
-          class="text-5xl md:text-6xl font-bold mb-4"
-        >
+        <Hero class="mb-4">
           Hi, I'm <span class=`text-${accentColor}-500`>Vlad</span>.
-        </h1>
+        </Hero>
         <p
           data-aos="fade-up"
           data-aos-duration="1000"

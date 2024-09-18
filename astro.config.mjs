@@ -26,4 +26,9 @@ export default defineConfig({
       }
     }
   }),
+  vite: {
+    ssr: {
+      external: ["buffer", "path", "fs", "os", "crypto", "async_hooks"].map((i) => `node:${i}`),
+    },
+  },
 });
