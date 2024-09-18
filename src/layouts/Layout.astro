@@ -7,9 +7,13 @@ interface Props {
 const { title: pageTitle, description: pageDescription } = Astro.props;
 
 import AOS from "../components/util/AOS.astro";
-import directus from "../api/directus";
+import Navbar from "../components/Navbar.astro";
+
 import { readSingleton } from "@directus/sdk";
+import directus from "../api/directus";
+
 import { SEO } from "astro-seo";
+// import { AstroFont } from "astro-font";
 
 const global = await directus.request(readSingleton("global"));
 ---
@@ -43,12 +47,13 @@ const global = await directus.request(readSingleton("global"));
         ],
       }}
     />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
-  <body class="text-slate-100 bg-slate-900">
+  <body class="text-slate-100 bg-slate-900 overflow-hidden">
+    <Navbar />
     <main id="swup">
       <slot />
     </main>
-	<AOS />
+    <AOS />
   </body>
 </html>

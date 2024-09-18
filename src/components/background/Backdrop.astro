@@ -1,5 +1,15 @@
 ---
+import Background from './Background.astro';
+
+interface Props {
+  class?: string;
+  "data-aos"?: string;
+  "data-aos-duration"?: string;
+  "data-aos-delay"?: string;
+}
+
+const { class: className, "data-aos": dataAos, "data-aos-duration": dataAosDuration, "data-aos-delay": dataAosDelay } = Astro.props;
 ---
-<div data-aos="fade-up" class="flex flex-col bg-slate-900/10 md:rounded-xl backdrop-blur backdrop-opacity-90 drop-shadow-lg">
+<div data-aos={dataAos} data-aos-duration={dataAosDuration} data-aos-delay={dataAosDelay} class={`bg-slate-900/10 border-slate-400/15 border-2 md:rounded-xl backdrop-blur backdrop-opacity-85 drop-shadow-lg ${className}`}>
     <slot />
 </div>

@@ -1,0 +1,13 @@
+---
+import { accentColor } from '../stores/color';
+
+interface Props {
+  path: string;
+  class?: string;
+}
+
+const { path, class: className } = Astro.props;
+
+---
+
+<a class=`py-1 px-2 hover:text-pink-500 font-medium transition-colors duration-300 ${className}` href=`/${path}` data-astro-prefetch><slot /></a>

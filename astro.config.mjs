@@ -7,10 +7,13 @@ import cloudflare from '@astrojs/cloudflare';
 // import compressor from 'astro-compressor';
 import swup from '@swup/astro';
 
+import icon from 'astro-icon';
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://vlad.gg',
-  integrations: [tailwind(), swup()],
+  integrations: [tailwind(), swup(), icon()],
+  prefetch: false,
   output: 'server',
   adapter: cloudflare({
     cloudflareModules: true,
