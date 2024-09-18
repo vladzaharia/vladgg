@@ -1,5 +1,5 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+import PageLayout from "../../layouts/PageLayout.astro";
 import directus from "../../api/directus";
 import { readItems } from "@directus/sdk";
 
@@ -17,7 +17,7 @@ const jobs = await directus.request(
 );
 ---
 
-<Layout title="Jobs">
+<PageLayout title="Jobs">
   <main>
     <h1>Jobs</h1>
     <ul>
@@ -35,4 +35,4 @@ const jobs = await directus.request(
         }
        </ul>
   </main>
-</Layout>
+</PageLayout>
