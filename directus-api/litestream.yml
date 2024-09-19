@@ -1,0 +1,24 @@
+exec: pm2-runtime start ecosystem.config.cjs && node cli.js bootstrap
+
+dbs:
+  - path: /litefs/data.db
+    meta-path: /var/lib/litefs/data.db-litestream
+    replicas:
+      - name: cloudflare
+        type: s3
+        endpoint: ${STORAGE_CLOUDFLARE_ENDPOINT}
+        bucket: ${STORAGE_CLOUDFLARE_BUCKET}
+        path: backup/data.db
+        region: auto
+        force-path-style: true
+        access-key-id:     ${STORAGE_CLOUDFLARE_KEY}
+        secret-access-key: ${STORAGE_CLOUDFLARE_SECRET}
+      - name: tigris
+        type: s3
+        endpoint: ${STORAGE_TIGRIS_ENDPOINT}
+        bucket: ${STORAGE_TIGRIS_BUCKET}
+        path: backup/data.db
+        region: auto
+        force-path-style: true
+        access-key-id:     ${STORAGE_TIGRIS_KEY}
+        secret-access-key: ${STORAGE_TIGRIS_SECRET}

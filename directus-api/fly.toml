@@ -1,0 +1,56 @@
+# fly.toml app configuration file generated for vladgg-api on 2024-09-18T20:31:56-07:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'vladgg-api'
+primary_region = 'sea'
+
+[build]
+
+[http_service]
+  internal_port = 8080
+  protocol = "tcp"
+
+[mounts]
+  source = "litefs"
+  destination = "/var/lib/litefs"
+
+[[vm]]
+  memory = '512mb'
+  cpu_kind = 'shared'
+  cpus = 1
+
+[env]
+  PUBLIC_URL = "https://api.vlad.gg"
+  DB_CLIENT = "sqlite3"
+  DB_FILENAME = "/litefs/data.db"
+  AUTH_PROVIDERS = "authentik"
+  AUTH_AUTHENTIK_LABEL = "Polaris Auth"
+  AUTH_AUTHENTIK_ICON = "admin_panel_settings"
+  AUTH_AUTHENTIK_DRIVER = "openid"
+  AUTH_AUTHENTIK_SCOPE = "openid profile email split_name"
+  AUTH_AUTHENTIK_IDENTIFIER_KEY = "email"
+  AUTH_AUTHENTIK_FIRST_NAME_KEY = "given_name"
+  AUTH_AUTHENTIK_LAST_NAME_KEY = "family_name"
+  AUTH_AUTHENTIK_SYNC_USER_INFO = "true"
+  AUTH_AUTHENTIK_DEFAULT_ROLE_ID = "ac44bb88-4e2f-4804-99d9-44fa6e4f5659"
+  AUTH_AUTHENTIK_ALLOW_PUBLIC_REGISTRATION = "true"
+  STORAGE_LOCATIONS = "cloudflare,tigris"
+  STORAGE_CLOUDFLARE_DRIVER = "s3"
+  STORAGE_CLOUDFLARE_REGION = "auto"
+  STORAGE_TIGRIS_DRIVER = "s3"
+  STORAGE_TIGRIS_REGION = "auto"
+  EMAIL_TRANSPORT = "smtp"
+  EMAIL_SMTP_PORT = "465"
+  EMAIL_SMTP_SECURE = "true"
+  RATE_LIMITER_ENABLED = "true"
+  RATE_LIMITER_GLOBAL_ENABLED = "true"
+  # RATE_LIMITER_STORE="redis"
+  CACHE_ENABLED = "true"
+  # CACHE_STORE="redis"
+  REDIS_ENABLED="false"
+  REDIS_PORT="6379"
+  REDIS_USERNAME="default"
+  # SYNCHRONIZATION_STORE="redis"
+  WEBSOCKETS_ENABLED = "true"
