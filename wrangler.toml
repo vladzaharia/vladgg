@@ -1,4 +1,0 @@
-name = "vladgg-astro"
-pages_build_output_dir = "./dist"
-compatibility_date = "2024-09-17"
-compatibility_flags = [ "nodejs_compat_v2" ]

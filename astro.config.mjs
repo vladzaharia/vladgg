@@ -2,11 +2,7 @@
 import { defineConfig } from 'astro/config';
 
 import tailwind from '@astrojs/tailwind';
-import cloudflare from '@astrojs/cloudflare';
-// import min from 'astro-min';
-// import compressor from 'astro-compressor';
 import swup from '@swup/astro';
-
 import icon from 'astro-icon';
 
 // https://astro.build/config
@@ -14,21 +10,5 @@ export default defineConfig({
   site: 'https://vlad.gg',
   integrations: [tailwind(), swup(), icon()],
   prefetch: false,
-  output: 'server',
-  adapter: cloudflare({
-    cloudflareModules: true,
-    imageService: "cloudflare",
-    platformProxy: {
-      enabled: true,
-      configPath: 'wrangler.toml',
-      persist: {
-        path: './.cache/wrangler/v3',
-      }
-    }
-  }),
-  vite: {
-    ssr: {
-      external: ["buffer", "path", "fs", "os", "crypto", "async_hooks"].map((i) => `node:${i}`),
-    },
-  },
+  output: 'static'
 });

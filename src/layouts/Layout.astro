@@ -15,12 +15,7 @@ import directus from "../api/directus";
 import { SEO } from "astro-seo";
 import Background from "../components/background/Background.astro";
 
-import { join } from "node:path";
 import { AstroFont } from "astro-font";
-
-const fontPrefix = import.meta.env.PROD
-  ? Astro.site!.toString()
-  : join(process.cwd(), "public");
 
 const global = await directus.request(readSingleton("global"));
 ---
@@ -59,98 +54,18 @@ const global = await directus.request(readSingleton("global"));
     <AstroFont
       config={[
         {
+          src: [],
           name: "Rubik",
-          src: [
-            {
-              style: "normal",
-              weight: "300",
-              path: join(fontPrefix, "fonts", "Rubik", "Normal.woff2"),
-            },
-            {
-              style: "normal",
-              weight: "400",
-              path: join(fontPrefix, "fonts", "Rubik", "Normal.woff2"),
-            },
-            {
-              style: "normal",
-              weight: "500",
-              path: join(fontPrefix, "fonts", "Rubik", "Normal.woff2"),
-            },
-            {
-              style: "normal",
-              weight: "600",
-              path: join(fontPrefix, "fonts", "Rubik", "Normal.woff2"),
-            },
-            {
-              style: "normal",
-              weight: "700",
-              path: join(fontPrefix, "fonts", "Rubik", "Normal.woff2"),
-            },
-            {
-              style: "normal",
-              weight: "800",
-              path: join(fontPrefix, "fonts", "Rubik", "Normal.woff2"),
-            },
-            {
-              style: "italic",
-              weight: "300",
-              path: join(fontPrefix, "fonts", "Rubik", "Italic.woff2"),
-            },
-            {
-              style: "italic",
-              weight: "400",
-              path: join(fontPrefix, "fonts", "Rubik", "Italic.woff2"),
-            },
-            {
-              style: "italic",
-              weight: "500",
-              path: join(fontPrefix, "fonts", "Rubik", "Italic.woff2"),
-            },
-            {
-              style: "italic",
-              weight: "600",
-              path: join(fontPrefix, "fonts", "Rubik", "Italic.woff2"),
-            },
-            {
-              style: "italic",
-              weight: "700",
-              path: join(fontPrefix, "fonts", "Rubik", "Italic.woff2"),
-            },
-            {
-              style: "italic",
-              weight: "800",
-              path: join(fontPrefix, "fonts", "Rubik", "Italic.woff2"),
-            },
-          ],
+          googleFontsURL: 'https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap',
           preload: true,
           display: "swap",
           selector: "h1, h2, h3, h4, h5, h6",
           fallback: "sans-serif",
         },
         {
+          src: [],
           name: "Atkinson Hyperlegible",
-          src: [
-            {
-              style: "normal",
-              weight: "400",
-              path: join(fontPrefix, "fonts", "AtkinsonHyperlegible", "Regular-400.woff2"),
-            },
-            {
-              style: "normal",
-              weight: "700",
-              path: join(fontPrefix, "fonts", "AtkinsonHyperlegible", "Bold-700.woff2"),
-            },
-            {
-              style: "italic",
-              weight: "400",
-              path: join(fontPrefix, "fonts", "AtkinsonHyperlegible", "Regular-400-Italic.woff2"),
-            },
-            {
-              style: "italic",
-              weight: "700",
-              path: join(fontPrefix, "fonts", "AtkinsonHyperlegible", "Bold-700-Italic.woff2"),
-            },
-          ],
+          googleFontsURL: 'https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap',
           preload: true,
           display: "swap",
           selector: "body",
