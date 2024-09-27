@@ -8,14 +8,14 @@ const { title: pageTitle, description: pageDescription } = Astro.props;
 
 import AOS from "../components/util/AOS.astro";
 import Navbar from "../components/Navbar.astro";
+import Background from "../components/background/Background.astro";
 
 import { readSingleton } from "@directus/sdk";
 import directus from "../api/directus";
 
-import { SEO } from "astro-seo";
-import Background from "../components/background/Background.astro";
-
+// import { ClientRouter } from 'astro:transitions';
 import { AstroFont } from "astro-font";
+import { SEO } from "astro-seo";
 
 const global = await directus.request(readSingleton("global"));
 ---
@@ -73,6 +73,8 @@ const global = await directus.request(readSingleton("global"));
         },
       ]}
     />
+
+    <!-- <ClientRouter /> -->
   </head>
   <body class="text-slate-100 bg-slate-900 overflow-hidden relative">
     <Background
