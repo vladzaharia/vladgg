@@ -12,27 +12,22 @@ import icon from 'astro-icon';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://vlad.gg',
-  integrations: [tailwind(), react(), markdoc(), keystatic(), icon()],
-  prefetch: false,
+  integrations: [tailwind(), react(), markdoc(), icon(), ...(process.env.SKIP_KEYSTATIC ? [] : [keystatic()])],
+  prefetch: true,
   output: 'server',
   adapter: cloudflare({
-    cloudflareModules: true,
+    imageService: 'cloudflare',
     platformProxy: {
       enabled: true,
       configPath: 'wrangler.toml',
       persist: {
         path: './.cache/wrangler/v3',
-      }
+      },
     }
   }),
-  image: {
-    service: {
-      entrypoint: 'astro/assets/services/compile'
-    }
-  },
   vite: {
     ssr: {
-      external: ["buffer", "path", "fs", "os", "crypto", "async_hooks"].map((i) => `node:${i}`),
+      external: ["process", "buffer", "path", "fs", "os", "crypto", "async_hooks"].map((i) => `node:${i}`),
     },
   },
 });

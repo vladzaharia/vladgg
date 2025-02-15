@@ -6,7 +6,7 @@ import keystaticConfig from '../../../keystatic.config';
 const { slug } = Astro.params;
 const reader = createReader(process.cwd(), keystaticConfig);
 
-const project = await reader.collections.projects.readOrThrow(slug);
+const project = await reader.collections.projects.readOrThrow(slug!);
 const content = await project.content();
 
 if (!project) {

@@ -13,28 +13,56 @@ jobs.sort((a, b) => {
   const dateB = new Date(b.entry.dateFrom ?? 0);
   return dateB.getTime() - dateA.getTime();
 });
+
+// Format date helper
+const formatDate = (date: string) => {
+  if (!date) return 'Present';
+  return new Date(date).toLocaleDateString('en-US', { 
+    month: 'long',
+    year: 'numeric'
+  });
+};
 ---
 
 <PageLayout title="Experience">
   <main class="container mx-auto px-4 py-8">
     <Heading>Experience</Heading>
-    <ul class="space-y-6">
-      {
-        jobs.map((job) => (
-          <li class="bg-slate-800 rounded-lg p-6 hover:bg-slate-700 transition-colors">
-            <a href={`/experience/${job.slug}`} class="block">
-              <h2 class="text-2xl font-bold mb-2">
-                {job.entry.title} at {job.entry.company?.name || 'Unknown Company'}
-              </h2>
-              <p class="text-slate-300 mb-2">{job.entry.location}</p>
-              <p class="text-slate-400">
-                {new Date(job.entry.dateFrom).toLocaleDateString()} - 
-                {job.entry.dateTo ? new Date(job.entry.dateTo).toLocaleDateString() : 'Present'}
-              </p>
+    <div class="max-w-4xl mx-auto">
+      <div class="space-y-6">
+        {
+          jobs.map((job) => (
+            <a 
+              href={`/experience/${job.slug}`}
+              class="block bg-slate-800 rounded-lg p-6 hover:bg-slate-700 transition-all hover:shadow-lg hover:-translate-y-0.5"
+            >
+              <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                  <h2 class="text-2xl font-bold font-display mb-2">{job.entry.title}</h2>
+                  <div class="text-xl text-slate-300">
+                    {job.entry.company?.logo && (
+                      <img 
+                        src={job.entry.company.logo} 
+                        alt={job.entry.company.name}
+                        class="h-6 w-auto inline-block mr-2"
+                      />
+                    )}
+                    <span class="hover:text-white transition-colors">
+                      {job.entry.company?.name}
+                    </span>
+                  </div>
+                </div>
+                
+                <div class="flex flex-col items-start md:items-end gap-1">
+                  <div class="text-lg text-slate-300">{job.entry.location}</div>
+                  <div class="text-lg text-slate-400">
+                    {formatDate(job.entry.dateFrom)} - {formatDate(job.entry.dateTo || 'Present')}
+                  </div>
+                </div>
+              </div>
             </a>
-          </li>
-        ))
-      }
-    </ul>
+          ))
+        }
+      </div>
+    </div>
   </main>
 </PageLayout>

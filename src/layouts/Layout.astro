@@ -10,15 +10,43 @@ import { SEO } from "astro-seo";
 import Background from "../components/background/Background.astro";
 import { join } from "node:path";
 import { AstroFont } from "astro-font";
-import { global } from "../data";
 
 const { title: pageTitle, description: pageDescription } = Astro.props;
+
+export const global = {
+  title: "Vlad Zaharia",
+  description: "Software Engineer & Tech Enthusiast"
+};
 
 const fontPrefix = import.meta.env.PROD
   ? Astro.site!.toString()
   : join(process.cwd(), "public");
 
-const fontConfig = [
+interface FontSource {
+  path: string;
+  preload?: boolean;
+  css?: Record<string, string>;
+  style: 'normal' | 'italic' | 'oblique' | `oblique ${number}deg` | 'inherit' | 'initial' | 'revert' | 'revert-layer' | 'unset' | (string & {});
+  weight?: 'normal' | 'bold' | 'lighter' | 'bolder' | 'inherit' | 'initial' | 'revert' | 'revert-layer' | 'unset' | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900' | (string & {}) | (number & {});
+}
+
+interface FontConfig {
+  name: string;
+  src: FontSource[];
+  fetch?: boolean;
+  verbose?: boolean;
+  selector?: string;
+  preload?: boolean;
+  cacheDir?: string;
+  basePath?: string;
+  fallbackName?: string;
+  googleFontsURL?: string;
+  cssVariable?: string | boolean;
+  fallback: 'serif' | 'sans-serif' | 'monospace';
+  display: 'auto' | 'block' | 'swap' | 'fallback' | 'optional' | (string & {});
+}
+
+const fontConfig: FontConfig[] = [
   {
     name: "Rubik",
     src: [

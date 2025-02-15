@@ -8,35 +8,32 @@ export default config({
     jobs: collection({
       label: 'Jobs',
       slugField: 'slug',
-      path: 'content/jobs/*',
+      path: 'src/content/jobs/*',
       format: { contentField: 'content' },
       schema: {
-        title: fields.text({ label: 'Title' }),
-        slug: fields.text({ label: 'Slug' }),
+        title: fields.text({ label: 'Title', validation: { isRequired: true } }),
+        slug: fields.text({ label: 'URL Slug', validation: { isRequired: true } }),
         company: fields.object({
-          name: fields.text({ label: 'Company Name' }),
-          logo: fields.text({ label: 'Company Logo URL' }),
-          url: fields.url({ label: 'Company URL' }),
+          name: fields.text({ label: 'Company Name', validation: { isRequired: true } }),
+          logo: fields.text({ label: 'Company Logo URL', validation: { isRequired: true } }),
+          url: fields.url({ label: 'Company URL', validation: { isRequired: true } }),
         }),
-        location: fields.text({ label: 'Location' }),
-        dateFrom: fields.date({ label: 'Start Date' }),
+        location: fields.text({ label: 'Location', validation: { isRequired: true } }),
+        dateFrom: fields.date({ label: 'Start Date', validation: { isRequired: true } }),
         dateTo: fields.date({ label: 'End Date', validation: { isRequired: false } }),
-        content: fields.document({
+        content: fields.markdoc({
           label: 'Content',
-          formatting: true,
-          dividers: true,
-          links: true,
         }),
       },
     }),
     projects: collection({
       label: 'Projects',
       slugField: 'slug',
-      path: 'content/projects/*',
+      path: 'src/content/projects/*',
       format: { contentField: 'content' },
       schema: {
         title: fields.text({ label: 'Title' }),
-        slug: fields.text({ label: 'Slug' }),
+        slug: fields.text({ label: 'URL Slug' }),
         githubUrl: fields.url({ 
           label: 'GitHub URL', 
           validation: { isRequired: false } 
@@ -62,11 +59,8 @@ export default config({
           }),
           { label: 'Tags' }
         ),
-        content: fields.document({
+        content: fields.markdoc({
           label: 'Content',
-          formatting: true,
-          dividers: true,
-          links: true,
         }),
       },
     }),

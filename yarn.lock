@@ -3753,7 +3753,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*":
+"@types/node@npm:*, @types/node@npm:^22.13.4":
   version: 22.13.4
   resolution: "@types/node@npm:22.13.4"
   dependencies:
@@ -9934,6 +9934,7 @@ __metadata:
     "@keystatic/astro": "npm:^5.0.5"
     "@keystatic/core": "npm:^0.5.45"
     "@types/aos": "npm:^3.0.7"
+    "@types/node": "npm:^22.13.4"
     "@types/react": "npm:^19"
     "@types/react-dom": "npm:^19"
     aos: "npm:^3.0.0-beta.6"
