@@ -7,37 +7,41 @@ import keystaticConfig from '../../../keystatic.config';
 const reader = createReader(process.cwd(), keystaticConfig);
 const projects = await reader.collections.projects.all();
 
-// Sort projects by most recent first
-projects.sort((a, b) => {
-  const dateA = new Date(a.created_date ?? 0);
-  const dateB = new Date(b.created_date ?? 0);
-  return dateB.getTime() - dateA.getTime();
-});
+// Get content for each project
+const projectsWithContent = await Promise.all(
+  projects.map(async (project) => ({
+    ...project,
+    content: await project.entry.content()
+  }))
+);
+
+// Sort projects by most recent first (if you add a date field later)
+projectsWithContent.sort((a, b) => b.slug.localeCompare(a.slug));
 ---
 
 <PageLayout title="Projects">
   <main class="container mx-auto px-4 py-8">
     <Heading>Projects</Heading>
-    <div class="flex flex-wrap gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {
-        projects.map((project) => (
+        projectsWithContent.map((project) => (
           <a 
             href={`/projects/${project.slug}`}
-            class="flex-1 min-w-[300px] bg-slate-800 rounded-lg overflow-hidden hover:bg-slate-700 transition-colors"
+            class="group bg-slate-800 rounded-lg overflow-hidden hover:bg-slate-700 transition-all hover:shadow-lg hover:-translate-y-1"
           >
-            {project.images?.[0] && (
-              <div class="relative h-40 overflow-hidden">
+            {project.entry.images?.[0] && (
+              <div class="relative h-48 overflow-hidden">
                 <img 
-                  src={project.images[0]} 
-                  alt={project.title}
-                  class="absolute inset-0 w-full h-full object-cover"
+                  src={project.entry.images[0]} 
+                  alt={project.entry.title}
+                  class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform"
                 />
               </div>
             )}
             <div class="p-6">
-              <h2 class="text-2xl font-bold mb-4">{project.title}</h2>
+              <h2 class="text-2xl font-bold mb-4 font-display">{project.entry.title}</h2>
               <div class="flex flex-wrap gap-2 mb-4">
-                {project.tags?.map((tag) => (
+                {project.entry.tags?.map((tag) => (
                   <span 
                     class="px-3 py-1 rounded-full text-sm font-medium"
                     style={`background-color: ${tag.color}40; color: ${tag.color}`}
@@ -48,6 +52,19 @@ projects.sort((a, b) => {
                 ))}
               </div>
               <p class="text-slate-300 line-clamp-3">{project.content}</p>
+              
+              <div class="flex gap-4 mt-4">
+                {project.entry.githubUrl && (
+                  <span class="text-sm text-slate-400 hover:text-white transition-colors">
+                    <i class="fab fa-github mr-1"></i> View Source
+                  </span>
+                )}
+                {project.entry.websiteUrl && (
+                  <span class="text-sm text-slate-400 hover:text-white transition-colors">
+                    <i class="fas fa-external-link-alt mr-1"></i> Visit Site
+                  </span>
+                )}
+              </div>
             </div>
           </a>
         ))

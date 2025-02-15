@@ -3,22 +3,11 @@ import PageLayout from "../../layouts/PageLayout.astro";
 import { createReader } from '@keystatic/core/reader';
 import keystaticConfig from '../../../keystatic.config';
 
+const { slug } = Astro.params;
 const reader = createReader(process.cwd(), keystaticConfig);
 
-export async function getStaticPaths() {
-  const projects = await reader.collections.projects.all();
-  return projects.map((entry) => ({
-    params: { slug: entry.slug },
-    props: { 
-      project: {
-        ...entry,
-        content: entry.content?.toString() ?? '',
-      }
-    },
-  }));
-}
-
-const { project } = Astro.props;
+const project = await reader.collections.projects.readOrThrow(slug);
+const content = await project.content();
 
 if (!project) {
   return Astro.redirect('/404');
@@ -27,57 +16,82 @@ if (!project) {
 
 <PageLayout title={project.title}>
   <main class="container mx-auto px-4 py-8">
-    <h1 class="text-4xl font-bold mb-6">{project.title}</h1>
-    
-    <div class="project-links mb-8 space-x-4">
-      {project.githubUrl && (
-        <a 
-          href={project.githubUrl} 
-          target="_blank" 
-          rel="noopener noreferrer"
-          class="inline-block bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg text-white transition-colors"
-        >
-          View on GitHub
-        </a>
-      )}
-      {project.websiteUrl && (
-        <a 
-          href={project.websiteUrl} 
-          target="_blank" 
-          rel="noopener noreferrer"
-          class="inline-block bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-lg text-white transition-colors"
-        >
-          Visit Website
-        </a>
-      )}
-    </div>
-
-    <div class="project-tags mb-8 flex flex-wrap gap-2">
-      {project.tags?.map((tag) => (
-        <span 
-          class="px-3 py-1 rounded-full text-sm font-medium"
-          style={`background-color: ${tag.color}40; color: ${tag.color}`}
-        >
-          {tag.icon && <i class={tag.icon + " mr-1"}></i>}
-          {tag.name}
-        </span>
-      ))}
-    </div>
-
-    <div class="project-content prose prose-invert mb-8">
-      {project.content}
-    </div>
-
-    {project.images && project.images.length > 0 && (
-      <div class="project-images grid grid-cols-1 md:grid-cols-2 gap-4">
-        {project.images.map((image) => (
+    <div class="max-w-4xl mx-auto">
+      {project.images?.[0] && (
+        <div class="relative h-[400px] mb-8 rounded-xl overflow-hidden">
           <img 
-            src={image} 
+            src={project.images[0]} 
             alt={project.title}
-            class="rounded-lg shadow-lg w-full h-auto object-cover"
+            class="absolute inset-0 w-full h-full object-cover"
           />
-        ))}
+        </div>
+      )}
+
+      <div class="flex flex-col gap-6">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+          <h1 class="text-4xl font-bold font-display">{project.title}</h1>
+          
+          <div class="flex gap-4">
+            {project.githubUrl && (
+              <a 
+                href={project.githubUrl} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg text-white transition-all hover:-translate-y-0.5"
+              >
+                <i class="fab fa-github"></i>
+                View Source
+              </a>
+            )}
+            {project.websiteUrl && (
+              <a 
+                href={project.websiteUrl} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg text-white transition-all hover:-translate-y-0.5"
+              >
+                <i class="fas fa-external-link-alt"></i>
+                Visit Site
+              </a>
+            )}
+          </div>
+        </div>
+
+        {project.tags && (
+          <div class="flex flex-wrap gap-2">
+            {project.tags.map((tag) => (
+              <span 
+                class="px-3 py-1 rounded-full text-sm font-medium"
+                style={`background-color: ${tag.color}40; color: ${tag.color}`}
+              >
+                {tag.icon && <i class={tag.icon + " mr-1"}></i>}
+                {tag.name}
+              </span>
+            ))}
+          </div>
+        )}
+
+        <div class="prose prose-invert max-w-none">
+          {content}
+        </div>
+
+        {project.images?.length > 1 && (
+          <div class="mt-8">
+            <h2 class="text-2xl font-bold mb-4 font-display">More Images</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {project.images.slice(1).map((image) => (
+                <div class="relative aspect-video rounded-lg overflow-hidden">
+                  <img 
+                    src={image} 
+                    alt={project.title}
+                    class="absolute inset-0 w-full h-full object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
-    )}
+    </div>
   </main>
 </PageLayout>

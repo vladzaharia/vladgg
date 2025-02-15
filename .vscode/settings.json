@@ -1,0 +1,8 @@
+{
+    "windsurf.cascadeCommandsAllowList": [
+        "ls",
+        "cd",
+        "cat"
+    ],
+    "terminal.integrated.defaultProfile.osx": "bash"
+}
