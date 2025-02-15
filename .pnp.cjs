@@ -30,7 +30,6 @@ const RAW_RUNTIME_STATE =
           ["@astrojs/cloudflare", "virtual:34205dc253a950b8036f22c179f6d69eb16fc4cdbd18c0bb8149190ac493387a8576dc2a684a6b650422a3d493ec9d8571ebc33490029e7fa03b0b83dcd7ffa2#npm:11.2.0"],\
           ["@astrojs/tailwind", "virtual:34205dc253a950b8036f22c179f6d69eb16fc4cdbd18c0bb8149190ac493387a8576dc2a684a6b650422a3d493ec9d8571ebc33490029e7fa03b0b83dcd7ffa2#npm:5.1.5"],\
           ["@babel/parser", "npm:7.26.9"],\
-          ["@directus/sdk", "npm:17.0.2"],\
           ["@swup/astro", "npm:1.5.0"],\
           ["@types/aos", "npm:3.0.7"],\
           ["aos", "npm:3.0.0-beta.6"],\
@@ -2615,15 +2614,6 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@cspotcode/source-map-support", "npm:0.8.1"],\
           ["@jridgewell/trace-mapping", "npm:0.3.9"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["@directus/sdk", [\
-      ["npm:17.0.2", {\
-        "packageLocation": "../../../.yarn/berry/cache/@directus-sdk-npm-17.0.2-7416cb473e-10c0.zip/node_modules/@directus/sdk/",\
-        "packageDependencies": [\
-          ["@directus/sdk", "npm:17.0.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -13709,7 +13699,6 @@ const RAW_RUNTIME_STATE =
           ["@astrojs/cloudflare", "virtual:34205dc253a950b8036f22c179f6d69eb16fc4cdbd18c0bb8149190ac493387a8576dc2a684a6b650422a3d493ec9d8571ebc33490029e7fa03b0b83dcd7ffa2#npm:11.2.0"],\
           ["@astrojs/tailwind", "virtual:34205dc253a950b8036f22c179f6d69eb16fc4cdbd18c0bb8149190ac493387a8576dc2a684a6b650422a3d493ec9d8571ebc33490029e7fa03b0b83dcd7ffa2#npm:5.1.5"],\
           ["@babel/parser", "npm:7.26.9"],\
-          ["@directus/sdk", "npm:17.0.2"],\
           ["@swup/astro", "npm:1.5.0"],\
           ["@types/aos", "npm:3.0.7"],\
           ["aos", "npm:3.0.0-beta.6"],\

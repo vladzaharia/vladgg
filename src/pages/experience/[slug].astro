@@ -1,21 +1,49 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import directus from "../../api/directus";
-import { readItems } from "@directus/sdk";
+import PageLayout from "../../layouts/PageLayout.astro";
+import { jobs } from "../../data";
 
 export async function getStaticPaths() {
-  const jobs = await directus.request(readItems("jobs"));
-  return jobs.map((job) => ({
-    params: { slug: job.slug },
-    props: job,
-  }));
+  return jobs.map((job) => {
+    return {
+      params: { slug: job.slug },
+      props: { job },
+    };
+  });
 }
-const job = Astro.props;
+
+const { job } = Astro.props;
+
+if (!job) {
+  return Astro.redirect('/404');
+}
 ---
 
-<Layout title={job.title}>
+<PageLayout title={`${job.title} at ${job.company.name}`}>
   <main>
     <h1>{job.title}</h1>
-    <div set:html={job.content} />
+    <div class="company-info">
+      <img src={job.company.logo} alt={job.company.name} />
+      <h2>{job.company.name}</h2>
+      <a href={job.company.url} target="_blank" rel="noopener noreferrer">Visit Website</a>
+    </div>
+    <div class="job-details">
+      <p>{job.location}</p>
+      <p>{job.date_from.toLocaleDateString()} - {job.date_to ? job.date_to.toLocaleDateString() : 'Present'}</p>
+    </div>
+    <div class="job-content">
+      {job.content}
+    </div>
+    {job.projects && (
+      <div class="job-projects">
+        <h3>Projects</h3>
+        <ul>
+          {job.projects.map((project) => (
+            <li>
+              <a href={`/projects/${project.slug}`}>{project.title}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
   </main>
-</Layout>
+</PageLayout>

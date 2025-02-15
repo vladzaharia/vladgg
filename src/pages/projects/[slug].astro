@@ -1,21 +1,49 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import directus from "../../api/directus";
-import { readItems } from "@directus/sdk";
+import PageLayout from "../../layouts/PageLayout.astro";
+import { projects } from "../../data";
 
 export async function getStaticPaths() {
-  const projects = await directus.request(readItems("projects"));
-  return projects.map((project) => ({
-    params: { slug: project.slug },
-    props: project,
-  }));
+  return projects.map((project) => {
+    return {
+      params: { slug: project.slug },
+      props: { project },
+    };
+  });
 }
-const project = Astro.props;
+
+const { project } = Astro.props;
+
+if (!project) {
+  return Astro.redirect('/404');
+}
 ---
 
-<Layout title={project.title}>
+<PageLayout title={project.title}>
   <main>
     <h1>{project.title}</h1>
-    <div set:html={project.content} />
+    <div class="project-links">
+      {project.github_url && (
+        <a href={project.github_url} target="_blank" rel="noopener noreferrer">View on GitHub</a>
+      )}
+      {project.website_url && (
+        <a href={project.website_url} target="_blank" rel="noopener noreferrer">Visit Website</a>
+      )}
+    </div>
+    <div class="project-content">
+      {project.content}
+    </div>
+    <div class="project-tags">
+      {project.tags.map((tag) => (
+        <span class="tag" style={`background-color: ${tag.color}`}>
+          {'icon' in tag && <i class={tag.icon}></i>}
+          {tag.name}
+        </span>
+      ))}
+    </div>
+    <div class="project-images">
+      {project.images.map((image) => (
+        <img src={image} alt={project.title} />
+      ))}
+    </div>
   </main>
-</Layout>
+</PageLayout>

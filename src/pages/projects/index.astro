@@ -1,19 +1,7 @@
 ---
 import PageLayout from "../../layouts/PageLayout.astro";
 import Heading from "../../components/text/Heading.astro";
-
-import directus from "../../api/directus";
-import { readItems } from "@directus/sdk";
-
-const projects = await directus.request(
-  readItems("projects", {
-    fields: [
-      "slug",
-      "title",
-    ],
-    sort: ["slug"],
-  })
-);
+import { projects } from "../../data";
 ---
 
 <PageLayout title="Projects">
@@ -23,7 +11,7 @@ const projects = await directus.request(
         {
           projects.map((project) => (
             <li>
-              <a href={`/blog/${project.slug}`}>
+              <a href={`/projects/${project.slug}`}>
                 <h2>{project.title}</h2>
               </a>
             </li>

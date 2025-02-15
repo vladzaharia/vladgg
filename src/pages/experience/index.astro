@@ -1,22 +1,7 @@
 ---
 import PageLayout from "../../layouts/PageLayout.astro";
 import Heading from "../../components/text/Heading.astro";
-
-import directus from "../../api/directus";
-import { readItems } from "@directus/sdk";
-
-const jobs = await directus.request(
-  readItems("jobs", {
-    fields: [
-      "slug",
-      "title",
-      "company",
-      "date_from",
-      "date_to",
-    ],
-    sort: ["date_from"],
-  })
-);
+import { jobs } from "../../data";
 ---
 
 <PageLayout title="Experience">
@@ -26,12 +11,11 @@ const jobs = await directus.request(
         {
           jobs.map((job) => (
             <li>
-              <a href={`/blog/${job.slug}`}>
+              <a href={`/experience/${job.slug}`}>
                 <h2>{job.title} at {job.company.name}</h2>
+                <p>{job.location}</p>
+                <p>{job.date_from.toLocaleDateString()} - {job.date_to ? job.date_to.toLocaleDateString() : 'Present'}</p>
               </a>
-              <span>
-                {job.date_from} - {job.date_to}
-              </span>
             </li>
           ))
         }
