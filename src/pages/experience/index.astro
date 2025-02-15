@@ -1,24 +1,40 @@
 ---
 import PageLayout from "../../layouts/PageLayout.astro";
 import Heading from "../../components/text/Heading.astro";
-import { jobs } from "../../data";
+import { createReader } from '@keystatic/core/reader';
+import keystaticConfig from '../../../keystatic.config';
+
+const reader = createReader(process.cwd(), keystaticConfig);
+const jobs = await reader.collections.jobs.all();
+
+// Sort jobs by date, most recent first
+jobs.sort((a, b) => {
+  const dateA = new Date(a.entry.dateFrom ?? 0);
+  const dateB = new Date(b.entry.dateFrom ?? 0);
+  return dateB.getTime() - dateA.getTime();
+});
 ---
 
 <PageLayout title="Experience">
-  <main>
+  <main class="container mx-auto px-4 py-8">
     <Heading>Experience</Heading>
-    <ul>
-        {
-          jobs.map((job) => (
-            <li>
-              <a href={`/experience/${job.slug}`}>
-                <h2>{job.title} at {job.company.name}</h2>
-                <p>{job.location}</p>
-                <p>{job.date_from.toLocaleDateString()} - {job.date_to ? job.date_to.toLocaleDateString() : 'Present'}</p>
-              </a>
-            </li>
-          ))
-        }
-       </ul>
+    <ul class="space-y-6">
+      {
+        jobs.map((job) => (
+          <li class="bg-slate-800 rounded-lg p-6 hover:bg-slate-700 transition-colors">
+            <a href={`/experience/${job.slug}`} class="block">
+              <h2 class="text-2xl font-bold mb-2">
+                {job.entry.title} at {job.entry.company?.name || 'Unknown Company'}
+              </h2>
+              <p class="text-slate-300 mb-2">{job.entry.location}</p>
+              <p class="text-slate-400">
+                {new Date(job.entry.dateFrom).toLocaleDateString()} - 
+                {job.entry.dateTo ? new Date(job.entry.dateTo).toLocaleDateString() : 'Present'}
+              </p>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
   </main>
 </PageLayout>

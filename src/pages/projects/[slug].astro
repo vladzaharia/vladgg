@@ -1,14 +1,21 @@
 ---
 import PageLayout from "../../layouts/PageLayout.astro";
-import { projects } from "../../data";
+import { createReader } from '@keystatic/core/reader';
+import keystaticConfig from '../../../keystatic.config';
+
+const reader = createReader(process.cwd(), keystaticConfig);
 
 export async function getStaticPaths() {
-  return projects.map((project) => {
-    return {
-      params: { slug: project.slug },
-      props: { project },
-    };
-  });
+  const projects = await reader.collections.projects.all();
+  return projects.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { 
+      project: {
+        ...entry,
+        content: entry.content?.toString() ?? '',
+      }
+    },
+  }));
 }
 
 const { project } = Astro.props;
@@ -19,31 +26,58 @@ if (!project) {
 ---
 
 <PageLayout title={project.title}>
-  <main>
-    <h1>{project.title}</h1>
-    <div class="project-links">
-      {project.github_url && (
-        <a href={project.github_url} target="_blank" rel="noopener noreferrer">View on GitHub</a>
+  <main class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold mb-6">{project.title}</h1>
+    
+    <div class="project-links mb-8 space-x-4">
+      {project.githubUrl && (
+        <a 
+          href={project.githubUrl} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="inline-block bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg text-white transition-colors"
+        >
+          View on GitHub
+        </a>
       )}
-      {project.website_url && (
-        <a href={project.website_url} target="_blank" rel="noopener noreferrer">Visit Website</a>
+      {project.websiteUrl && (
+        <a 
+          href={project.websiteUrl} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="inline-block bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-lg text-white transition-colors"
+        >
+          Visit Website
+        </a>
       )}
     </div>
-    <div class="project-content">
-      {project.content}
-    </div>
-    <div class="project-tags">
-      {project.tags.map((tag) => (
-        <span class="tag" style={`background-color: ${tag.color}`}>
-          {'icon' in tag && <i class={tag.icon}></i>}
+
+    <div class="project-tags mb-8 flex flex-wrap gap-2">
+      {project.tags?.map((tag) => (
+        <span 
+          class="px-3 py-1 rounded-full text-sm font-medium"
+          style={`background-color: ${tag.color}40; color: ${tag.color}`}
+        >
+          {tag.icon && <i class={tag.icon + " mr-1"}></i>}
           {tag.name}
         </span>
       ))}
     </div>
-    <div class="project-images">
-      {project.images.map((image) => (
-        <img src={image} alt={project.title} />
-      ))}
+
+    <div class="project-content prose prose-invert mb-8">
+      {project.content}
     </div>
+
+    {project.images && project.images.length > 0 && (
+      <div class="project-images grid grid-cols-1 md:grid-cols-2 gap-4">
+        {project.images.map((image) => (
+          <img 
+            src={image} 
+            alt={project.title}
+            class="rounded-lg shadow-lg w-full h-auto object-cover"
+          />
+        ))}
+      </div>
+    )}
   </main>
 </PageLayout>

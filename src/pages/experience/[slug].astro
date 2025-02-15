@@ -1,14 +1,21 @@
 ---
 import PageLayout from "../../layouts/PageLayout.astro";
-import { jobs } from "../../data";
+import { createReader } from '@keystatic/core/reader';
+import keystaticConfig from '../../../keystatic.config';
+
+const reader = createReader(process.cwd(), keystaticConfig);
 
 export async function getStaticPaths() {
-  return jobs.map((job) => {
-    return {
-      params: { slug: job.slug },
-      props: { job },
-    };
-  });
+  const jobs = await reader.collections.jobs.all();
+  return jobs.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { 
+      job: {
+        ...entry,
+        content: entry.content?.toString() ?? '',
+      }
+    },
+  }));
 }
 
 const { job } = Astro.props;
@@ -19,27 +26,34 @@ if (!job) {
 ---
 
 <PageLayout title={`${job.title} at ${job.company.name}`}>
-  <main>
-    <h1>{job.title}</h1>
-    <div class="company-info">
-      <img src={job.company.logo} alt={job.company.name} />
-      <h2>{job.company.name}</h2>
-      <a href={job.company.url} target="_blank" rel="noopener noreferrer">Visit Website</a>
+  <main class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold mb-6">{job.title}</h1>
+    <div class="company-info mb-8">
+      <img src={job.company.logo} alt={job.company.name} class="w-16 h-16 mb-2" />
+      <h2 class="text-2xl font-semibold">{job.company.name}</h2>
+      <a href={job.company.url} target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300">
+        Visit Website
+      </a>
     </div>
-    <div class="job-details">
-      <p>{job.location}</p>
-      <p>{job.date_from.toLocaleDateString()} - {job.date_to ? job.date_to.toLocaleDateString() : 'Present'}</p>
+    <div class="job-details mb-8">
+      <p class="text-lg">{job.location}</p>
+      <p class="text-lg">
+        {new Date(job.dateFrom).toLocaleDateString()} - 
+        {job.dateTo ? new Date(job.dateTo).toLocaleDateString() : 'Present'}
+      </p>
     </div>
-    <div class="job-content">
+    <div class="job-content prose prose-invert">
       {job.content}
     </div>
     {job.projects && (
-      <div class="job-projects">
-        <h3>Projects</h3>
-        <ul>
+      <div class="job-projects mt-8">
+        <h3 class="text-2xl font-semibold mb-4">Projects</h3>
+        <ul class="list-disc list-inside">
           {job.projects.map((project) => (
             <li>
-              <a href={`/projects/${project.slug}`}>{project.title}</a>
+              <a href={`/projects/${project.slug}`} class="text-blue-400 hover:text-blue-300">
+                {project.title}
+              </a>
             </li>
           ))}
         </ul>

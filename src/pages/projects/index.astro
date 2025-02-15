@@ -1,22 +1,57 @@
 ---
 import PageLayout from "../../layouts/PageLayout.astro";
 import Heading from "../../components/text/Heading.astro";
-import { projects } from "../../data";
+import { createReader } from '@keystatic/core/reader';
+import keystaticConfig from '../../../keystatic.config';
+
+const reader = createReader(process.cwd(), keystaticConfig);
+const projects = await reader.collections.projects.all();
+
+// Sort projects by most recent first
+projects.sort((a, b) => {
+  const dateA = new Date(a.created_date ?? 0);
+  const dateB = new Date(b.created_date ?? 0);
+  return dateB.getTime() - dateA.getTime();
+});
 ---
 
 <PageLayout title="Projects">
-  <main>
+  <main class="container mx-auto px-4 py-8">
     <Heading>Projects</Heading>
-    <ul>
-        {
-          projects.map((project) => (
-            <li>
-              <a href={`/projects/${project.slug}`}>
-                <h2>{project.title}</h2>
-              </a>
-            </li>
-          ))
-        }
-       </ul>
+    <div class="flex flex-wrap gap-6">
+      {
+        projects.map((project) => (
+          <a 
+            href={`/projects/${project.slug}`}
+            class="flex-1 min-w-[300px] bg-slate-800 rounded-lg overflow-hidden hover:bg-slate-700 transition-colors"
+          >
+            {project.images?.[0] && (
+              <div class="relative h-40 overflow-hidden">
+                <img 
+                  src={project.images[0]} 
+                  alt={project.title}
+                  class="absolute inset-0 w-full h-full object-cover"
+                />
+              </div>
+            )}
+            <div class="p-6">
+              <h2 class="text-2xl font-bold mb-4">{project.title}</h2>
+              <div class="flex flex-wrap gap-2 mb-4">
+                {project.tags?.map((tag) => (
+                  <span 
+                    class="px-3 py-1 rounded-full text-sm font-medium"
+                    style={`background-color: ${tag.color}40; color: ${tag.color}`}
+                  >
+                    {tag.icon && <i class={tag.icon + " mr-1"}></i>}
+                    {tag.name}
+                  </span>
+                ))}
+              </div>
+              <p class="text-slate-300 line-clamp-3">{project.content}</p>
+            </div>
+          </a>
+        ))
+      }
+    </div>
   </main>
 </PageLayout>
