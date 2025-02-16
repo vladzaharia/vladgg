@@ -1,5 +1,5 @@
 ---
-import { calculateTimelineYears, calculateJobPosition, adjustPositionsWithMinSpacing, type TimelineJob } from '../../utils/timeline';
+import { calculateTimelineYears, calculateJobPosition, adjustPositionsWithMinSpacing } from '../../utils/timeline';
 import TimelineJobCard from './TimelineJobCard.astro';
 import TimelineBase from './TimelineBase.astro';
 
@@ -11,10 +11,11 @@ interface Props {
       company: {
         name: string;
         logo?: string;
+        url?: string;
       };
       location: string;
       dateFrom: string;
-      dateTo?: string;
+      dateTo: string | null;
     };
     slug: string;
   }>;
@@ -53,11 +54,6 @@ const jobsWithPositions = jobs
 // Adjust positions to ensure minimum spacing
 adjustPositionsWithMinSpacing(jobsWithPositions);
 
-// Format date helper
-const formatDate = (date: string) => {
-  if (!date) return 'Present';
-  return new Date(date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
-};
 ---
 
 <div class="relative mx-4 md:mx-16">

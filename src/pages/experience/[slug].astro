@@ -25,13 +25,13 @@ const formatDate = (date: string) => {
 const dateRange = `${formatDate(job.dateFrom)} - ${job.dateTo ? formatDate(job.dateTo) : 'Present'}`;
 ---
 
-<PageLayout title={`${job.title} at ${job.company.name}`}>
+<PageLayout title={`${job.position} at ${job.company.name}`}>
   <main class="container mx-auto p-6">
     <div class="max-w-4xl mx-auto">
       <div class="flex flex-col gap-6">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div>
-            <h1 class="text-4xl font-bold font-display mb-2">{job.title}</h1>
+            <h1 class="text-4xl font-bold font-display mb-2">{job.position}</h1>
             <div class="text-xl text-slate-300">
               {job.company.logo && (
                 <img 

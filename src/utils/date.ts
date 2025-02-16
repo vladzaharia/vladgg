@@ -6,7 +6,7 @@ export function formatDate(dateStr: string): string {
   });
 }
 
-export function formatDateRange(startDate: string, endDate?: string): string {
+export function formatDateRange(startDate: string, endDate: string | null = null): string {
   const start = formatDate(startDate);
   const end = endDate ? formatDate(endDate) : 'Present';
   return `${start} - ${end}`;

@@ -1,6 +1,6 @@
 export interface TimelineJob {
   dateFrom: string;
-  dateTo?: string;
+  dateTo: string | null;
 }
 
 export interface TimelineYear {
@@ -13,14 +13,6 @@ export interface TimelineJobPosition {
   endPosition: number;
   durationInMonths: number;
   isShortTerm: boolean;
-}
-
-// Get the date range of all jobs to calculate relative positions
-function getTimelineRange(jobs: TimelineJob[]): { minDate: Date; maxDate: Date } {
-  const dates = jobs.flatMap(job => [new Date(job.dateFrom), job.dateTo ? new Date(job.dateTo) : new Date()]);
-  const minDate = new Date(Math.min(...dates.map(d => d.getTime())));
-  const maxDate = new Date(Math.max(...dates.map(d => d.getTime())));
-  return { minDate, maxDate };
 }
 
 export function calculateTimelineYears(jobs: TimelineJob[]): TimelineYear[] {
@@ -79,7 +71,7 @@ export function calculateJobPosition(
 }
 
 // Adjust positions to ensure minimum spacing
-export function adjustPositionsWithMinSpacing(jobs: Array<{ position: TimelineJobPosition }>, minSpacing: number = 0.05): void {
+export function adjustPositionsWithMinSpacing(jobs: Array<{ position: TimelineJobPosition }>): void {
   // Sort by start position (top to bottom)
   const sortedJobs = [...jobs].sort((a, b) => a.position.startPosition - b.position.startPosition);
   

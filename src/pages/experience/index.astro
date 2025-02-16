@@ -14,15 +14,6 @@ jobs.sort((a, b) => {
   const dateB = new Date(b.entry.dateFrom ?? 0);
   return dateB.getTime() - dateA.getTime();
 });
-
-// Format date helper
-const formatDate = (date: string) => {
-  if (!date) return 'Present';
-  return new Date(date).toLocaleDateString('en-US', { 
-    month: 'long',
-    year: 'numeric'
-  });
-};
 ---
 
 <PageLayout title="Experience">
