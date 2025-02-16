@@ -1,4 +1,4 @@
-interface TimelineJob {
+export interface TimelineJob {
   dateFrom: string;
   dateTo?: string;
 }
@@ -15,6 +15,14 @@ export interface TimelineJobPosition {
   isShortTerm: boolean;
 }
 
+// Get the date range of all jobs to calculate relative positions
+function getTimelineRange(jobs: TimelineJob[]): { minDate: Date; maxDate: Date } {
+  const dates = jobs.flatMap(job => [new Date(job.dateFrom), job.dateTo ? new Date(job.dateTo) : new Date()]);
+  const minDate = new Date(Math.min(...dates.map(d => d.getTime())));
+  const maxDate = new Date(Math.max(...dates.map(d => d.getTime())));
+  return { minDate, maxDate };
+}
+
 export function calculateTimelineYears(jobs: TimelineJob[]): TimelineYear[] {
   // Get min and max years from jobs
   const dates = jobs.flatMap(job => [
@@ -25,13 +33,21 @@ export function calculateTimelineYears(jobs: TimelineJob[]): TimelineYear[] {
   const minYear = Math.min(...dates.map(d => d.getFullYear()));
   const maxYear = Math.max(...dates.map(d => d.getFullYear()));
   
-  // Create array of years in reverse order (newest first)
+  // Round down minYear to nearest 5
+  const adjustedMinYear = Math.floor(minYear / 5) * 5;
+  // Round up maxYear to nearest 5
+  const adjustedMaxYear = Math.ceil(maxYear / 5) * 5;
+  
+  // Create array of years in reverse order (newest first), only including years divisible by 5
   return Array.from(
-    { length: maxYear - minYear + 1 },
-    (_, i) => ({
-      year: maxYear - i,
-      position: i / (maxYear - minYear)
-    })
+    { length: Math.floor((adjustedMaxYear - adjustedMinYear) / 5) + 1 },
+    (_, i) => {
+      const year = adjustedMaxYear - (i * 5);
+      return {
+        year,
+        position: (adjustedMaxYear - year) / (adjustedMaxYear - adjustedMinYear)
+      };
+    }
   );
 }
 
@@ -67,35 +83,7 @@ export function adjustPositionsWithMinSpacing(jobs: Array<{ position: TimelineJo
   // Sort by start position (top to bottom)
   const sortedJobs = [...jobs].sort((a, b) => a.position.startPosition - b.position.startPosition);
   
-  // First pass: ensure minimum spacing between jobs
-  for (let i = 1; i < sortedJobs.length; i++) {
-    const prevJob = sortedJobs[i - 1];
-    const currentJob = sortedJobs[i];
-    
-    // Check if we need to add spacing between jobs
-    const gap = currentJob.position.startPosition - prevJob.position.endPosition;
-    if (gap < minSpacing) {
-      const shift = minSpacing - gap;
-      
-      // Move all subsequent jobs down
-      for (let j = i; j < sortedJobs.length; j++) {
-        sortedJobs[j].position.startPosition += shift;
-        sortedJobs[j].position.endPosition += shift;
-      }
-    }
-  }
-
-  // Second pass: normalize positions if they exceed 1
-  const maxPosition = Math.max(...sortedJobs.map(j => j.position.endPosition));
-  if (maxPosition > 1) {
-    const scale = 1 / maxPosition;
-    sortedJobs.forEach(job => {
-      job.position.startPosition *= scale;
-      job.position.endPosition *= scale;
-    });
-  }
-
-  // Third pass: add padding at start and end
+  // Only add padding at start and end
   const padding = 0.05;
   const firstStart = Math.min(...sortedJobs.map(j => j.position.startPosition));
   const lastEnd = Math.max(...sortedJobs.map(j => j.position.endPosition));

@@ -1,5 +1,5 @@
 ---
-import { calculateTimelineYears, calculateJobPosition, adjustPositionsWithMinSpacing } from '../../utils/timeline';
+import { calculateTimelineYears, calculateJobPosition, adjustPositionsWithMinSpacing, type TimelineJob } from '../../utils/timeline';
 import TimelineJobCard from './TimelineJobCard.astro';
 import TimelineBase from './TimelineBase.astro';
 
@@ -21,11 +21,14 @@ interface Props {
 
 const { jobs } = Astro.props;
 
-// Calculate timeline years
-const timelineYears = calculateTimelineYears(jobs.map(j => ({
+// Extract job dates for timeline calculations
+const jobDates = jobs.map(j => ({
   dateFrom: j.entry.dateFrom,
   dateTo: j.entry.dateTo
-})));
+}));
+
+// Calculate timeline years
+const timelineYears = calculateTimelineYears(jobDates);
 
 const minYear = Math.min(...timelineYears.map(t => t.year));
 const maxYear = Math.max(...timelineYears.map(t => t.year));
@@ -52,27 +55,36 @@ adjustPositionsWithMinSpacing(jobsWithPositions);
 // Format date helper
 const formatDate = (date: string) => {
   if (!date) return 'Present';
-  return new Date(date).toLocaleDateString('en-US', { 
-    month: 'short',
-    year: 'numeric'
-  });
+  return new Date(date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
 };
-
 ---
 
-<div class="relative mx-16">
+<div class="relative mx-4 md:mx-16">
   {/* Container for timeline and content with padding for overflow */}
-  <div class="relative py-12 min-h-[1000px]">
+  <div class="relative py-12 min-h-[1000px] md:block hidden">
     {/* Timeline components */}
     <TimelineBase jobs={jobsWithPositions} years={timelineYears} />
     
     {/* Job cards */}
     {jobsWithPositions.map((job, index) => (
-      <TimelineJobCard
+      <TimelineJobCard 
         entry={job.entry}
         position={job.position}
         slug={job.slug}
         index={index}
+      />
+    ))}
+  </div>
+
+  {/* Mobile list view */}
+  <div class="md:hidden space-y-4 py-8">
+    {jobsWithPositions.map((job, index) => (
+      <TimelineJobCard 
+        entry={job.entry}
+        position={job.position}
+        slug={job.slug}
+        index={jobsWithPositions.length - index - 1}
+        isMobile={true}
       />
     ))}
   </div>

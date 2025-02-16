@@ -1,4 +1,7 @@
 ---
+import { formatDateRange } from "../../utils/date";
+import { getJobColor } from "../../utils/colors";
+
 interface Props {
   entry: {
     title: string;
@@ -17,70 +20,97 @@ interface Props {
   };
   slug: string;
   index: number;
+  isMobile?: boolean;
 }
 
-const { entry, position, slug, index } = Astro.props;
+const { entry, position, slug, index, isMobile = false } = Astro.props;
 const isLeft = index % 2 === 1;
 const centerPosition = (position.startPosition + position.endPosition) / 2;
+const color = getJobColor(index);
+
+// Format dates
+const startDate = new Date(entry.dateFrom).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+const endDate = entry.dateTo ? new Date(entry.dateTo).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) : 'Present';
 ---
 
 <a 
   href={`/experience/${slug}`}
-  class="absolute flex items-center group"
-  style={{
+  class={`
+    ${isMobile ? 'block w-full' : 'absolute flex items-center group'}
+  `}
+  style={!isMobile ? {
     top: `${centerPosition * 100}%`,
-    [isLeft ? 'left' : 'right']: '52%',
+    [isLeft ? 'left' : 'right']: '56%',
     width: '45%',
     transform: `translateY(-50%)`
-  }}
+  } : {}}
 >
   <div class="relative w-full">
     {/* Horizontal line to timeline */}
-    <div 
-      class="absolute top-1/2 h-px bg-slate-600 group-hover:bg-slate-500 transition-colors"
-      style={{
-        [isLeft ? 'right' : 'left']: '0',
-        width: '7%'
-      }}
-    ></div>
+    {!isMobile && (
+      <div 
+        class={`absolute top-1/2 h-px transition-all duration-300 ${color.bg} group-hover:opacity-80`}
+        style={{
+          [isLeft ? 'right' : 'left']: '0',
+          width: '7%'
+        }}
+      ></div>
+    )}
+    
+    {/* Date markers */}
+    {!isMobile && (
+      <>
+        <div 
+          class={`absolute text-sm whitespace-nowrap transition-colors duration-300 ${color.darkText}`}
+          style={{
+            [isLeft ? 'left' : 'right']: '-5%',
+            top: '-2rem'
+          }}
+        >
+          {endDate}
+        </div>
+        <div 
+          class={`absolute text-sm whitespace-nowrap transition-colors duration-300 ${color.darkText}`}
+          style={{
+            [isLeft ? 'left' : 'right']: '-5%',
+            bottom: '-2rem'
+          }}
+        >
+          {startDate}
+        </div>
+      </>
+    )}
     
     {/* Content card */}
-    {position.isShortTerm ? (
-      <div class="bg-slate-800/50 backdrop-blur-sm rounded-lg p-2.5 pb-2 border border-slate-700/50 hover:border-slate-600/50 transition-all hover:translate-x-0.5 hover:shadow-lg">
-        <div class="flex flex-col gap-1">
-          <div class="flex items-center gap-2">
-            {entry.company.logo && (
-              <img 
-                src={entry.company.logo} 
-                alt={entry.company.name}
-                class="h-5 w-auto flex-shrink-0"
-              />
-            )}
-            <h3 class="text-sm font-bold font-display">{entry.title}</h3>
-          </div>
-          <div class="flex justify-between items-center text-sm text-slate-300">
-            <div>{entry.company.name}</div>
-            <div>{entry.location}</div>
-          </div>
+    <div class={`
+      bg-slate-800/50 backdrop-blur-sm rounded-lg border transition-all duration-300
+      hover:translate-x-0.5 hover:-translate-y-0.5
+      ${color.border} hover:${color.shadow} hover:shadow-lg
+      ${position.isShortTerm ? 'p-2.5 pb-2' : 'p-4'}
+    `}>
+      <div class="flex flex-col gap-2">
+        <div class="flex items-center gap-2">
+          {entry.company.logo && (
+            <img 
+              src={entry.company.logo} 
+              alt={entry.company.name}
+              class={`w-auto flex-shrink-0 transition-transform duration-300 group-hover:scale-105 ${position.isShortTerm ? 'h-5' : 'h-6'}`}
+            />
+          )}
+          <h3 class={`font-bold font-display group-hover:${color.text} transition-colors ${position.isShortTerm && !isMobile ? 'text-sm' : 'text-lg'}`}>
+            {entry.title}
+          </h3>
         </div>
-      </div>
-    ) : (
-      <div class="bg-slate-800/50 backdrop-blur-sm rounded-lg p-4 border border-slate-700/50 hover:border-slate-600/50 transition-all hover:translate-x-0.5 hover:shadow-lg">
-        <div class="flex flex-col gap-1">
-          <h3 class="text-lg font-bold font-display">{entry.title}</h3>
-          <div class="flex items-center gap-2 text-slate-300">
-            {entry.company.logo && (
-              <img 
-                src={entry.company.logo} 
-                alt={entry.company.name}
-                class="h-5 w-auto"
-              />
-            )}
-            <span>{entry.company.name}</span>
-          </div>
-          <div class="text-sm text-slate-400">{entry.location}</div>
+        <div class="flex justify-between items-center text-slate-300">
+          <div class={position.isShortTerm && !isMobile ? 'text-sm' : ''}>{entry.company.name}</div>
+          <div class={position.isShortTerm && !isMobile ? 'text-sm' : ''}>{entry.location}</div>
         </div>
+        {isMobile && (
+          <div class="text-sm text-center text-slate-400">
+            {formatDateRange(entry.dateFrom, entry.dateTo)}
+          </div>
+        )}
       </div>
-    )}
+    </div>
   </div>
 </a>
