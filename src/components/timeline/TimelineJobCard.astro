@@ -4,7 +4,8 @@ import { getJobColor } from "../../utils/colors";
 
 interface Props {
   entry: {
-    title: string;
+    position: string;
+    positionShort?: string;
     company: {
       name: string;
       logo?: string;
@@ -41,7 +42,7 @@ const endDate = entry.dateTo ? new Date(entry.dateTo).toLocaleDateString('en-US'
   style={!isMobile ? {
     top: `${centerPosition * 100}%`,
     [isLeft ? 'left' : 'right']: '56%',
-    width: '45%',
+    width: `${position.isShortTerm ? '38%' : '48%'}`,
     transform: `translateY(-50%)`
   } : {}}
 >
@@ -86,30 +87,32 @@ const endDate = entry.dateTo ? new Date(entry.dateTo).toLocaleDateString('en-US'
       bg-slate-800/50 backdrop-blur-sm rounded-lg border transition-all duration-300
       hover:translate-x-0.5 hover:-translate-y-0.5
       ${color.border} hover:${color.shadow} hover:shadow-lg
-      ${position.isShortTerm ? 'p-2.5 pb-2' : 'p-4'}
+      ${position.isShortTerm ? 'p-2.5' : 'p-4'}
     `}>
-      <div class="flex flex-col gap-2">
-        <div class="flex items-center gap-2">
-          {entry.company.logo && (
+      <div class="flex gap-4 items-stretch">
+        {entry.company.logo && (
+          <div class="flex items-center border-r border-slate-700/50 pr-4">
             <img 
               src={entry.company.logo} 
               alt={entry.company.name}
-              class={`w-auto flex-shrink-0 transition-transform duration-300 group-hover:scale-105 ${position.isShortTerm ? 'h-5' : 'h-6'}`}
+              class={`w-auto flex-shrink-0 transition-transform duration-300 group-hover:scale-105 ${position.isShortTerm ? 'h-10' : 'h-12'}`}
             />
-          )}
-          <h3 class={`font-bold font-display group-hover:${color.text} transition-colors ${position.isShortTerm && !isMobile ? 'text-sm' : 'text-lg'}`}>
-            {entry.title}
-          </h3>
-        </div>
-        <div class="flex justify-between items-center text-slate-300">
-          <div class={position.isShortTerm && !isMobile ? 'text-sm' : ''}>{entry.company.name}</div>
-          <div class={position.isShortTerm && !isMobile ? 'text-sm' : ''}>{entry.location}</div>
-        </div>
-        {isMobile && (
-          <div class="text-sm text-center text-slate-400">
-            {formatDateRange(entry.dateFrom, entry.dateTo)}
           </div>
         )}
+        <div class="flex flex-col gap-2 flex-grow">
+          <h3 class={`font-bold font-display group-hover:${color.text} transition-colors ${position.isShortTerm && !isMobile ? 'text-sm' : 'text-lg'}`}>
+            {entry.positionShort || entry.position}
+          </h3>
+          <div class="flex justify-between items-center text-slate-300">
+            <div class={position.isShortTerm && !isMobile ? 'text-sm' : ''}>{entry.company.name}</div>
+            <div class={position.isShortTerm && !isMobile ? 'text-sm' : ''}>{entry.location}</div>
+          </div>
+          {isMobile && (
+            <div class="text-sm text-center text-slate-400">
+              {formatDateRange(entry.dateFrom, entry.dateTo)}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   </div>

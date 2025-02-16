@@ -11,7 +11,8 @@ export default config({
       path: 'src/content/jobs/*',
       format: { contentField: 'content' },
       schema: {
-        title: fields.text({ label: 'Title', validation: { isRequired: true } }),
+        position: fields.text({ label: 'Position', validation: { isRequired: true } }),
+        positionShort: fields.text({ label: 'Short Position', validation: { isRequired: false } }),
         slug: fields.text({ label: 'URL Slug', validation: { isRequired: true } }),
         company: fields.object({
           name: fields.text({ label: 'Company Name', validation: { isRequired: true } }),

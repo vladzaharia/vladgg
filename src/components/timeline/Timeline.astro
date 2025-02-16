@@ -6,7 +6,8 @@ import TimelineBase from './TimelineBase.astro';
 interface Props {
   jobs: Array<{
     entry: {
-      title: string;
+      position: string;
+      positionShort?: string;
       company: {
         name: string;
         logo?: string;
