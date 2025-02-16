@@ -1,40 +1,90 @@
-# Workflow to build using Hugo
+# Workflow to build and publish Docker images to GitHub Container Registry
 
 # Name of Workflow
-name: HUGO
+name: Build and Publish Docker Image
 
 # Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
-on: push
+# events but only for the main and master branches
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+
+# Environment variables
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+  NODE_ENV: production
+  # Add any Keystatic environment variables here if needed
+  # KEYSTATIC_SECRET: ${{ secrets.KEYSTATIC_SECRET }}
+  # KEYSTATIC_GITHUB_CLIENT_ID: ${{ secrets.KEYSTATIC_GITHUB_CLIENT_ID }}
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "deploy"
-  build:
+  # This workflow contains a single job called "build-and-push"
+  build-and-push:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    # Permissions for the job
+    permissions:
+      contents: read
+      packages: write
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Step 1 - Checks-out your repository under $GITHUB_WORKSPACE
-      - name: Checkout
-        uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2 - Sets up Docker Buildx
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # Step 3 - Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-            submodules: true  # Fetch Hugo themes
-            fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+          node-version: '22'
+          cache: 'yarn'
 
-      # Step 2 - Sets up the latest version of Hugo
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
+      # Step 4 - Enable Corepack
+      - name: Enable Corepack
+        run: corepack enable
+
+      # Step 5 - Log in to GitHub Container Registry
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
         with:
-            hugo-version: 'latest'
-            extended: true
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-      # Step 3 - Clean and don't fail
-      - name: Clean public directory
-        run: rm -rf public
+      # Step 6 - Extract metadata for Docker
+      - name: Extract metadata for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=sha,format=long
+            type=ref,event=branch
+            type=ref,event=tag
+            type=raw,value=latest,enable={{is_default_branch}}
 
-      # Step 4 - Builds the site using the latest version of Hugo
-      # Also specifies the theme we want to use
-      - name: Build
-        run: hugo
+      # Step 7 - Build and push Docker image
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          build-args: |
+            NODE_ENV=production
