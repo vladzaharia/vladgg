@@ -1,6 +1,7 @@
 ---
 import { getJobColor } from "../../utils/colors";
 import TimelineYearMarkers from "./TimelineYearMarkers.astro";
+import TimelineIndicator from "./TimelineIndicator.astro";
 
 interface Props {
   jobs: Array<{
@@ -20,22 +21,14 @@ const { jobs, years } = Astro.props;
 
 <div class="absolute inset-0">
   {/* Main timeline line */}
-  <div class="absolute left-1/2 w-1 h-full -ml-0.5 bg-slate-700">
+  <div
+    class="absolute left-1/2 w-1 h-full -ml-0.5 bg-slate-700"
+    data-aos="fade"
+    data-aos-delay="200"
+    data-aos-duration="1000"
+    data-aos-anchor=".timeline"
+  >
     <TimelineYearMarkers years={years} />
-
-    {/* Duration points */}
-    {jobs.map((job, index) => {
-      const color = getJobColor(index);
-      return (
-        <div 
-          class={`absolute left-1/2 -translate-x-1/2 w-3 rounded-sm transition-all duration-300 ${color.bg}`}
-          style={{
-            top: `${job.position.startPosition * 100}%`,
-            height: `${Math.max((job.position.endPosition - job.position.startPosition) * 100, 2)}%`
-          }}
-        >
-        </div>
-      );
-    })}
+    <TimelineIndicator jobs={jobs} />
   </div>
 </div>

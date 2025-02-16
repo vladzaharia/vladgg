@@ -87,3 +87,17 @@ export function adjustPositionsWithMinSpacing(jobs: Array<{ position: TimelineJo
     job.position.endPosition = padding + (job.position.endPosition - firstStart) * scale;
   });
 }
+
+export function formatDateRange(dateFrom: string, dateTo: string | null): string {
+  const startDate = new Date(dateFrom).toLocaleDateString("en-US", {
+    month: "short",
+    year: "numeric",
+  });
+  const endDate = dateTo
+    ? new Date(dateTo).toLocaleDateString("en-US", {
+        month: "short",
+        year: "numeric",
+      })
+    : "Present";
+  return `${startDate} - ${endDate}`;
+}

@@ -1,0 +1,29 @@
+---
+import { getJobColor } from "../../utils/colors";
+
+interface Props {
+  jobs: Array<{
+    position: {
+      startPosition: number;
+      endPosition: number;
+    };
+  }>;
+}
+
+const { jobs } = Astro.props;
+---
+
+{
+  jobs.map((job, index) => {
+    const color = getJobColor(index);
+    return (
+      <div
+        class={`absolute left-1/2 -translate-x-1/2 w-3 rounded-sm transition-all duration-300 border-2 ${color.lightBorder} ${color.bg}`}
+        style={{
+          top: `${job.position.startPosition * 100}%`,
+          height: `${Math.max((job.position.endPosition - job.position.startPosition) * 100, 2)}%`,
+        }}
+      ></div>
+    );
+  })
+}

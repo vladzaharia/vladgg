@@ -53,30 +53,13 @@ const fontConfig: FontConfig[] = [
     googleFontsURL: "https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap",
     preload: true,
     display: "swap",
-    selector: "h1, h2, h3, h4, h5, h6",
-    fallback: "sans-serif",
-  },
-  {
-    name: "Atkinson Hyperlegible",
-    src: [],
-    googleFontsURL: "https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap",
-    preload: true,
-    display: "swap",
-    selector: "body",
+    selector: "body, h1, h2, h3, h4, h5, h6",
     fallback: "sans-serif",
   },
   {
     name: "JetBrains Mono",
     src: [],
     googleFontsURL: "https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap",
-    preload: true,
-    display: "auto",
-    fallback: "monospace",
-  },
-  {
-    name: "Kode Mono",
-    src: [],
-    googleFontsURL: "https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap",
     preload: true,
     display: "auto",
     fallback: "monospace",
@@ -126,6 +109,15 @@ const fontConfig: FontConfig[] = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <AstroFont config={fontConfig} />
+    <style is:global>
+      [data-glow] {
+        position: relative;
+      }
+
+      [data-glow]:hover {
+        box-shadow: 0 0 2rem -0.5rem var(--glow-color);
+      }
+    </style>
   </head>
   <body class="text-slate-100 bg-slate-900 overflow-hidden relative">
     <Background

@@ -8,9 +8,9 @@ export default {
 		extend: {
 			fontFamily: {
 				display: ['Rubik', ...defaultTheme.fontFamily.sans],
-				body: ['Atkinson Hyperlegible', ...defaultTheme.fontFamily.sans],
-				sans: ['Atkinson Hyperlegible', ...defaultTheme.fontFamily.sans],
-				mono: ['JetBrains Mono', 'Kode Mono', ...defaultTheme.fontFamily.mono],
+				body: ['Rubik', ...defaultTheme.fontFamily.sans],
+				sans: ['Rubik', ...defaultTheme.fontFamily.sans],
+				mono: ['JetBrains Mono', ...defaultTheme.fontFamily.mono],
 				date: ['Space Mono', ...defaultTheme.fontFamily.mono],
 			},
 		},
