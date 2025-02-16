@@ -6,7 +6,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "clean": "rimraf dist",
-    "build": "npm run clean && astro check && astro build",
+    "build": "yarn clean && astro check && astro build",
     "astro": "astro",
     "format": "prettier --write \"src/**/*.{js,ts,jsx,tsx,astro,css,md,mdx,json}\"",
     "prepare": "husky"

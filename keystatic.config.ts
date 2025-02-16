@@ -17,18 +17,30 @@ export default config({
       entryLayout: 'content',
       format: { contentField: 'content' },
       schema: {
-        position: fields.text({ label: 'Position', validation: { isRequired: true } }),
+        position: fields.slug({
+          name: { label: 'Position', validation: { isRequired: true } },
+          slug: { label: 'URL Slug', description: 'An SEO-friendly path for this job' },
+        }),
         positionShort: fields.text({ label: 'Short Position', validation: { isRequired: false } }),
         slug: fields.text({ label: 'URL Slug', validation: { isRequired: true } }),
         company: fields.object({
           name: fields.text({ label: 'Company Name', validation: { isRequired: true } }),
-          nameShort: fields.text({ label: 'Short Company Name', validation: { isRequired: false } }),
-          logo: fields.image({ label: 'Company Logo', validation: { isRequired: false }, directory: 'public/images/companies' }),
+          nameShort: fields.text({
+            label: 'Short Company Name',
+            validation: { isRequired: false },
+          }),
+          logo: fields.image({
+            label: 'Company Logo',
+            validation: { isRequired: false },
+            directory: 'public/images/companies',
+          }),
           url: fields.url({ label: 'Company URL', validation: { isRequired: false } }),
         }),
         location: fields.text({ label: 'Location', validation: { isRequired: true } }),
-        dateFrom: fields.date({ label: 'Start Date', validation: { isRequired: true } }),
-        dateTo: fields.date({ label: 'End Date', validation: { isRequired: false } }),
+        dates: fields.object({
+          from: fields.date({ label: 'Start Date', validation: { isRequired: true } }),
+          to: fields.date({ label: 'End Date', validation: { isRequired: false } }),
+        }),
         content: fields.markdoc({
           label: 'Content',
         }),
@@ -45,11 +57,11 @@ export default config({
         slug: fields.text({ label: 'URL Slug', validation: { isRequired: true } }),
         githubUrl: fields.url({
           label: 'GitHub URL',
-          validation: { isRequired: false }
+          validation: { isRequired: false },
         }),
         websiteUrl: fields.url({
           label: 'Website URL',
-          validation: { isRequired: false }
+          validation: { isRequired: false },
         }),
         images: fields.array(
           fields.image({
@@ -63,7 +75,7 @@ export default config({
             color: fields.text({ label: 'Color' }),
             icon: fields.text({
               label: 'Icon Class',
-              validation: { isRequired: false }
+              validation: { isRequired: false },
             }),
           }),
           { label: 'Tags' }

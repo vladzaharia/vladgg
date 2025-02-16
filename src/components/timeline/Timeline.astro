@@ -11,7 +11,10 @@ import TimelineBase from './TimelineBase.astro';
 interface Props {
   jobs: Array<{
     entry: {
-      position: string;
+      position: {
+        name: string;
+        slug: string;
+      };
       positionShort?: string;
       company: {
         name: string;
@@ -20,8 +23,10 @@ interface Props {
         url: string | null;
       };
       location: string;
-      dateFrom: string;
-      dateTo: string | null;
+      dates: {
+        from: string;
+        to: string | null;
+      };
       content: unknown;
     };
     slug: string;
@@ -32,8 +37,10 @@ const { jobs } = Astro.props;
 
 // Extract job dates for timeline calculations
 const jobDates = jobs.map((j) => ({
-  dateFrom: j.entry.dateFrom,
-  dateTo: j.entry.dateTo,
+  dates: {
+    from: j.entry.dates.from,
+    to: j.entry.dates.to,
+  },
 }));
 
 // Calculate timeline years
@@ -47,14 +54,14 @@ const jobsWithPositions = jobs
   .map((job) => ({
     ...job,
     position: calculateJobPosition(
-      { dateFrom: job.entry.dateFrom, dateTo: job.entry.dateTo },
+      { dates: { from: job.entry.dates.from, to: job.entry.dates.to } },
       minYear,
       maxYear
     ),
   }))
   .sort((a, b) => {
-    const dateA = new Date(a.entry.dateFrom);
-    const dateB = new Date(b.entry.dateFrom);
+    const dateA = new Date(a.entry.dates.from);
+    const dateB = new Date(b.entry.dates.from);
     return dateB.getTime() - dateA.getTime();
   });
 
@@ -88,7 +95,7 @@ adjustPositionsWithMinSpacing(jobsWithPositions);
               <h3
                 class={`font-bold font-display transition-colors ${job.position.isShortTerm ? 'text-sm' : 'text-lg'}`}
               >
-                {job.entry.positionShort || job.entry.position}
+                {job.entry.positionShort || job.entry.position.name}
               </h3>
               <div class="flex justify-between items-center text-slate-400">
                 <div class={job.position.isShortTerm ? 'text-sm' : ''}>
@@ -140,7 +147,7 @@ adjustPositionsWithMinSpacing(jobsWithPositions);
               <h3
                 class={`font-bold font-display transition-colors ${job.position.isShortTerm ? 'text-sm' : 'text-lg'}`}
               >
-                {job.entry.positionShort || job.entry.position}
+                {job.entry.positionShort || job.entry.position.name}
               </h3>
               <div class="flex justify-between items-center text-slate-400">
                 <div class={job.position.isShortTerm ? 'text-sm' : ''}>
@@ -153,7 +160,7 @@ adjustPositionsWithMinSpacing(jobsWithPositions);
                 </div>
               </div>
               <div class="text-sm text-center text-slate-400 font-date">
-                {formatDateRange(job.entry.dateFrom, job.entry.dateTo)}
+                {formatDateRange(job.entry.dates.from, job.entry.dates.to)}
               </div>
             </div>
           </div>

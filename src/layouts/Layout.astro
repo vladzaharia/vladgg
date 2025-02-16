@@ -8,7 +8,6 @@ import AOS from '../components/util/AOS.astro';
 import Navbar from '../components/Navbar.astro';
 import { SEO } from 'astro-seo';
 import Background from '../components/background/Background.astro';
-import { join } from 'node:path';
 import { AstroFont } from 'astro-font';
 
 const { title: pageTitle, description: pageDescription } = Astro.props;
@@ -17,8 +16,6 @@ export const global = {
   title: 'Vlad Zaharia',
   description: 'Software Engineer & Tech Enthusiast',
 };
-
-const fontPrefix = import.meta.env.PROD ? Astro.site!.toString() : join(process.cwd(), 'public');
 
 interface FontSource {
   path: string;

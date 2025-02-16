@@ -3,7 +3,10 @@ import { defineCollection, z } from 'astro:content';
 const jobs = defineCollection({
   type: 'content',
   schema: z.object({
-    position: z.string(),
+    position: z.object({
+      name: z.string(),
+      slug: z.string(),
+    }),
     positionShort: z.string().optional(),
     company: z.object({
       name: z.string(),
@@ -12,11 +15,13 @@ const jobs = defineCollection({
       url: z.string().url().optional(),
     }),
     location: z.string(),
-    dateFrom: z.string().transform((str) => new Date(str)),
-    dateTo: z
-      .string()
-      .optional()
-      .transform((str) => (str ? new Date(str) : null)),
+    dates: z.object({
+      from: z.string().transform((str) => new Date(str)),
+      to: z
+        .string()
+        .optional()
+        .transform((str) => (str ? new Date(str) : null)),
+    }),
   }),
 });
 

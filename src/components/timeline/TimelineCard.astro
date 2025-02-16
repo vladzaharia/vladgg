@@ -1,11 +1,13 @@
 ---
-import { formatDateRange } from '../../utils/date';
-import { getJobColor, getComputedColor } from '../../utils/colors';
+import { getJobColor } from '../../utils/colors';
 import ExpandedTimelineCard from './ExpandedTimelineCard.astro';
 
 interface Props {
   entry: {
-    position: string;
+    position: {
+      name: string;
+      slug: string;
+    };
     positionShort?: string;
     company: {
       name: string;
@@ -13,8 +15,10 @@ interface Props {
       logo: string | null;
     };
     location: string;
-    dateFrom: string;
-    dateTo: string | null;
+    dates: {
+      from: string;
+      to: string | null;
+    };
   };
   position: {
     startPosition: number;
@@ -26,18 +30,18 @@ interface Props {
   isMobile?: boolean;
 }
 
-const { entry, position, slug, index, isMobile = false } = Astro.props;
+const { entry, position, index, isMobile = false } = Astro.props;
 const isLeft = index % 2 === 1;
 const centerPosition = (position.startPosition + position.endPosition) / 2;
 const color = getJobColor(index);
 
 // Format dates
-const startDate = new Date(entry.dateFrom).toLocaleDateString('en-US', {
+const startDate = new Date(entry.dates.from).toLocaleDateString('en-US', {
   month: 'short',
   year: 'numeric',
 });
-const endDate = entry.dateTo
-  ? new Date(entry.dateTo).toLocaleDateString('en-US', {
+const endDate = entry.dates.to
+  ? new Date(entry.dates.to).toLocaleDateString('en-US', {
       month: 'short',
       year: 'numeric',
     })

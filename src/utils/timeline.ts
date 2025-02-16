@@ -1,6 +1,8 @@
 export interface TimelineJob {
-  dateFrom: string;
-  dateTo: string | null;
+  dates: {
+    from: string;
+    to: string | null;
+  };
 }
 
 export interface TimelineYear {
@@ -18,8 +20,8 @@ export interface TimelineJobPosition {
 export function calculateTimelineYears(jobs: TimelineJob[]): TimelineYear[] {
   // Get min and max years from jobs
   const dates = jobs.flatMap((job) => [
-    new Date(job.dateFrom),
-    job.dateTo ? new Date(job.dateTo) : new Date(),
+    new Date(job.dates.from),
+    job.dates.to ? new Date(job.dates.to) : new Date(),
   ]);
 
   const minYear = Math.min(...dates.map((d) => d.getFullYear()));
@@ -45,8 +47,8 @@ export function calculateJobPosition(
   minYear: number,
   maxYear: number
 ): TimelineJobPosition {
-  const startDate = new Date(job.dateFrom);
-  const endDate = job.dateTo ? new Date(job.dateTo) : new Date();
+  const startDate = new Date(job.dates.from);
+  const endDate = job.dates.to ? new Date(job.dates.to) : new Date();
 
   const totalTimespan = (maxYear - minYear + 1) * 12; // Total months
   const startMonths = (startDate.getFullYear() - minYear) * 12 + startDate.getMonth();
