@@ -7,28 +7,47 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!content) return;
 
     // Get the original card's position for animation
-    const originalCard =
-      expanded.previousElementSibling?.querySelector<HTMLElement>('.timeline-card-content');
+    const originalCard = expanded.previousElementSibling as HTMLElement;
     if (!originalCard) return;
 
-    const originalRect = originalCard.getBoundingClientRect();
+    const originalContent = originalCard.querySelector<HTMLElement>('.timeline-card-content');
+    if (!originalContent) return;
+
+    const originalRect = originalContent.getBoundingClientRect();
     const expandedRect = content.getBoundingClientRect();
 
     // Calculate the scale and translate values
     const scaleX = originalRect.width / expandedRect.width;
     const scaleY = originalRect.height / expandedRect.height;
-    const translateX = originalRect.left - expandedRect.left;
-    const translateY = originalRect.top - expandedRect.top;
+
+    // Calculate position to align centers
+    const originalLeft = originalRect.left;
+    const originalTop = originalRect.top;
+    const windowCenterX = window.innerWidth / 2;
+    const windowCenterY = window.innerHeight / 2;
+
+    // Add offset based on side
+    const isLeft = originalCard.dataset.side === 'left';
+    const offsetX = !isLeft ? -250 : 250;
+
+    // Calculate the transform origin point
+    const transformOriginX = isLeft ? '0%' : '100%';
+    content.style.transformOrigin = `${transformOriginX} 50%`;
+
+    // Calculate the position that would align the expanded card with the original
+    const translateX = originalLeft - windowCenterX + (isLeft ? 0 : originalRect.width) + offsetX;
+    const translateY = originalTop - windowCenterY + originalRect.height / 2;
 
     // Apply the closing animation
-    content.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scaleX}, ${scaleY})`;
+    content.style.transform = `translate(calc(-50% + ${translateX}px), calc(-50% + ${translateY}px)) scale(${scaleX}, ${scaleY})`;
     expanded.classList.add('opacity-0');
     expanded.classList.remove('opacity-100');
 
     setTimeout(() => {
       expanded.classList.add('hidden');
       expanded.classList.remove('flex');
-      content.style.transform = '';
+      content.style.transform = `translate(calc(-50% + ${offsetX}px), -50%)`;
+      content.style.transformOrigin = 'center';
       if (!document.querySelector('.timeline-card-expanded.flex')) {
         document.body.style.overflow = '';
       }
@@ -46,25 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeBtn = expanded?.querySelector('.close-expanded');
 
     if (!content || !expanded || !expandedContent) return;
-
-    const position = parseFloat(card.getAttribute('data-position') || '0');
-    const side = card.getAttribute('data-side');
-
-    // Determine which thirds to expand into
-    const isTop = position < 0.5;
-    const isLeft = side === 'left';
-
-    // Set the expanded card position based on thirds
-    // Cards on the left of the timeline expand right, and vice versa
-    expanded.style.top = isTop ? '0' : '33.333%';
-    expanded.style.left = !isLeft ? '0' : '50%';
-    expanded.style.right = !isLeft ? '50%' : '0';
-    expanded.style.bottom = isTop ? '33.333%' : '0';
-
-    // Mobile layout takes full screen
-    if (window.innerWidth < 768) {
-      expanded.style.inset = '0';
-    }
 
     content.addEventListener('click', () => {
       // If there's an active card and it's not this one, close it first
@@ -93,11 +93,27 @@ document.addEventListener('DOMContentLoaded', () => {
       // Calculate the initial scale and translate values
       const scaleX = originalRect.width / expandedRect.width;
       const scaleY = originalRect.height / expandedRect.height;
-      const translateX = originalRect.left - expandedRect.left;
-      const translateY = originalRect.top - expandedRect.top;
+
+      // Calculate position to align with original card
+      const originalLeft = originalRect.left;
+      const originalTop = originalRect.top;
+      const windowCenterX = window.innerWidth / 2;
+      const windowCenterY = window.innerHeight / 2;
+
+      // Add offset based on side
+      const isLeft = card.dataset.side === 'left';
+      const offsetX = !isLeft ? -250 : 250;
+
+      // Calculate the transform origin point
+      const transformOriginX = isLeft ? '0%' : '100%';
+      expandedContent.style.transformOrigin = `${transformOriginX} 50%`;
+
+      // Calculate the position that would align the expanded card with the original
+      const translateX = originalLeft - windowCenterX + (isLeft ? 0 : originalRect.width) + offsetX;
+      const translateY = originalTop - windowCenterY + originalRect.height / 2;
 
       // Set initial position
-      expandedContent.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scaleX}, ${scaleY})`;
+      expandedContent.style.transform = `translate(calc(-50% + ${translateX}px), calc(-50% + ${translateY}px)) scale(${scaleX}, ${scaleY})`;
 
       // Force a reflow to ensure the transform is applied
       expandedContent.offsetHeight;
@@ -111,7 +127,8 @@ document.addEventListener('DOMContentLoaded', () => {
       requestAnimationFrame(() => {
         expanded.classList.add('opacity-100');
         expanded.classList.remove('opacity-0');
-        expandedContent.style.transform = '';
+        expandedContent.style.transform = `translate(calc(-50% + ${offsetX}px), -50%)`;
+        expandedContent.style.transformOrigin = 'center';
       });
 
       activeCard = card;
@@ -120,20 +137,8 @@ document.addEventListener('DOMContentLoaded', () => {
     closeBtn?.addEventListener('click', () => closeExpanded(expanded));
 
     expanded.addEventListener('click', (e) => {
-      if (e.target === expanded) {
+      if (e.target === expanded || e.target === expanded.querySelector('.fixed.inset-0')) {
         closeExpanded(expanded);
-      }
-    });
-
-    // Handle responsive layout changes
-    window.addEventListener('resize', () => {
-      if (window.innerWidth < 768) {
-        expanded.style.inset = '0';
-      } else {
-        expanded.style.top = isTop ? '0' : '33.333%';
-        expanded.style.left = !isLeft ? '0' : '50%';
-        expanded.style.right = !isLeft ? '50%' : '0';
-        expanded.style.bottom = isTop ? '33.333%' : '0';
       }
     });
   });

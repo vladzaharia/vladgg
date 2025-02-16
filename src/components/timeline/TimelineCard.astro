@@ -97,15 +97,20 @@ const endDate = entry.dateTo
     <div
       class={`
         timeline-card-content
-        bg-slate-800/50 backdrop-blur-sm rounded-lg border transition-all duration-300 cursor-pointer
+        bg-slate-800/50 backdrop-blur 
+        rounded-lg border 
+        transition-all duration-300 cursor-pointer
         hover:${isLeft ? '' : '-'}translate-x-0.5
         ${color!.border}
         ${position.isShortTerm ? 'p-2.5' : 'p-4'}
+        hover:scale-[1.02]
       `}
       style={{
         transform: 'scale(1)',
-        transformOrigin: isLeft ? 'left' : 'right',
+        '--card-color': color.color,
       }}
+      onmouseenter="this.style.boxShadow = '0 0 20px ' + this.style.getPropertyValue('--card-color')"
+      onmouseleave="this.style.boxShadow = 'none'"
     >
       <slot />
     </div>
