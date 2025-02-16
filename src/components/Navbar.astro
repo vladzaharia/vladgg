@@ -2,13 +2,33 @@
 import Backdrop from "./background/Backdrop.astro";
 import { Icon } from "astro-icon/components"
 import NavItem from "./NavItem.astro";
+
+// Get current path
+const currentPath = Astro.url.pathname;
+const isHome = currentPath === "/" || currentPath === "";
 ---
 
 <nav class="fixed top-4 left-1/2 -translate-x-1/2">
-    <Backdrop data-aos="fade-down" data-aos-duration="1000" data-aos-delay="400" class="flex flex-row justify-center items-center gap-6 py-3 px-6">
+    <Backdrop class="nav-backdrop flex flex-row justify-center items-center gap-6 py-3 px-6" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="400">
         <NavItem path="" class=`py-1 pl-2 pr-8 border-r-2 border-slate-200/50 text-sky-500`><Icon name="fa/house" class="text-2xl" /></NavItem>
         <NavItem path="experience">Experience</NavItem>
         <NavItem path="projects">Projects</NavItem>
         <NavItem path="contact">Contact</NavItem>
     </Backdrop>
 </nav>
+
+<script>
+    // Show animation on home page or first visit
+    const isHome = window.location.pathname === "/" || window.location.pathname === "";
+    const hasVisited = sessionStorage.getItem('hasVisited');
+    
+    if (!isHome && hasVisited) {
+        // Remove animation if not home and not first visit
+        document.querySelector('.nav-backdrop')?.removeAttribute('data-aos');
+        document.querySelector('.nav-backdrop')?.removeAttribute('data-aos-duration');
+        document.querySelector('.nav-backdrop')?.removeAttribute('data-aos-delay');
+    } else if (!hasVisited) {
+        // Set visited flag on first visit
+        sessionStorage.setItem('hasVisited', 'true');
+    }
+</script>

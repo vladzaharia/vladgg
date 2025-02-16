@@ -22,7 +22,7 @@ const formatDate = (date: string) => {
   });
 };
 
-const dateRange = `${formatDate(job.dateFrom)} - ${formatDate(job.dateTo || 'Present')}`;
+const dateRange = `${formatDate(job.dateFrom)} - ${job.dateTo ? formatDate(job.dateTo) : 'Present'}`;
 ---
 
 <PageLayout title={`${job.title} at ${job.company.name}`}>
