@@ -49,68 +49,8 @@ interface FontConfig {
 const fontConfig: FontConfig[] = [
   {
     name: "Rubik",
-    src: [
-      {
-        style: "normal",
-        weight: "300",
-        path: join(fontPrefix, "fonts", "Rubik", "Normal.woff2"),
-      },
-      {
-        style: "normal",
-        weight: "400",
-        path: join(fontPrefix, "fonts", "Rubik", "Normal.woff2"),
-      },
-      {
-        style: "normal",
-        weight: "500",
-        path: join(fontPrefix, "fonts", "Rubik", "Normal.woff2"),
-      },
-      {
-        style: "normal",
-        weight: "600",
-        path: join(fontPrefix, "fonts", "Rubik", "Normal.woff2"),
-      },
-      {
-        style: "normal",
-        weight: "700",
-        path: join(fontPrefix, "fonts", "Rubik", "Normal.woff2"),
-      },
-      {
-        style: "normal",
-        weight: "800",
-        path: join(fontPrefix, "fonts", "Rubik", "Normal.woff2"),
-      },
-      {
-        style: "italic",
-        weight: "300",
-        path: join(fontPrefix, "fonts", "Rubik", "Italic.woff2"),
-      },
-      {
-        style: "italic",
-        weight: "400",
-        path: join(fontPrefix, "fonts", "Rubik", "Italic.woff2"),
-      },
-      {
-        style: "italic",
-        weight: "500",
-        path: join(fontPrefix, "fonts", "Rubik", "Italic.woff2"),
-      },
-      {
-        style: "italic",
-        weight: "600",
-        path: join(fontPrefix, "fonts", "Rubik", "Italic.woff2"),
-      },
-      {
-        style: "italic",
-        weight: "700",
-        path: join(fontPrefix, "fonts", "Rubik", "Italic.woff2"),
-      },
-      {
-        style: "italic",
-        weight: "800",
-        path: join(fontPrefix, "fonts", "Rubik", "Italic.woff2"),
-      },
-    ],
+    src: [],
+    googleFontsURL: "https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap",
     preload: true,
     display: "swap",
     selector: "h1, h2, h3, h4, h5, h6",
@@ -118,32 +58,36 @@ const fontConfig: FontConfig[] = [
   },
   {
     name: "Atkinson Hyperlegible",
-    src: [
-      {
-        style: "normal",
-        weight: "400",
-        path: join(fontPrefix, "fonts", "AtkinsonHyperlegible", "Regular-400.woff2"),
-      },
-      {
-        style: "normal",
-        weight: "700",
-        path: join(fontPrefix, "fonts", "AtkinsonHyperlegible", "Bold-700.woff2"),
-      },
-      {
-        style: "italic",
-        weight: "400",
-        path: join(fontPrefix, "fonts", "AtkinsonHyperlegible", "Regular-400-Italic.woff2"),
-      },
-      {
-        style: "italic",
-        weight: "700",
-        path: join(fontPrefix, "fonts", "AtkinsonHyperlegible", "Bold-700-Italic.woff2"),
-      },
-    ],
+    src: [],
+    googleFontsURL: "https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap",
     preload: true,
     display: "swap",
     selector: "body",
     fallback: "sans-serif",
+  },
+  {
+    name: "JetBrains Mono",
+    src: [],
+    googleFontsURL: "https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap",
+    preload: true,
+    display: "auto",
+    fallback: "monospace",
+  },
+  {
+    name: "Kode Mono",
+    src: [],
+    googleFontsURL: "https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap",
+    preload: true,
+    display: "auto",
+    fallback: "monospace",
+  },
+  {
+    name: "Space Mono",
+    src: [],
+    googleFontsURL: "https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap",
+    preload: true,
+    display: "auto",
+    fallback: "monospace",
   },
 ];
 

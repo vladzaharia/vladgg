@@ -10,8 +10,9 @@ interface Props {
       positionShort?: string;
       company: {
         name: string;
-        logo?: string;
-        url?: string;
+        nameShort: string | null;
+        logo: string | null;
+        url: string | null;
       };
       location: string;
       dateFrom: string;

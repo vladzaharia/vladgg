@@ -8,7 +8,8 @@ interface Props {
     positionShort?: string;
     company: {
       name: string;
-      logo?: string;
+      nameShort: string | null;
+      logo: string | null;
     };
     location: string;
     dateFrom: string;
@@ -47,22 +48,11 @@ const endDate = entry.dateTo ? new Date(entry.dateTo).toLocaleDateString('en-US'
   } : {}}
 >
   <div class="relative w-full">
-    {/* Horizontal line to timeline */}
-    {!isMobile && (
-      <div 
-        class={`absolute top-1/2 h-px transition-all duration-300 ${color.bg} group-hover:opacity-80`}
-        style={{
-          [isLeft ? 'right' : 'left']: '0',
-          width: '7%'
-        }}
-      ></div>
-    )}
-    
     {/* Date markers */}
     {!isMobile && (
       <>
         <div 
-          class={`absolute text-sm whitespace-nowrap transition-colors duration-300 ${color.darkText}`}
+          class={`absolute text-sm whitespace-nowrap transition-colors duration-300 ${color.darkText} font-date`}
           style={{
             [isLeft ? 'left' : 'right']: '-5%',
             top: '-2rem'
@@ -71,7 +61,7 @@ const endDate = entry.dateTo ? new Date(entry.dateTo).toLocaleDateString('en-US'
           {endDate}
         </div>
         <div 
-          class={`absolute text-sm whitespace-nowrap transition-colors duration-300 ${color.darkText}`}
+          class={`absolute text-sm whitespace-nowrap transition-colors duration-300 ${color.darkText} font-date`}
           style={{
             [isLeft ? 'left' : 'right']: '-5%',
             bottom: '-2rem'
@@ -94,8 +84,8 @@ const endDate = entry.dateTo ? new Date(entry.dateTo).toLocaleDateString('en-US'
           <div class="flex items-center border-r border-slate-700/50 pr-4">
             <img 
               src={entry.company.logo} 
-              alt={entry.company.name}
-              class={`w-auto flex-shrink-0 transition-transform duration-300 group-hover:scale-105 ${position.isShortTerm ? 'h-10' : 'h-12'}`}
+              alt={entry.company.nameShort || entry.company.name}
+              class={`w-auto min-w-14 flex-shrink-0 transition-transform duration-300 group-hover:scale-105 ${position.isShortTerm ? 'h-10' : 'h-12'}`}
             />
           </div>
         )}
@@ -108,7 +98,7 @@ const endDate = entry.dateTo ? new Date(entry.dateTo).toLocaleDateString('en-US'
             <div class={position.isShortTerm && !isMobile ? 'text-sm' : ''}>{entry.location}</div>
           </div>
           {isMobile && (
-            <div class="text-sm text-center text-slate-400">
+            <div class="text-sm text-center text-slate-400 font-date">
               {formatDateRange(entry.dateFrom, entry.dateTo)}
             </div>
           )}

@@ -7,12 +7,13 @@ const jobs = defineCollection({
     positionShort: z.string().optional(),
     company: z.object({
       name: z.string(),
-      logo: z.string(),
-      url: z.string().url(),
+      nameShort: z.string().optional(),
+      logo: z.string().optional(),
+      url: z.string().url().optional(),
     }),
     location: z.string(),
-    dateFrom: z.date(),
-    dateTo: z.date().optional(),
+    dateFrom: z.string().transform((str) => new Date(str)),
+    dateTo: z.string().optional().transform((str) => str ? new Date(str) : null),
   }),
 });
 

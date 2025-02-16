@@ -16,8 +16,9 @@ export default config({
         slug: fields.text({ label: 'URL Slug', validation: { isRequired: true } }),
         company: fields.object({
           name: fields.text({ label: 'Company Name', validation: { isRequired: true } }),
-          logo: fields.text({ label: 'Company Logo URL', validation: { isRequired: true } }),
-          url: fields.url({ label: 'Company URL', validation: { isRequired: true } }),
+          nameShort: fields.text({ label: 'Short Company Name', validation: { isRequired: false } }),
+          logo: fields.text({ label: 'Company Logo URL', validation: { isRequired: false } }),
+          url: fields.url({ label: 'Company URL', validation: { isRequired: false } }),
         }),
         location: fields.text({ label: 'Location', validation: { isRequired: true } }),
         dateFrom: fields.date({ label: 'Start Date', validation: { isRequired: true } }),
