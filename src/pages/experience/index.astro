@@ -1,6 +1,6 @@
 ---
-import PageLayout from "../../layouts/PageLayout.astro";
-import Timeline from "../../components/timeline/Timeline.astro";
+import PageLayout from '../../layouts/PageLayout.astro';
+import Timeline from '../../components/timeline/Timeline.astro';
 import { createReader } from '@keystatic/core/reader';
 import keystaticConfig from '../../../keystatic.config';
 
@@ -18,7 +18,7 @@ jobs.sort((a, b) => {
 <PageLayout title="Experience">
   <main class="container mx-auto p-6">
     <div class="max-w-6xl mx-auto">
-      <Timeline jobs={jobs} />
+      <Timeline {jobs} />
     </div>
   </main>
 </PageLayout>

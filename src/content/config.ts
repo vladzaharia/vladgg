@@ -13,7 +13,10 @@ const jobs = defineCollection({
     }),
     location: z.string(),
     dateFrom: z.string().transform((str) => new Date(str)),
-    dateTo: z.string().optional().transform((str) => str ? new Date(str) : null),
+    dateTo: z
+      .string()
+      .optional()
+      .transform((str) => (str ? new Date(str) : null)),
   }),
 });
 

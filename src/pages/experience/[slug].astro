@@ -1,5 +1,5 @@
 ---
-import PageLayout from "../../layouts/PageLayout.astro";
+import PageLayout from '../../layouts/PageLayout.astro';
 import { createReader } from '@keystatic/core/reader';
 import keystaticConfig from '../../../keystatic.config';
 
@@ -16,9 +16,9 @@ if (!job) {
 // Format date range
 const formatDate = (date: string) => {
   if (!date) return 'Present';
-  return new Date(date).toLocaleDateString('en-US', { 
+  return new Date(date).toLocaleDateString('en-US', {
     month: 'long',
-    year: 'numeric'
+    year: 'numeric',
   });
 };
 
@@ -33,16 +33,18 @@ const dateRange = `${formatDate(job.dateFrom)} - ${job.dateTo ? formatDate(job.d
           <div>
             <h1 class="text-4xl font-bold font-display mb-2">{job.position}</h1>
             <div class="text-xl text-slate-300">
-              {job.company.logo && (
-                <img 
-                  src={job.company.logo} 
-                  alt={job.company.name}
-                  class="h-6 w-auto inline-block mr-2"
-                />
-              )}
-              <a 
-                href={job.company.url} 
-                target="_blank" 
+              {
+                job.company.logo && (
+                  <img
+                    src={job.company.logo}
+                    alt={job.company.name}
+                    class="h-6 w-auto inline-block mr-2"
+                  />
+                )
+              }
+              <a
+                href={job.company.url}
+                target="_blank"
                 rel="noopener noreferrer"
                 class="hover:text-white transition-colors"
               >
@@ -50,7 +52,7 @@ const dateRange = `${formatDate(job.dateFrom)} - ${job.dateTo ? formatDate(job.d
               </a>
             </div>
           </div>
-          
+
           <div class="flex flex-col items-end gap-1">
             <div class="text-lg text-slate-300">{job.location}</div>
             <div class="text-lg text-slate-400">{dateRange}</div>

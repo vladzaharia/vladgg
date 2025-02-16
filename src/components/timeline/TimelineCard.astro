@@ -1,7 +1,7 @@
 ---
-import { formatDateRange } from "../../utils/date";
-import { getJobColor, getComputedColor } from "../../utils/colors";
-import ExpandedTimelineCard from "./ExpandedTimelineCard.astro";
+import { formatDateRange } from '../../utils/date';
+import { getJobColor, getComputedColor } from '../../utils/colors';
+import ExpandedTimelineCard from './ExpandedTimelineCard.astro';
 
 interface Props {
   entry: {
@@ -32,36 +32,36 @@ const centerPosition = (position.startPosition + position.endPosition) / 2;
 const color = getJobColor(index);
 
 // Format dates
-const startDate = new Date(entry.dateFrom).toLocaleDateString("en-US", {
-  month: "short",
-  year: "numeric",
+const startDate = new Date(entry.dateFrom).toLocaleDateString('en-US', {
+  month: 'short',
+  year: 'numeric',
 });
 const endDate = entry.dateTo
-  ? new Date(entry.dateTo).toLocaleDateString("en-US", {
-      month: "short",
-      year: "numeric",
+  ? new Date(entry.dateTo).toLocaleDateString('en-US', {
+      month: 'short',
+      year: 'numeric',
     })
-  : "Present";
+  : 'Present';
 ---
 
 <div
   class={`
     timeline-card
-    ${isMobile ? "block w-full" : "absolute flex items-center group"}
+    ${isMobile ? 'block w-full' : 'absolute flex items-center group'}
   `}
   style={!isMobile
     ? {
         top: `${centerPosition * 100}%`,
-        [isLeft ? "left" : "right"]: "56%",
-        width: `${position.isShortTerm ? "32%" : "38%"}`,
+        [isLeft ? 'left' : 'right']: '56%',
+        width: `${position.isShortTerm ? '32%' : '38%'}`,
         transform: `translateY(-50%)`,
       }
     : {}}
   data-position={centerPosition}
-  data-side={isLeft ? "left" : "right"}
+  data-side={isLeft ? 'left' : 'right'}
 >
   <div
-    data-aos={isLeft ? "zoom-in-right" : "zoom-in-left"}
+    data-aos={isLeft ? 'zoom-in-right' : 'zoom-in-left'}
     data-aos-delay={`${index * 250}`}
     data-aos-duration="1000"
     data-aos-anchor=".timeline"
@@ -74,8 +74,8 @@ const endDate = entry.dateTo
           <div
             class={`absolute text-sm whitespace-nowrap transition-colors duration-300 ${color?.darkText || ''} font-date`}
             style={{
-              [isLeft ? "left" : "right"]: "-5%",
-              top: "-2rem",
+              [isLeft ? 'left' : 'right']: '-5%',
+              top: '-2rem',
             }}
           >
             {endDate}
@@ -83,8 +83,8 @@ const endDate = entry.dateTo
           <div
             class={`absolute text-sm whitespace-nowrap transition-colors duration-300 ${color?.darkText || ''} font-date`}
             style={{
-              [isLeft ? "left" : "right"]: "-5%",
-              bottom: "-2rem",
+              [isLeft ? 'left' : 'right']: '-5%',
+              bottom: '-2rem',
             }}
           >
             {startDate}
@@ -98,13 +98,13 @@ const endDate = entry.dateTo
       class={`
         timeline-card-content
         bg-slate-800/50 backdrop-blur-sm rounded-lg border transition-all duration-300 cursor-pointer
-        hover:${isLeft ? "" : "-"}translate-x-0.5
+        hover:${isLeft ? '' : '-'}translate-x-0.5
         ${color!.border}
-        ${position.isShortTerm ? "p-2.5" : "p-4"}
+        ${position.isShortTerm ? 'p-2.5' : 'p-4'}
       `}
       style={{
-        transform: "scale(1)",
-        transformOrigin: isLeft ? "left" : "right",
+        transform: 'scale(1)',
+        transformOrigin: isLeft ? 'left' : 'right',
       }}
     >
       <slot />
@@ -112,12 +112,7 @@ const endDate = entry.dateTo
   </div>
 </div>
 
-<ExpandedTimelineCard
-  entry={entry}
-  color={color}
-  startDate={startDate}
-  endDate={endDate}
->
+<ExpandedTimelineCard {entry} {color} {startDate} {endDate}>
   <slot name="expanded" slot="expanded" />
 </ExpandedTimelineCard>
 
@@ -130,7 +125,7 @@ const endDate = entry.dateTo
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
   }
-  
+
   .timeline-card-expanded.opacity-100 {
     opacity: 1;
   }

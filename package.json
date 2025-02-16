@@ -7,7 +7,14 @@
     "start": "astro dev",
     "clean": "rimraf dist",
     "build": "npm run clean && astro check && astro build",
-    "astro": "astro"
+    "astro": "astro",
+    "format": "prettier --write \"src/**/*.{js,ts,jsx,tsx,astro,css,md,mdx,json}\"",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx,astro,css,md,mdx,json}": [
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "@astrojs/markdoc": "^0.12.9",
@@ -30,9 +37,17 @@
     "@astrojs/check": "0.9.4",
     "@babel/parser": "^7.26.9",
     "@types/aos": "^3.0.7",
+    "@types/eslint-plugin-jsx-a11y": "^6",
     "@types/node": "^22.13.4",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@typescript-eslint/eslint-plugin": "^8.24.0",
+    "@typescript-eslint/parser": "^8.24.0",
+    "globals": "^15.15.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.3",
+    "prettier": "^3.5.1",
+    "prettier-plugin-astro": "^0.14.1",
     "rimraf": "^6.0.1",
     "tailwindcss": "^3.0.24",
     "typescript": "^5.7.3"

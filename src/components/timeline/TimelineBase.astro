@@ -1,7 +1,7 @@
 ---
-import { getJobColor } from "../../utils/colors";
-import TimelineYearMarkers from "./TimelineYearMarkers.astro";
-import TimelineIndicator from "./TimelineIndicator.astro";
+import { getJobColor } from '../../utils/colors';
+import TimelineYearMarkers from './TimelineYearMarkers.astro';
+import TimelineIndicator from './TimelineIndicator.astro';
 
 interface Props {
   jobs: Array<{
@@ -28,7 +28,7 @@ const { jobs, years } = Astro.props;
     data-aos-duration="1000"
     data-aos-anchor=".timeline"
   >
-    <TimelineYearMarkers years={years} />
-    <TimelineIndicator jobs={jobs} />
+    <TimelineYearMarkers {years} />
+    <TimelineIndicator {jobs} />
   </div>
 </div>

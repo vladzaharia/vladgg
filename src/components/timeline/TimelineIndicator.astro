@@ -1,5 +1,5 @@
 ---
-import { getJobColor } from "../../utils/colors";
+import { getJobColor } from '../../utils/colors';
 
 interface Props {
   jobs: Array<{
@@ -23,7 +23,7 @@ const { jobs } = Astro.props;
           top: `${job.position.startPosition * 100}%`,
           height: `${Math.max((job.position.endPosition - job.position.startPosition) * 100, 2)}%`,
         }}
-      ></div>
+      />
     );
   })
 }

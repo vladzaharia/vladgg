@@ -1,6 +1,5 @@
 ---
-import PageLayout from "../../layouts/PageLayout.astro";
-import Heading from "../../components/text/Heading.astro";
+import PageLayout from '../../layouts/PageLayout.astro';
 import { createReader } from '@keystatic/core/reader';
 import keystaticConfig from '../../../keystatic.config';
 
@@ -11,7 +10,7 @@ const projects = await reader.collections.projects.all();
 const projectsWithContent = await Promise.all(
   projects.map(async (project) => ({
     ...project,
-    content: await project.entry.content()
+    content: await project.entry.content(),
   }))
 );
 
@@ -27,14 +26,14 @@ projectsWithContent.sort((a, b) => b.slug.localeCompare(a.slug));
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {
         projectsWithContent.map((project) => (
-          <a 
+          <a
             href={`/projects/${project.slug}`}
             class="group bg-slate-800 rounded-lg overflow-hidden hover:bg-slate-700 transition-all hover:shadow-lg hover:-translate-y-1"
           >
             {project.entry.images?.[0] && (
               <div class="relative h-48 overflow-hidden">
-                <img 
-                  src={project.entry.images[0]} 
+                <img
+                  src={project.entry.images[0]}
                   alt={project.entry.title}
                   class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform"
                 />
@@ -44,25 +43,25 @@ projectsWithContent.sort((a, b) => b.slug.localeCompare(a.slug));
               <h2 class="text-2xl font-bold mb-4 font-display">{project.entry.title}</h2>
               <div class="flex flex-wrap gap-2 mb-4">
                 {project.entry.tags?.map((tag) => (
-                  <span 
+                  <span
                     class="px-3 py-1 rounded-full text-sm font-medium"
                     style={`background-color: ${tag.color}40; color: ${tag.color}`}
                   >
-                    {tag.icon && <i class={tag.icon + " mr-1"}></i>}
+                    {tag.icon && <i class={tag.icon + ' mr-1'} />}
                     {tag.name}
                   </span>
                 ))}
               </div>
-              
+
               <div class="flex gap-4 mt-4">
                 {project.entry.githubUrl && (
                   <span class="text-sm text-slate-400 hover:text-white transition-colors">
-                    <i class="fab fa-github mr-1"></i> View Source
+                    <i class="fab fa-github mr-1" /> View Source
                   </span>
                 )}
                 {project.entry.websiteUrl && (
                   <span class="text-sm text-slate-400 hover:text-white transition-colors">
-                    <i class="fas fa-external-link-alt mr-1"></i> Visit Site
+                    <i class="fas fa-external-link-alt mr-1" /> Visit Site
                   </span>
                 )}
               </div>
