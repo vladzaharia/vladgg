@@ -45,16 +45,16 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      # Step 3 - Set up Node.js
+      # Step 3 - Enable Corepack
+      - name: Enable Corepack
+        run: corepack enable
+
+      # Step 4 - Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: 'yarn'
-
-      # Step 4 - Enable Corepack
-      - name: Enable Corepack
-        run: corepack enable
 
       # Step 5 - Log in to GitHub Container Registry
       - name: Log in to GitHub Container Registry
