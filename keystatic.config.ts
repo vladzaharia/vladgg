@@ -32,8 +32,8 @@ export default config({
       path: 'src/content/projects/*',
       format: { contentField: 'content' },
       schema: {
-        title: fields.text({ label: 'Title' }),
-        slug: fields.text({ label: 'URL Slug' }),
+        title: fields.text({ label: 'Title', validation: { isRequired: true } }),
+        slug: fields.text({ label: 'URL Slug', validation: { isRequired: true } }),
         githubUrl: fields.url({ 
           label: 'GitHub URL', 
           validation: { isRequired: false } 
