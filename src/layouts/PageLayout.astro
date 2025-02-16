@@ -11,7 +11,9 @@ import Layout from "./Layout.astro";
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
-    <Backdrop data-aos="fade-up" class="absolute top-24 left-2 right-2 bottom-2 rounded-xl p-6 backdrop-opacity-95 bg-slate-900/80">
-        <slot />
+    <Backdrop data-aos="fade-up" class="absolute top-24 left-2 right-2 bottom-2 rounded-xl backdrop-opacity-95 bg-slate-900/80">
+        <div class="absolute inset-6 overflow-y-auto">
+            <slot />
+        </div>
     </Backdrop>
 </Layout>

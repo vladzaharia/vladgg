@@ -1,0 +1,79 @@
+---
+import { calculateTimelineYears, calculateJobPosition, adjustPositionsWithMinSpacing } from '../../utils/timeline';
+import TimelineJobCard from './TimelineJobCard.astro';
+import TimelineBase from './TimelineBase.astro';
+
+interface Props {
+  jobs: Array<{
+    entry: {
+      title: string;
+      company: {
+        name: string;
+        logo?: string;
+      };
+      location: string;
+      dateFrom: string;
+      dateTo?: string;
+    };
+    slug: string;
+  }>;
+}
+
+const { jobs } = Astro.props;
+
+// Calculate timeline years
+const timelineYears = calculateTimelineYears(jobs.map(j => ({
+  dateFrom: j.entry.dateFrom,
+  dateTo: j.entry.dateTo
+})));
+
+const minYear = Math.min(...timelineYears.map(t => t.year));
+const maxYear = Math.max(...timelineYears.map(t => t.year));
+
+// Calculate job positions and sort by start date (newest first)
+const jobsWithPositions = jobs
+  .map(job => ({
+    ...job,
+    position: calculateJobPosition(
+      { dateFrom: job.entry.dateFrom, dateTo: job.entry.dateTo },
+      minYear,
+      maxYear
+    )
+  }))
+  .sort((a, b) => {
+    const dateA = new Date(a.entry.dateFrom);
+    const dateB = new Date(b.entry.dateFrom);
+    return dateB.getTime() - dateA.getTime();
+  });
+
+// Adjust positions to ensure minimum spacing
+adjustPositionsWithMinSpacing(jobsWithPositions);
+
+// Format date helper
+const formatDate = (date: string) => {
+  if (!date) return 'Present';
+  return new Date(date).toLocaleDateString('en-US', { 
+    month: 'short',
+    year: 'numeric'
+  });
+};
+
+---
+
+<div class="relative mx-16">
+  {/* Container for timeline and content with padding for overflow */}
+  <div class="relative py-12 min-h-[1000px]">
+    {/* Timeline components */}
+    <TimelineBase jobs={jobsWithPositions} years={timelineYears} />
+    
+    {/* Job cards */}
+    {jobsWithPositions.map((job, index) => (
+      <TimelineJobCard
+        entry={job.entry}
+        position={job.position}
+        slug={job.slug}
+        index={index}
+      />
+    ))}
+  </div>
+</div>

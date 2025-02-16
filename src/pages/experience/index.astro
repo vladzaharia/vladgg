@@ -1,6 +1,7 @@
 ---
 import PageLayout from "../../layouts/PageLayout.astro";
 import Heading from "../../components/text/Heading.astro";
+import Timeline from "../../components/timeline/Timeline.astro";
 import { createReader } from '@keystatic/core/reader';
 import keystaticConfig from '../../../keystatic.config';
 
@@ -27,42 +28,8 @@ const formatDate = (date: string) => {
 <PageLayout title="Experience">
   <main class="container mx-auto px-4 py-8">
     <Heading class="mb-8">Experience</Heading>
-    <div class="max-w-4xl mx-auto">
-      <div class="space-y-6">
-        {
-          jobs.map((job) => (
-            <a 
-              href={`/experience/${job.slug}`}
-              class="block bg-slate-800 rounded-lg p-6 hover:bg-slate-700 transition-all hover:shadow-lg hover:-translate-y-0.5"
-            >
-              <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                <div>
-                  <h2 class="text-2xl font-bold font-display mb-2">{job.entry.title}</h2>
-                  <div class="text-xl text-slate-300">
-                    {job.entry.company?.logo && (
-                      <img 
-                        src={job.entry.company.logo} 
-                        alt={job.entry.company.name}
-                        class="h-6 w-auto inline-block mr-2"
-                      />
-                    )}
-                    <span class="hover:text-white transition-colors">
-                      {job.entry.company?.name}
-                    </span>
-                  </div>
-                </div>
-                
-                <div class="flex flex-col items-start md:items-end gap-1">
-                  <div class="text-lg text-slate-300">{job.entry.location}</div>
-                  <div class="text-lg text-slate-400">
-                    {formatDate(job.entry.dateFrom)} - {job.entry.dateTo ? formatDate(job.entry.dateTo) : 'Present'}
-                  </div>
-                </div>
-              </div>
-            </a>
-          ))
-        }
-      </div>
+    <div class="max-w-6xl mx-auto">
+      <Timeline jobs={jobs} />
     </div>
   </main>
 </PageLayout>
