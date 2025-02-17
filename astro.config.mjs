@@ -40,6 +40,9 @@ export default defineConfig({
     mode: 'standalone',
   }),
   vite: {
+    server: {
+      allowedHosts: ['vladgg.tun.polaris.gdn', 'vlad.gg'],
+    },
     ssr: {
       external: ["process", "fs", "os", "crypto", "async_hooks"].map((i) => `node:${i}`),
     },
