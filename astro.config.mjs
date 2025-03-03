@@ -9,7 +9,6 @@ import keystatic from '@keystatic/astro';
 import icon from 'astro-icon';
 import compressor from 'astro-compressor';
 import playformCompress from '@playform/compress';
-import swup from '@swup/astro';
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,7 +16,7 @@ export default defineConfig({
   // Integrations with optimized order
   integrations: [react({
     include: ['**/*.{jsx,tsx}'],
-  }), tailwind(), markdoc(), icon(), compressor(), keystatic(), playformCompress(), swup()],
+  }), tailwind(), markdoc(), icon(), compressor(), keystatic(), playformCompress()],
   // Performance optimizations
   compressHTML: true,
   scopedStyleStrategy: 'class', // Better CSS specificity control
