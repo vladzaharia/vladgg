@@ -17,7 +17,7 @@ export default defineConfig({
   // Integrations with optimized order
   integrations: [react({
     include: ['**/*.{jsx,tsx}'],
-  }), tailwind(), markdoc(), icon(), compressor(), ...(process.env.SKIP_KEYSTATIC ? [] : [keystatic()]), playformCompress(), swup()],
+  }), tailwind(), markdoc(), icon(), compressor(), keystatic(), playformCompress(), swup()],
   // Performance optimizations
   compressHTML: true,
   scopedStyleStrategy: 'class', // Better CSS specificity control

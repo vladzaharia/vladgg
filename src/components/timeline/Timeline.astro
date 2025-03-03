@@ -10,26 +10,24 @@ import TimelineBase from './TimelineBase.astro';
 
 interface Props {
   jobs: Array<{
-    entry: {
-      position: {
-        name: string;
-        slug: string;
+    readonly slug: string;
+    readonly entry: {
+      readonly position: string;
+      readonly positionShort?: string;
+      readonly company: {
+        readonly name: string;
+        readonly nameShort: string | null;
+        readonly logo: string | null;
+        readonly url: string | null;
       };
-      positionShort?: string;
-      company: {
-        name: string;
-        nameShort: string | null;
-        logo: string | null;
-        url: string | null;
+      readonly location: string;
+      readonly dates: {
+        readonly from: string;
+        readonly to: string | null;
       };
-      location: string;
-      dates: {
-        from: string;
-        to: string | null;
-      };
-      content: unknown;
+      readonly tags: readonly (string | null)[];
+      readonly content: () => Promise<unknown>;
     };
-    slug: string;
   }>;
 }
 
@@ -95,7 +93,7 @@ adjustPositionsWithMinSpacing(jobsWithPositions);
               <h3
                 class={`font-bold font-display transition-colors ${job.position.isShortTerm ? 'text-sm' : 'text-lg'}`}
               >
-                {job.entry.positionShort || job.entry.position.name}
+                {job.entry.positionShort || job.entry.position}
               </h3>
               <div class="flex justify-between items-center text-slate-400">
                 <div class={job.position.isShortTerm ? 'text-sm' : ''}>
@@ -147,7 +145,7 @@ adjustPositionsWithMinSpacing(jobsWithPositions);
               <h3
                 class={`font-bold font-display transition-colors ${job.position.isShortTerm ? 'text-sm' : 'text-lg'}`}
               >
-                {job.entry.positionShort || job.entry.position.name}
+                {job.entry.positionShort || job.entry.position}
               </h3>
               <div class="flex justify-between items-center text-slate-400">
                 <div class={job.position.isShortTerm ? 'text-sm' : ''}>

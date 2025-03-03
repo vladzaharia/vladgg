@@ -5,6 +5,10 @@ import keystaticConfig from '../../../keystatic.config';
 
 const reader = createReader(process.cwd(), keystaticConfig);
 const projects = await reader.collections.projects.all();
+const tags = await reader.collections.tags.all();
+
+// Create a map of tag slugs to tag details
+const tagMap = new Map(tags.map((tag) => [tag.slug, tag.entry]));
 
 // Get content for each project
 const projectsWithContent = await Promise.all(
@@ -42,15 +46,24 @@ projectsWithContent.sort((a, b) => b.slug.localeCompare(a.slug));
             <div class="p-6">
               <h2 class="text-2xl font-bold mb-4 font-display">{project.entry.title}</h2>
               <div class="flex flex-wrap gap-2 mb-4">
-                {project.entry.tags?.map((tag) => (
-                  <span
-                    class="px-3 py-1 rounded-full text-sm font-medium"
-                    style={`background-color: ${tag.color}40; color: ${tag.color}`}
-                  >
-                    {tag.icon && <i class={tag.icon + ' mr-1'} />}
-                    {tag.name}
-                  </span>
-                ))}
+                {project.entry.tags
+                  ?.filter((tag): tag is string => tag !== null)
+                  .map((tagSlug) => {
+                    const tag = tagMap.get(tagSlug);
+                    if (!tag) return null;
+
+                    return (
+                      <span
+                        class="px-3 py-1 rounded-full text-sm font-medium"
+                        style={`background-color: ${tag.color}40; color: ${tag.color}`}
+                      >
+                        {tag.icon.discriminant === 'icon' && tag.icon.value && (
+                          <i class={tag.icon.value + ' mr-1'} />
+                        )}
+                        {tag.name}
+                      </span>
+                    );
+                  })}
               </div>
 
               <div class="flex gap-4 mt-4">

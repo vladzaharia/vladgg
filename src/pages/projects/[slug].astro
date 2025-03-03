@@ -8,6 +8,10 @@ const reader = createReader(process.cwd(), keystaticConfig);
 
 const project = await reader.collections.projects.readOrThrow(slug!);
 const content = await project.content();
+const tags = await reader.collections.tags.all();
+
+// Create a map of tag slugs to tag details
+const tagMap = new Map(tags.map((tag) => [tag.slug, tag.entry]));
 
 if (!project) {
   return Astro.redirect('/404');
@@ -66,15 +70,24 @@ if (!project) {
         {
           project.tags && (
             <div class="flex flex-wrap gap-2">
-              {project.tags.map((tag) => (
-                <span
-                  class="px-3 py-1 rounded-full text-sm font-medium"
-                  style={`background-color: ${tag.color}40; color: ${tag.color}`}
-                >
-                  {tag.icon && <i class={tag.icon + ' mr-1'} />}
-                  {tag.name}
-                </span>
-              ))}
+              {project.tags
+                .filter((tag): tag is string => tag !== null)
+                .map((tagSlug) => {
+                  const tag = tagMap.get(tagSlug);
+                  if (!tag) return null;
+
+                  return (
+                    <span
+                      class="px-3 py-1 rounded-full text-sm font-medium"
+                      style={`background-color: ${tag.color}40; color: ${tag.color}`}
+                    >
+                      {tag.icon.discriminant === 'icon' && tag.icon.value && (
+                        <i class={tag.icon.value + ' mr-1'} />
+                      )}
+                      {tag.name}
+                    </span>
+                  );
+                })}
             </div>
           )
         }
