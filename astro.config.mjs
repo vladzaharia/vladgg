@@ -9,22 +9,15 @@ import keystatic from '@keystatic/astro';
 import icon from 'astro-icon';
 import compressor from 'astro-compressor';
 import playformCompress from '@playform/compress';
+import swup from '@swup/astro';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://vlad.gg',
   // Integrations with optimized order
-  integrations: [
-    react({
-      include: ['**/*.{jsx,tsx}'],
-    }),
-    tailwind(),
-    markdoc(),
-    icon(),
-    compressor(),
-    ...(process.env.SKIP_KEYSTATIC ? [] : [keystatic()]),
-    playformCompress(),
-  ],
+  integrations: [react({
+    include: ['**/*.{jsx,tsx}'],
+  }), tailwind(), markdoc(), icon(), compressor(), ...(process.env.SKIP_KEYSTATIC ? [] : [keystatic()]), playformCompress(), swup()],
   // Performance optimizations
   compressHTML: true,
   scopedStyleStrategy: 'class', // Better CSS specificity control
