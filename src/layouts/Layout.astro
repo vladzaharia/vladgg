@@ -9,6 +9,7 @@ import Navbar from '../components/Navbar.astro';
 import { SEO } from 'astro-seo';
 import Background from '../components/background/Background.astro';
 import { AstroFont } from 'astro-font';
+import { Head } from 'astro-capo';
 
 const { title: pageTitle, description: pageDescription } = Astro.props;
 
@@ -114,7 +115,7 @@ const fontConfig: FontConfig[] = [
 
 <!doctype html>
 <html lang="en">
-  <head>
+  <Head>
     <meta charset="UTF-8" />
     <SEO
       title={pageTitle}
@@ -142,6 +143,7 @@ const fontConfig: FontConfig[] = [
         ],
       }}
     />
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <AstroFont config={fontConfig} />
@@ -154,7 +156,7 @@ const fontConfig: FontConfig[] = [
         box-shadow: 0 0 2rem -0.5rem var(--glow-color);
       }
     </style>
-  </head>
+  </Head>
   <body class="text-slate-100 bg-slate-900 overflow-hidden relative">
     <Background class="w-screen h-screen absolute top-0 left-0 right-0 bottom-0">
       <Navbar />

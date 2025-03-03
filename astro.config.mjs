@@ -3,29 +3,27 @@ import { defineConfig } from 'astro/config';
 
 import tailwind from '@astrojs/tailwind';
 import node from '@astrojs/node';
-import react from '@astrojs/react'
-import markdoc from '@astrojs/markdoc'
+import react from '@astrojs/react';
+import markdoc from '@astrojs/markdoc';
 import keystatic from '@keystatic/astro';
 import icon from 'astro-icon';
 import compressor from 'astro-compressor';
+import playformCompress from '@playform/compress';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://vlad.gg',
   // Integrations with optimized order
   integrations: [
-    // Core functionality
     react({
       include: ['**/*.{jsx,tsx}'],
     }),
-    // Content and styling
     tailwind(),
     markdoc(),
     icon(),
-    // Performance optimizations
     compressor(),
-    // CMS (conditionally loaded)
     ...(process.env.SKIP_KEYSTATIC ? [] : [keystatic()]),
+    playformCompress(),
   ],
   // Performance optimizations
   compressHTML: true,
@@ -41,13 +39,14 @@ export default defineConfig({
   }),
   vite: {
     server: {
-      allowedHosts: ['vladgg.tun.polaris.gdn', 'vlad.gg'],
+      allowedHosts: ['.tun.polaris.gdn', 'vlad.gg'],
     },
     ssr: {
-      external: ["process", "fs", "os", "crypto", "async_hooks"].map((i) => `node:${i}`),
+      external: ['process', 'fs', 'os', 'crypto', 'async_hooks'].map((i) => `node:${i}`),
     },
     // Vite optimizations
     build: {
+      sourcemap: true,
       cssCodeSplit: true,
       rollupOptions: {
         output: {

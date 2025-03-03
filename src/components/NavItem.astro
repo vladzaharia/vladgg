@@ -2,9 +2,10 @@
 interface Props {
   path: string;
   class?: string;
+  label?: string;
 }
 
-const { path, class: className } = Astro.props;
+const { path, class: className, label } = Astro.props;
 const { pathname } = Astro.url;
 
 // Check if current path matches this nav item
@@ -19,6 +20,7 @@ const activeClass = isActive ? 'text-sky-500' : 'text-slate-100';
   href=`/${path}`
   data-astro-prefetch
   aria-current={isActive ? 'page' : undefined}
+  aria-label={label || undefined}
 >
   <slot />
 </a>

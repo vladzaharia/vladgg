@@ -28,10 +28,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add offset based on side
     const isLeft = originalCard.dataset.side === 'left';
-    const offsetX = !isLeft ? -250 : 250;
+    const isMobile = window.innerWidth < 768; // md breakpoint
+    const offsetX = isMobile ? 0 : !isLeft ? -250 : 250;
 
     // Calculate the transform origin point
-    const transformOriginX = isLeft ? '0%' : '100%';
+    const transformOriginX = isMobile ? '50%' : isLeft ? '0%' : '100%';
     content.style.transformOrigin = `${transformOriginX} 50%`;
 
     // Calculate the position that would align the expanded card with the original
@@ -102,10 +103,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Add offset based on side
       const isLeft = card.dataset.side === 'left';
-      const offsetX = !isLeft ? -250 : 250;
+      const isMobile = window.innerWidth < 768; // md breakpoint
+      const offsetX = isMobile ? 0 : !isLeft ? -250 : 250;
 
       // Calculate the transform origin point
-      const transformOriginX = isLeft ? '0%' : '100%';
+      const transformOriginX = isMobile ? '50%' : isLeft ? '0%' : '100%';
       expandedContent.style.transformOrigin = `${transformOriginX} 50%`;
 
       // Calculate the position that would align the expanded card with the original

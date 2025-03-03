@@ -37,7 +37,10 @@ const { entry, color, startDate, endDate } = Astro.props;
       expanded-content
       bg-slate-800 rounded-lg border overflow-hidden
       transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]
-      h-[60vh] w-[40vw] relative z-10 ${color.shadow}
+      relative z-10
+      md:h-[60vh] md:w-[40vw]
+      h-[81vh] w-[93vw] md:max-h-[800px]
+      ${color.shadow}
       ${color.border}
     `}
   >
