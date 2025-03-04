@@ -7,7 +7,7 @@ RUN apk add --update hugo git
 WORKDIR /opt/HugoApp
 
 # Copy Hugo config into the container Workdir.
-COPY . .
+COPY . /opt/HugoApp
 
 # Update submodules
 RUN git submodule update --init
