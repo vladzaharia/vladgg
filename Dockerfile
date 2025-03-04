@@ -10,7 +10,7 @@ WORKDIR /opt/HugoApp
 COPY . .
 
 # Update submodules
-RUN git submodule update
+RUN git submodule update --init
 
 # Run Hugo in the Workdir to generate HTML.
 RUN hugo
