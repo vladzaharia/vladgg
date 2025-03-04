@@ -30,15 +30,17 @@ COPY --from=builder --chown=astro:nodejs /app/yarn.lock ./
 COPY --from=builder --chown=astro:nodejs /app/.yarn ./.yarn
 COPY --from=builder --chown=astro:nodejs /app/.yarnrc.yml ./
 
+RUN apk update && apk add curl
+
 RUN corepack enable && \
     yarn install --immutable && \
     yarn cache clean
 
 USER astro
-EXPOSE 4321
+EXPOSE 3000
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=3s \
-    CMD curl -f http://localhost:4321/ || exit 1
+    CMD curl -f http://localhost:3000/ || exit 1
 
 CMD ["node", "./dist/server/entry.mjs"]
