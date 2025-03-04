@@ -9,6 +9,9 @@ WORKDIR /opt/HugoApp
 # Copy Hugo config into the container Workdir.
 COPY . .
 
+# Update submodules
+RUN git submodule update
+
 # Run Hugo in the Workdir to generate HTML.
 RUN hugo
 
