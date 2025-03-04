@@ -1,0 +1,87 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { createReader } from '@keystatic/core/reader';
+import keystaticConfig from '../../../keystatic.config';
+
+const reader = createReader(process.cwd(), keystaticConfig);
+const projects = await reader.collections.projects.all();
+const tags = await reader.collections.tags.all();
+
+// Create a map of tag slugs to tag details
+const tagMap = new Map(tags.map((tag) => [tag.slug, tag.entry]));
+
+// Get content for each project
+const projectsWithContent = await Promise.all(
+  projects.map(async (project) => ({
+    ...project,
+    content: await project.entry.content(),
+  }))
+);
+
+// Sort projects by most recent first (if you add a date field later)
+projectsWithContent.sort((a, b) => b.slug.localeCompare(a.slug));
+---
+
+<PageLayout title="Projects">
+  <main class="container mx-auto p-6">
+    <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-16 mb-8">
+      <span class="text-slate-500 text-lg">Projects I've started and mostly never finished...</span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {
+        projectsWithContent.map((project) => (
+          <a
+            href={`/projects/${project.slug}`}
+            class="group bg-slate-800 rounded-lg overflow-hidden hover:bg-slate-700 transition-all hover:shadow-lg hover:-translate-y-1"
+          >
+            {project.entry.images?.[0] && (
+              <div class="relative h-48 overflow-hidden">
+                <img
+                  src={project.entry.images[0]}
+                  alt={project.entry.title}
+                  class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform"
+                />
+              </div>
+            )}
+            <div class="p-6">
+              <h2 class="text-2xl font-bold mb-4 font-display">{project.entry.title}</h2>
+              <div class="flex flex-wrap gap-2 mb-4">
+                {project.entry.tags
+                  ?.filter((tag): tag is string => tag !== null)
+                  .map((tagSlug) => {
+                    const tag = tagMap.get(tagSlug);
+                    if (!tag) return null;
+
+                    return (
+                      <span
+                        class="px-3 py-1 rounded-full text-sm font-medium"
+                        style={`background-color: ${tag.color}40; color: ${tag.color}`}
+                      >
+                        {tag.icon.discriminant === 'icon' && tag.icon.value && (
+                          <i class={tag.icon.value + ' mr-1'} />
+                        )}
+                        {tag.name}
+                      </span>
+                    );
+                  })}
+              </div>
+
+              <div class="flex gap-4 mt-4">
+                {project.entry.githubUrl && (
+                  <span class="text-sm text-slate-400 hover:text-white transition-colors">
+                    <i class="fab fa-github mr-1" /> View Source
+                  </span>
+                )}
+                {project.entry.websiteUrl && (
+                  <span class="text-sm text-slate-400 hover:text-white transition-colors">
+                    <i class="fas fa-external-link-alt mr-1" /> Visit Site
+                  </span>
+                )}
+              </div>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </main>
+</PageLayout>

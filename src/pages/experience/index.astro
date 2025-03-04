@@ -1,0 +1,24 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Timeline from '../../components/timeline/Timeline.astro';
+import { createReader } from '@keystatic/core/reader';
+import keystaticConfig from '../../../keystatic.config';
+
+const reader = createReader(process.cwd(), keystaticConfig);
+const jobs = await reader.collections.jobs.all();
+
+// Sort jobs by date, most recent first
+jobs.sort((a, b) => {
+  const dateA = new Date(a.entry.dates.from ?? 0);
+  const dateB = new Date(b.entry.dates.from ?? 0);
+  return dateB.getTime() - dateA.getTime();
+});
+---
+
+<PageLayout title="Experience">
+  <main class="container mx-auto p-6">
+    <div class="max-w-6xl mx-auto">
+      <Timeline {jobs} />
+    </div>
+  </main>
+</PageLayout>

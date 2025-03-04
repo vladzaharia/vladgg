@@ -1,0 +1,26 @@
+---
+interface Props {
+  path: string;
+  class?: string;
+  label?: string;
+}
+
+const { path, class: className, label } = Astro.props;
+const { pathname } = Astro.url;
+
+// Check if current path matches this nav item
+const isActive =
+  path === '' ? pathname === '/' || pathname === '' : pathname.startsWith(`/${path}`);
+
+const activeClass = isActive ? 'text-sky-500' : 'text-slate-100';
+---
+
+<a
+  class=`font-display py-1 px-2 transition-colors duration-300 ${activeClass} hover:text-pink-500 ${className}`
+  href=`/${path}`
+  data-astro-prefetch
+  aria-current={isActive ? 'page' : undefined}
+  aria-label={label || undefined}
+>
+  <slot />
+</a>

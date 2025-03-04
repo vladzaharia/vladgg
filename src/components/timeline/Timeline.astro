@@ -1,0 +1,175 @@
+---
+import {
+  calculateTimelineYears,
+  calculateJobPosition,
+  adjustPositionsWithMinSpacing,
+  formatDateRange,
+} from '../../utils/timeline';
+import TimelineCard from './TimelineCard.astro';
+import TimelineBase from './TimelineBase.astro';
+
+interface Props {
+  jobs: Array<{
+    readonly slug: string;
+    readonly entry: {
+      readonly position: string;
+      readonly positionShort?: string;
+      readonly company: {
+        readonly name: string;
+        readonly nameShort: string | null;
+        readonly logo: string | null;
+        readonly url: string | null;
+      };
+      readonly location: string;
+      readonly dates: {
+        readonly from: string;
+        readonly to: string | null;
+      };
+      readonly tags: readonly (string | null)[];
+      readonly content: () => Promise<unknown>;
+    };
+  }>;
+}
+
+const { jobs } = Astro.props;
+
+// Extract job dates for timeline calculations
+const jobDates = jobs.map((j) => ({
+  dates: {
+    from: j.entry.dates.from,
+    to: j.entry.dates.to,
+  },
+}));
+
+// Calculate timeline years
+const timelineYears = calculateTimelineYears(jobDates);
+
+const minYear = Math.min(...timelineYears.map((t) => t.year));
+const maxYear = Math.max(...timelineYears.map((t) => t.year));
+
+// Calculate job positions and sort by start date (newest first)
+const jobsWithPositions = jobs
+  .map((job) => ({
+    ...job,
+    position: calculateJobPosition(
+      { dates: { from: job.entry.dates.from, to: job.entry.dates.to } },
+      minYear,
+      maxYear
+    ),
+  }))
+  .sort((a, b) => {
+    const dateA = new Date(a.entry.dates.from);
+    const dateB = new Date(b.entry.dates.from);
+    return dateB.getTime() - dateA.getTime();
+  });
+
+// Adjust positions to ensure minimum spacing
+adjustPositionsWithMinSpacing(jobsWithPositions);
+---
+
+<div class="relative mx-4 md:mx-16">
+  {/* Container for timeline and content with padding for overflow */}
+  <div class="relative py-12 min-h-[1000px] md:block hidden">
+    {/* Timeline components */}
+    <TimelineBase jobs={jobsWithPositions} years={timelineYears} />
+
+    {/* Job cards */}
+    {
+      jobsWithPositions.map((job, index) => (
+        <TimelineCard entry={job.entry} position={job.position} slug={job.slug} index={index}>
+          <div class="flex gap-4 items-stretch">
+            {job.entry.company.logo && (
+              <div
+                class={`flex items-center border-r border-slate-700/50 ${job.position.isShortTerm ? 'pr-2' : 'pr-3'}`}
+              >
+                <img
+                  src={job.entry.company.logo}
+                  alt={job.entry.company.nameShort || job.entry.company.name}
+                  class={`w-auto min-w-14 flex-shrink-0 transition-transform duration-300 group-hover:scale-105 ${job.position.isShortTerm ? 'h-10' : 'h-12'}`}
+                />
+              </div>
+            )}
+            <div class="flex flex-col gap-2 flex-grow">
+              <h3
+                class={`font-bold font-display transition-colors ${job.position.isShortTerm ? 'text-sm' : 'text-lg'}`}
+              >
+                {job.entry.positionShort || job.entry.position}
+              </h3>
+              <div class="flex justify-between items-center text-slate-400">
+                <div class={job.position.isShortTerm ? 'text-sm' : ''}>
+                  {job.entry.company.nameShort || job.entry.company.name}
+                </div>
+                <div
+                  class={`text-slate-400/75 font-light ${job.position.isShortTerm ? 'text-sm' : ''}`}
+                >
+                  {job.entry.location}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div slot="expanded">
+            <div class="prose prose-invert max-w-none">
+              <p class="text-lg leading-relaxed">{job.entry.content}</p>
+            </div>
+          </div>
+        </TimelineCard>
+      ))
+    }
+  </div>
+
+  {/* Mobile list view */}
+  <div class="md:hidden space-y-4 py-8">
+    {
+      jobsWithPositions.map((job, index) => (
+        <TimelineCard
+          entry={job.entry}
+          position={job.position}
+          slug={job.slug}
+          index={jobsWithPositions.length - index - 1}
+          isMobile={true}
+        >
+          <div class="flex gap-4 items-stretch">
+            {job.entry.company.logo && (
+              <div
+                class={`flex items-center border-r border-slate-700/50 ${job.position.isShortTerm ? 'pr-2' : 'pr-3'}`}
+              >
+                <img
+                  src={job.entry.company.logo}
+                  alt={job.entry.company.nameShort || job.entry.company.name}
+                  class={`w-auto min-w-14 flex-shrink-0 transition-transform duration-300 group-hover:scale-105 ${job.position.isShortTerm ? 'h-10' : 'h-12'}`}
+                />
+              </div>
+            )}
+            <div class="flex flex-col gap-2 flex-grow">
+              <h3
+                class={`font-bold font-display transition-colors ${job.position.isShortTerm ? 'text-sm' : 'text-lg'}`}
+              >
+                {job.entry.positionShort || job.entry.position}
+              </h3>
+              <div class="flex justify-between items-center text-slate-400">
+                <div class={job.position.isShortTerm ? 'text-sm' : ''}>
+                  {job.entry.company.nameShort || job.entry.company.name}
+                </div>
+                <div
+                  class={`text-slate-400/75 font-light ${job.position.isShortTerm ? 'text-sm' : ''}`}
+                >
+                  {job.entry.location}
+                </div>
+              </div>
+              <div class="text-sm text-center text-slate-400 font-date">
+                {formatDateRange(job.entry.dates.from, job.entry.dates.to)}
+              </div>
+            </div>
+          </div>
+
+          <div slot="expanded">
+            <div class="prose prose-invert max-w-none">
+              <p class="text-lg leading-relaxed">{job.entry.content}</p>
+            </div>
+          </div>
+        </TimelineCard>
+      ))
+    }
+  </div>
+</div>

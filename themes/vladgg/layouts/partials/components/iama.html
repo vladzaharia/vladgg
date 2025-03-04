@@ -1,5 +1,0 @@
-{{ if isset . "href" }}
-    <div class="grid-iama-content" id="content-{{ .index }}"><a class="{{ .color }}" href="{{ .href }}"><img src="/emoji/{{ .icon.src }}.svg" alt="{{ .icon.alt }}" /> <span>{{ .text }}</span></a></div>
-{{ else }}
-    <div class="grid-iama-content {{ .color }} {{ if gt .index 6 }}hidden{{ end }}" id="content-{{ .index }}"><i class="fa-duotone fa-{{ .icon.i }}" alt="{{ .icon.alt }}"></i>  <span>{{ .text }}</span></div>
-{{ end }}

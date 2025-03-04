@@ -1,0 +1,39 @@
+---
+import Backdrop from './background/Backdrop.astro';
+import { Icon } from 'astro-icon/components';
+import NavItem from './NavItem.astro';
+
+const { pathname } = Astro.url;
+const currentPath = pathname.split('/')[1];
+
+// Get page title based on path
+const titles: Record<string, string> = {
+  '': 'Vlad Zaharia',
+  experience: 'Experience',
+  projects: 'Projects',
+  contact: 'Contact',
+};
+const pageTitle = currentPath ? titles[currentPath] : '';
+---
+
+<div
+  class="fixed top-4 left-4 right-0 pl-0 md:pl-6 px-6 pr-2 flex justify-center md:justify-between items-center"
+>
+  <h1 class="ml-4 text-4xl font-display text-slate-100 hidden md:block" data-aos="fade-right">
+    {pageTitle}
+  </h1>
+
+  <nav>
+    <Backdrop
+      class="flex flex-row justify-center items-center gap-6 py-3 px-6"
+      data-aos="fade-left"
+    >
+      <NavItem path="" label="Home" class=`py-1 pr-6 border-r-2 border-slate-200/50`
+        ><Icon name="fa/house" class="text-2xl" /></NavItem
+      >
+      <NavItem path="experience">Experience</NavItem>
+      <NavItem path="projects">Projects</NavItem>
+      <NavItem path="contact">Contact</NavItem>
+    </Backdrop>
+  </nav>
+</div>
