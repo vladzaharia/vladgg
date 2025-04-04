@@ -38,3 +38,14 @@ jobs:
       # Also specifies the theme we want to use
       - name: Build
         run: hugo
+
+      - name: Publish to IPFS
+        uses: aquiladev/ipfs-action@v0.2.2-alpha.0
+        id: ipfs
+        with:
+          path: ./public
+          host: ipfs.zhr.one
+          port: 443
+          protocol: https
+          timeout: 180000
+          key: k51qzi5uqu5dh9imz8fdkd0xh229t8nkxezvke2r3xkx3pfh54ev4hsuu27uek
